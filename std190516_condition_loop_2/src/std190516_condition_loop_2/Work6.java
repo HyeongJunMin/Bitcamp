@@ -45,5 +45,27 @@ public class Work6 {
 		}
 		
 	}
+	
+	void play3() {
+		//세로로 자른 마름모 모양으로 별 찍기
+		int size = 9;
+		int a = 0, b = ( size / 2 );
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j <= (a+b); j++) {
+				if(j>=b)
+					System.out.print("*");
+				else
+					System.out.print(" ");
+			}
+			System.out.println();
+			if( i < (size/2) ) {
+				a++;
+				b--;
+			} else {
+				a--;
+				b++;
+			}				
+		}
+	}
 }
 
