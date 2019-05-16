@@ -27,8 +27,6 @@ public class Main {
 //		w4.play();
 //		Work5 w5 = new Work5();
 //		w5.play();
-		Work6 w6 = new Work6();
-		w6.play();
 	}
 
 }
