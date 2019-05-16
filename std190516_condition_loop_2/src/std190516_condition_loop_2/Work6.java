@@ -67,5 +67,29 @@ public class Work6 {
 			}				
 		}
 	}
+	
+	void play4() {
+		//마름모 모양으로 별 찍기
+		int size = 13;
+		System.out.println("size: " + size);
+		System.out.println();
+		int a = ( size / 2 ), b = ( size / 2 );
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if(j>=b && j<=a)
+					System.out.print("*");
+				else
+					System.out.print(" ");
+			}
+			System.out.println();
+			if( i < (size/2) ) {
+				a++;
+				b--;
+			} else {
+				a--;
+				b++;
+			}				
+		}
+	}
 }
 
