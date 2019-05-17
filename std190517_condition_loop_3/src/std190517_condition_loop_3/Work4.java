@@ -10,14 +10,14 @@ public class Work4 {
 	//	4. 입력 카운트 + 1
 	//	5. 2~4 반복 종료조건 : 카운트 == 10 or 정답 
 	//  추가조건 1. 1~100 사이의 숫자가 아닌 다를 숫자 또는 문자를 입력했으면 기회차감 안하고 다시입력
-	
-void play1(){
-		
+
+	void play1() {
+
 		Scanner in = new Scanner(System.in);
-		
-		int answer = 0, cnt = 0, resetOk = 0, num=0;
+
+		int answer = 0, cnt = 0, resetOk = 0, num = 0;
 		char chc = 'Y';
-		String inNum="";
+		String inNum = "";
 		
 		
 		while( chc == 'Y') {	//	게임 지속 여부를 결정하는 변수 53번째 줄에서 y, n 설정

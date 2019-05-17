@@ -13,7 +13,8 @@ public class Main {
 //		w2.play1();
 //		Work3 w3 = new Work3();
 //		w3.play1();
-		Work4 w4 = new Work4();
-		w4.play1();
+//		Work4 w4 = new Work4();
+//		w4.play1();
+		
 	}
 }
