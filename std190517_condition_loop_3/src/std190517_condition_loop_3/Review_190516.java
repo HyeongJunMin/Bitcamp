@@ -3,12 +3,13 @@ package std190517_condition_loop_3;
 public class Review_190516 {
 	void play1() {
 		// 1~100 사이 정수를 받았을 때 10의 자리 범위 산출
-		int inNum = 75;
+		int inputNumber = 75;
 		int num10 = 0;
 		for (int i = 0; i < 10; i++) {
 			num10 = 10 * i;
-			if (inNum >= num10 && inNum <= num10 + 10) {
-
+			if(inputNumber > num10 && inputNumber <= num10 + 10) {
+				System.out.println(num10 + "보다 크고 " 
+							+ (num10 + 10) + "보다 작거나 같은 범위에 있습니다");
 			}
 		}
 	}
