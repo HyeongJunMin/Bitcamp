@@ -1,5 +1,4 @@
-import java.math.*;
-import java.util.*;
+import java.util.Scanner;
 public class Main_190520 {
 
 	public static void main(String[] args) {
