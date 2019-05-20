@@ -1,7 +1,7 @@
 import java.util.*;
 import java.math.*;
 
-public class Review190517 {
+public class Lct1_Review190517 {
 	/*
 	 * 	190517(금) 복습내용
 	 * 	java는 OOP 입니다(Object Oriented Program)
