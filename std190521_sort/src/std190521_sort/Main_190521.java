@@ -12,7 +12,7 @@ public class Main_190521 {
 //		w2.play();
 //		Work3 w3 = new Work3();
 //		w3.play4();
-		Work4 w4 = new Work4();
-		w4.play();
+//		Work4 w4 = new Work4();
+//		w4.play();
 	}
 }
