@@ -14,8 +14,8 @@ public class Main_190520 {
 //		l3.play1();
 //		Work1 w = new Work1();
 //		w.play();
-		Work2	w2 = new Work2();
-		w2.play1();
+//		Work2	w2 = new Work2();
+//		w2.play1();
 //		char ch = in.next().charAt(0);
 //		
 //		System.out.println(w2.isOk(ch));
