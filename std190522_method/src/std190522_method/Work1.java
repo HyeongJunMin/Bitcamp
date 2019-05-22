@@ -178,19 +178,7 @@ public class Work1 {
 				'}',';',':',',','.','/'};
 		char[] numCode = {'q','w','e','r','t','y','u','i','o','p'};
 		
-		//복호화 암호표 작성
-//		int[] reverseAbcCode = new int[abcCode.length];
-//		for(int i = 0 ; i < abcCode.length ; i++ ) {
-//			reverseAbcCode[i] = (int)(abcCode[i]);
-//		}	//96 126 33 64 35 36 37 94 38 42 40 41 45 95 43 61 124 91 93 123 125 59 58 44 46 47 
-//		
-//		int[] reverseNumCode = new int[numCode.length];
-//		for(int i = 0 ; i < numCode.length ; i++ ) {
-//			reverseNumCode[i] = (int)(numCode[i]);
-//		}
-		
-		//알파벳으로 들어오면? reverseNumCode의 인덱스를 빼세요 == 숫자
-		//특수문자로 들어요면? 
+
 		if(str == null || strLen == 0 ) {
 			result = "input right value";
 		} else {
@@ -217,5 +205,17 @@ public class Work1 {
 		
 		return result;
 	}
-	
+	// 복호화 암호표 작성
+	//	int[] reverseAbcCode = new int[abcCode.length];
+	//	for(int i = 0 ; i < abcCode.length ; i++ ) {
+	//		reverseAbcCode[i] = (int)(abcCode[i]);
+	//	}	//96 126 33 64 35 36 37 94 38 42 40 41 45 95 43 61 124 91 93 123 125 59 58 44 46 47 
+	//	
+	//	int[] reverseNumCode = new int[numCode.length];
+	//	for(int i = 0 ; i < numCode.length ; i++ ) {
+	//		reverseNumCode[i] = (int)(numCode[i]);
+	//	}
+
+	// 알파벳으로 들어오면? reverseNumCode의 인덱스를 빼세요 == 숫자
+	// 특수문자로 들어요면?
 }
