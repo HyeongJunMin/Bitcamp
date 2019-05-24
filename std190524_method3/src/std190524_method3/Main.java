@@ -5,7 +5,9 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		String a = "12345";
 		
+		System.out.println(a.contains("6"));
 		
 		
 		
