@@ -1,4 +1,5 @@
-package std190527_Exception_OverLoad_IO;
+package std190528_Object_Calendar;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,9 +7,8 @@ import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Work1 {
-	//0528추가 : 8. 검색!
-	//	- 이름으로 정보 출력
+public class Review190527 {
+	//0528추가 : 이름으로 검색
 	
 	//할일
 	//1. 파일 생성
@@ -28,7 +28,7 @@ public class Work1 {
 	void runFileIOSystem() {
 		char continueSystem = 'Y';
 		
-		String intro = "파일 입출력 시스템 시작.\n메뉴를 선택하세요.\n(1)파일생성\t(2)파일삭제\t(3)파일쓰기\t(4)파일읽기\n(5)파일추가쓰기\t(6)모두출력\t(7)프로그램 종료";
+		String intro = "파일 입출력 시스템 시작.\n메뉴를 선택하세요.\n(1)파일생성\t(2)파일삭제\t(3)파일쓰기\t(4)파일읽기\n(5)파일추가쓰기\t(6)모두출력\t(7)프로그램 종료\t(8)데이터검색";
 		
 		while( continueSystem == 'Y' ) {
 			System.out.println(intro);			
@@ -45,6 +45,7 @@ public class Work1 {
 				case '5': wrtToExsFile(); break;
 				case '6': printAll(); break;
 				case '7': continueSystem = '7'; break;
+				case '8': searchData(); break;
 				default : break;
 			}
 			
@@ -52,10 +53,10 @@ public class Work1 {
 			
 			
 			//프로그램 시작종료 사용자 입력
-			if (continueSystem != '7') {
-				System.out.println("계속하시겠습니까? (Y/N)");
-				continueSystem = endOrContinueSystem();
-			}
+//			if (continueSystem != '7') {
+//				System.out.println("계속하시겠습니까? (Y/N)");
+//				continueSystem = endOrContinueSystem();
+//			}
 		}
 		
 		System.out.println("프로그램을 종료합니다.");
@@ -338,15 +339,15 @@ public class Work1 {
 				String fileName = "d:\\tmp\\" + str;
 				File fileToRead = new File(fileName);
 				BufferedReader bfReader = new BufferedReader(new FileReader(fileToRead));
-				System.out.print("파일 내용 : ");
+				System.out.println("파일 내용 : ");
 				while ((str = bfReader.readLine()) != null) {
 					System.out.println(str);
 				}
-				System.out.println(fileName + " 완료\n\n");
+				System.out.println(fileName + " 완료\n");
 				bfReader.close();
 			}
 			
-			System.out.println("파일 읽기 종료.");
+			System.out.println("파일 읽기 종료.\n");
 			
 
 		} catch (Exception e) {
@@ -354,12 +355,107 @@ public class Work1 {
 		}
 	}
 	
+	//이름으로 검색
+	void searchData() {
+		
+			String str="";
+			char strChc = 'N';
+			
+			//파일목록 view 부분
+			System.out.println("파일 검색을 시작합니다. 현재 생성된 파일 목록은 아래와 같습니다.");
+			File fileL = new File("D:\\tmp");
+			String[] fileList = fileL.list();
+			if( fileList.length < 1) {
+				System.out.println("파일이 없습니다. 파일검색 기능을 종료합니다.");
+				return;
+			}else {
+				System.out.println(Arrays.toString(fileList));
+			}
+
+			//파일선택 부분
+			System.out.print("검색 대상 파일명을 입력 해 주세요(확장자제외) : ");
+			//Y 또는 N이 입력되면 종료
+			while(strChc != 'Y') {
+				str = in.next();
+				System.out.println("입력하신 파일명은 " + str + " 입니다. 맞으면 Y, 다시입력하려면 N을 입력하세요.");
+				strChc = in.next().toUpperCase().charAt(0);
+				if( strChc != 'Y' )
+					System.out.print("파일명을 다시 입력해 주세요 : ");
+			}
+
+			//검색 대상 파일의 정보
+			String fileName = "d:\\tmp\\" + str + ".txt";
+			File fileToRead = new File(fileName);
+			
+			//검색 대상 파일의 문자열이 저장될 배열
+			String[] fileData = new String[100];
+			
+			//검색어 저장 변수
+			String userInputDataForSearch = "";
+			
+			
+			if( checkBeforeReadFile(fileToRead) ) {
+				try {
+					strChc = 'Y';
+					while(strChc == 'Y') {
+						System.out.print("검색을 시작합니다. 이름을 입력해 주세요 : ");
+						userInputDataForSearch = in.next();
+						System.out.println("입력하신 검색어는 " + userInputDataForSearch + " 입니다.");
+
+						
+						//파일 내용을 문자열 배열에 저장
+						BufferedReader bfReader = new BufferedReader(new FileReader(fileToRead));
+
+						//반복제어변수
+						int w = 0;
+						while( (str = bfReader.readLine()) != null ) {
+							fileData = str.split("-");
+							w++;
+							for( int i = 0 ; i < fileData.length; i++ ) {
+								if( fileData[0].equals(userInputDataForSearch) ) {
+									System.out.println("나이\t거주지");
+									System.out.println(fileData[1]+"\t"+fileData[2]);
+									w = 100;
+									break;
+								}
+							}
+							if(w == 100)
+								break;
+						}
+						if(w != 100)
+							System.out.println("검색 결과가 없습니다.");
+						//검색부
+//						for( int i = 0 ; i < fileData.length; i++ ) {
+//							if( fileData[i][0].equals(userInputDataForSearch) ) {
+//								System.out.println(fileData[i][1]+"\t"+fileData[i][2]);
+//								break;
+//							}
+//						}
+						if (strChc == 'Y') {
+							System.out.println("계속 검색하시겠습니까? (Y/N)");
+							strChc = endOrContinueSystem();
+						}
+					}			
+					System.out.println("파일 검색 종료.");
+
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+					
+			
+			} else {
+				System.out.println("파일을 찾을 수 없어요");
+			}
+		
+	}
+		
 	char inputRightValue() {
 		char a = 'a';
 		
-		while(a < '1' || a > '7') {
+		while(a < '1' || a > '8') {
 			a = in.next().charAt(0);
-			if( a < '1' || a > '7' )
+			if( a < '1' || a > '8' )
 				System.out.println("잘못된 값을 입력했습니다. 다시 입력해 주세요. (1~7)");
 		}		
 		
@@ -390,5 +486,5 @@ public class Work1 {
 	}
 
 	
-	
+
 }
