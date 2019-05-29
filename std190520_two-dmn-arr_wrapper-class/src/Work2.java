@@ -3,6 +3,8 @@ import java.math.*;
 
 public class Work2 {
 	// 야구 게임
+	// 2019.05.29 자기검사 오류(1번==1번) 발견하여 내용 추가
+	//  > 53번 줄 조건 추가
 
 	void play1() {
 		Scanner in = new Scanner(System.in);
@@ -48,14 +50,16 @@ public class Work2 {
 						}
 					} while (userSelection < 0 || userSelection > 9);
 
-					for (int j = 0; j < userInput.length; j++) {
-						if (i == j)
-							continue;
-						while (userInput[i] == userInput[j]) {
-							System.out.println((i + 1) + "번 째 숫자와 중복입니다. 다시 입력하세요 : ");
-							userInput[i] = Character.getNumericValue(in.next().charAt(0));
-						}
-					} // 중복 제거
+					if(i > 0){
+						for (int j = 0; j < userInput.length; j++) {
+							if (i == j)
+								continue;
+							while (userInput[i] == userInput[j]) {
+								System.out.println((i + 1) + "번 째 숫자와 중복입니다. 다시 입력하세요 : ");
+								userInput[i] = Character.getNumericValue(in.next().charAt(0));
+							}
+						} // 중복 제거
+					}
 				}
 				System.out.println("입력성공");
 
