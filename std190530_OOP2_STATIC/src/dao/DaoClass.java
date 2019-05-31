@@ -21,6 +21,7 @@ public class DaoClass {
 	private int count;
 	File studentsData = new File("d:\\tmp\\Students.txt");
 	
+	//학생관리 시스템 데이터 파일에서 불러온 데이터를 List에 저장
 	public DaoClass() {
 		this.students = new ArrayList<>();
 		count = 0;		
