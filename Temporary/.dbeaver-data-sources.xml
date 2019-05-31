@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<folder name="studies"/>
+	<data-source id="oracle_thin-16b0d3b682e-654b715f763edd5a" provider="oracle" driver="oracle_thin" name="Oracle - orcl" save-password="true" read-only="false">
+		<connection host="localhost" port="1521" server="" database="orcl" url="jdbc:oracle:thin:@//localhost:1521/orcl" user="SCOTT" password="QlZVdCGi" home="D:\app\bitcamp\product\11.2.0\dbhome_2" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-use-meta-optimizer@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="BASIC"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-meta-use-sys-schema@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+	</data-source>
+	<data-source id="oracle_thin-16b0d5ad945-6dc9b18a481f268a" provider="oracle" driver="oracle_thin" name="Oracle - studyDB" save-password="true" read-only="false" folder="studies">
+		<connection host="localhost" port="1521" server="" database="studyDB" url="jdbc:oracle:thin:@//localhost:1521/studyDB" user="minhj" password="QlZVdCGi" home="D:\app\bitcamp\product\11.2.0\dbhome_2" type="dev">
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-use-meta-optimizer@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="BASIC"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-meta-use-sys-schema@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>
