@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -26,7 +28,7 @@ public class TeamDAO {
 		this.syncListToFile();
 	}
 	
-	//학생정보 시스템 메뉴 출력 및 반복
+	//선수정보 시스템 메뉴 출력 및 반복
 	public void runSystem() {
 		char ch = 'Y';
 		int selectMenu = 0;
@@ -34,7 +36,7 @@ public class TeamDAO {
 		System.out.println("선수정보관리 시스템을 시작합니다.");
 		while( ch == 'Y' ) {
 			System.out.println("메뉴를 선택해 주세요.");
-			System.out.print("(1)선수추가\t(2)선수삭제\t(3)선수검색\n(4)선수정보수정\t(5)모든선수정보출력\t(6)데이터저장");
+			System.out.print("(1)선수추가\t(2)선수삭제\t(3)선수검색\n(4)선수정보수정\t(5)모든선수정보출력\t(6)데이터저장\t(7)정렬");
 			//선수추가, 선수삭제, 선수검색, 선수수정, 모두출력, 데이터저장
 			selectMenu = this.inputUntilInteger();
 			
@@ -45,6 +47,7 @@ public class TeamDAO {
 				case 4: this.updatePlayerInfo(); break;
 				case 5: this.printAllTeammates(); break;
 				case 6: this.saveData(); break;
+				case 7: this.printAndSort(); break;
 				default : break;
 			}
 			
@@ -287,10 +290,10 @@ public class TeamDAO {
 		}
 	}
 	
-	//모든 학생 정보 출력
+
 	//출력(printall)
 	public void printAllTeammates() {
-		System.out.println("모든 선수정보를 출력합니다.");
+		System.out.println("\n모든 선수정보를 출력합니다.");
 		System.out.print("선수번호\t구분\t이름\t나이\t신장\t승\t패\t승률\t타석\t유효타\t타율");
 		int number = 0;
 		String name = "";
@@ -328,6 +331,27 @@ public class TeamDAO {
 			}
 
 		}
+	}
+	
+	// 요소 별 정렬 기능이 추가된 프린트
+	public void printAndSort() {
+		int sltSortClm = 0;
+		
+		System.out.println("정렬 기준을 선택하세요.");
+		System.out.println("(1)승률, (2)타율, (3)나이");
+		sltSortClm = this.inputUntilInteger();
+		
+		switch( sltSortClm ) {
+			case 1: this.sortByWinRate();  break;
+			case 2: this.sortByHitRate();  break;
+			case 3: this.sortByAge();  break;
+			default : break;
+		}
+		
+		this.printAllTeammates();
+		
+		
+		this.sortByNum();
 	}
 	
 	
@@ -496,6 +520,123 @@ public class TeamDAO {
 		
 		return num;
 	}
-	//입력값 확인
 
+	//타자-투수 순서로 리스트 정렬
+	private void sortBatterToPitcher() {
+		List<Integer> battersIndex = new ArrayList<>();
+		List<Integer> pitcherIndex = new ArrayList<>();
+		List<HumanDTO> newTeam =  new ArrayList<>();
+		
+		for(HumanDTO h : this.team) {
+			if( h instanceof BatterDTO ) {		//타자의 경우
+				battersIndex.add(team.indexOf(h));
+			} else {		//투수의 경우
+				pitcherIndex.add(team.indexOf(h));
+			}
+		}
+		battersIndex.addAll(pitcherIndex);
+		for( int i : battersIndex) {
+			newTeam.add(team.get(i));
+		}
+		team.clear();
+		team = newTeam;						
+	}
+	
+	//투수-타자 순서로 리스트 정렬
+	private void sortPitcherToBatter() {
+		List<Integer> battersIndex = new ArrayList<>();
+		List<Integer> pitcherIndex = new ArrayList<>();
+		List<HumanDTO> newTeam =  new ArrayList<>();
+		
+		for(HumanDTO h : this.team) {
+			if( h instanceof BatterDTO ) {		//타자의 경우
+				battersIndex.add(team.indexOf(h));
+			} else {		//투수의 경우
+				pitcherIndex.add(team.indexOf(h));
+			}
+		}
+		pitcherIndex.addAll(battersIndex);
+		for( int i : pitcherIndex) {
+			newTeam.add(team.get(i));
+		}
+		team.clear();
+		team = newTeam;			
+	}
+	
+	//투수 승률 - 타자 순서로 리스트 정렬
+	public void sortByWinRate() {
+		PitcherDTO p1;
+		PitcherDTO p2;
+		this.sortPitcherToBatter();
+		
+		for(int i = 0 ; i < team.size()-1; i++ ) {
+			if( team.get(i) instanceof PitcherDTO ) {
+				if( team.get(i+1) instanceof PitcherDTO ) {
+					p1 = (PitcherDTO)team.get(i);
+					p2 = (PitcherDTO)team.get(i+1);
+					if( p1.getDefenceRate() < p2.getDefenceRate() ) {
+						PitcherDTO p3 = p1;
+						team.set(i, p2);
+						team.set(i+1 , p3);						
+					}
+				}
+			}
+		}
+	}
+	
+	
+	//타자 타율 - 투수 순서로 리스트 정렬
+	public void sortByHitRate() {
+		BatterDTO p1;
+		BatterDTO p2;
+		this.sortBatterToPitcher();
+		
+		for(int i = 0 ; i < team.size()-1; i++ ) {
+			if( team.get(i) instanceof BatterDTO ) {
+				if( team.get(i+1) instanceof BatterDTO ) {
+					p1 = (BatterDTO)team.get(i);
+					p2 = (BatterDTO)team.get(i+1);
+		    		double p1Hit = ( (p1.getSwing()+p1.getHit()) == 0 ) ? 0.0 : ((double)p1.getHit()) / (p1.getSwing());
+		    		double p2Hit = ( (p2.getSwing()+p2.getHit()) == 0 ) ? 0.0 : ((double)p2.getHit()) / (p2.getSwing());
+					if( p1Hit < p2Hit ) {
+						BatterDTO p3 = p1;
+						team.set(i, p2);
+						team.set(i+1 , p3);						
+					}
+				}
+			}
+		}
+	}
+	
+	
+	//나이 순서로 리스트 정렬
+	public void sortByAge() {
+		Collections.sort(team, new Comparator<HumanDTO>() {
+			@Override
+			public int compare(HumanDTO o1, HumanDTO o2) {
+				if( o1.getAge() < o2.getAge() ) {
+					return -1;
+				}else if( o1.getAge() > o2.getAge() ){
+					return 1;
+				}
+				return 0;
+			}
+		});
+	}
+	
+	//번호 순서로 리스트 정렬
+	public void sortByNum() {
+		Collections.sort(team, new Comparator<HumanDTO>() {
+			@Override
+			public int compare(HumanDTO o1, HumanDTO o2) {
+				if( o1.getNum() < o2.getNum() ) {
+					return -1;
+				}else if( o1.getNum() > o2.getNum() ){
+					return 1;
+				}
+				return 0;
+			}
+		});
+	}
+	
 }

@@ -1,6 +1,6 @@
 package lct2BaseballTeam;
 
-public class HumanDTO {
+public class HumanDTO implements Comparable<HumanDTO>{
 	private int num;
 	private String name;
 	private int age;
@@ -41,5 +41,14 @@ public class HumanDTO {
 	}
 	public void setHeight(double height) {
 		this.height = height;
+	}
+	@Override
+	public int compareTo(HumanDTO s) {
+        if (this.age < s.getAge()) {
+            return -1;
+        } else if (this.age > s.getAge()) {
+            return 1;
+        }
+        return 0;
 	}
 }

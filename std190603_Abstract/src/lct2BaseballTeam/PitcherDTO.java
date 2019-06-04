@@ -43,5 +43,5 @@ public class PitcherDTO extends HumanDTO{
 		// TODO Auto-generated method stub
 		return "PitcherDTO [num=" + super.getNum() + ", name=" + super.getName() + ", age=" + super.getAge() + ", height=" + super.getHeight()
 		+ ", win=" + this.win + ", lose=" + this.lose + ", defenceRate=" + this.defenceRate +"]";
-	}	
+	}
 }
