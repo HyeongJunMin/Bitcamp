@@ -33,12 +33,15 @@ public class FrameEditInfoDepthOne  extends JFrame implements WindowListener, Ac
 		this();
 		this.key = i;
 		if( TeamDAOSingleton.team.get(key) instanceof PitcherDTO ) {
+			l4.setText("½Â");
+			l5.setText("ÆÐ");
 			PitcherDTO p = (PitcherDTO)TeamDAOSingleton.team.get(key);
 			tf1.setText(p.getName());
 			tf2.setText(p.getAge()+"");
 			tf3.setText(p.getHeight()+"");
 			tf4.setText(p.getWin() + "");
 			tf5.setText(p.getLose() + "");	
+			
 		}else {
 			BatterDTO p = (BatterDTO)TeamDAOSingleton.team.get(key);
 			tf1.setText(p.getName());
