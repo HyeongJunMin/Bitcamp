@@ -152,8 +152,7 @@ public class FrameTable extends JFrame implements WindowListener, ActionListener
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		try {
-			int rowNumber = tbl.getSelectedRow();
-			JOptionPane.showMessageDialog(null, lst.get(rowNumber).toString());	
+			
 		}catch(Exception ee) {
 			return;
 		}
