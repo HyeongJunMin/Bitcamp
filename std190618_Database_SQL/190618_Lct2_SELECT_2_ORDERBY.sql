@@ -1,0 +1,24 @@
+--conn to SCOTT
+--ORDER BY = Sorting
+
+--2중 정렬
+SELECT * FROM EMP ORDER BY DEPTNO, EMPNO DESC;
+
+--ALIAS를 정렬기준으로 설정 가능
+SELECT EMPNO, ENAME, SAL*2 AS S FROM EMP ORDER BY S DESC;
+
+--NULL값을 끝 또는 맨 앞으로 정렬
+SELECT * FROM EMP ORDER BY COMM NULLS LAST;
+SELECT * FROM EMP ORDER BY COMM NULLS FIRST;
+
+--EMP 테이블에서 사원번호, 사원이름, 입사일을 출력하는데 입사일 빠른 사람 순으로 정렬
+SELECT EMPNO, ENAME, HIREDATE FROM EMP ORDER BY HIREDATE;
+
+--EMP 테이블에서 연봉이 많은 순으로 사원이름, 급여, 연봉 구하기
+SELECT ENAME, SAL, SAL*12 AS AnnSAL FROM EMP ORDER BY AnnSAL DESC;
+
+--10번 부서와 20번 부서에서 근무하고 있는 사원의 이름과 부서명을 이름 오름차순 정렬
+SELECT ENAME, DEPTNO FROM EMP WHERE DEPTNO IN (10, 20) ORDER BY ENAME;
+
+--커미션을 받는 모든 사원의 이름, 급여, 커미션을 커미션 기준으로 내림차순 정렬
+SELECT ENAME, SAL, COMM FROM EMP WHERE COMM IS NOT NULL ORDER BY COMM DESC;
