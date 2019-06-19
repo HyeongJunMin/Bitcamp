@@ -1,0 +1,46 @@
+--[그룹함수]
+--CONN TO HR
+--SQL_SELECT_5
+
+--문제1) EMPLOYEES 테이블에서 모든 SALESMAN(SA_MAN)에 대하여 
+--급여의 평균, 최고액, 최저액, 합계를 구하여 출력하여라.
+SELECT JOB_ID, AVG(SALARY), MAX(SALARY), MIN(SALARY), SUM(SALARY) FROM EMPLOYEES GROUP BY JOB_ID HAVING JOB_ID = 'SA_MAN';
+
+--문제2) EMPLOYEES 테이블에 등록되어 있는 인원수, 보너스가 NULL이 아닌 인원수, 
+--보너스의 평균, 등록되어 있는 부서의 수를 구하여 출력하라.
+SELECT COUNT(employee_id), COUNT(commission_pct), ROUND(AVG(commission_pct*SALARY),2), COUNT(DISTINCT department_id)
+FROM EMPLOYEES ;
+
+--문제3) EMPLOYEES 테이블에서 부서별로 인원수, 평균 급여, 최저급여, 최고 급여, 급여의 합을 구하여 출력하라.
+SELECT DEPARTMENT_ID, COUNT(*), ROUND(AVG(SALARY),2), MIN(SALARY), MAX(SALARY), SUM(SALARY)
+FROM EMPLOYEES GROUP BY DEPARTMENT_ID ORDER BY DEPARTMENT_ID ;
+
+--문제4) EMPLOYEES 테이블에서 각 부서별로 인원수,급여의 평균, 최저 급여, 최고 급여, 급여의 합을 구하여 
+--급여의 합이 많은 순으로 출력하여라.
+SELECT DEPARTMENT_ID, COUNT(*), ROUND(AVG(SALARY),2), MIN(SALARY), MAX(SALARY), SUM(SALARY) AS TOTAL
+FROM EMPLOYEES GROUP BY DEPARTMENT_ID ORDER BY TOTAL DESC;
+
+--문제5) EMPLOYEES 테이블에서 부서별, 업무별 그룹하여 결과를 
+--부서번호, 업무, 인원수, 급여의 평균, 급여의 합을 구하여 출력하여라.
+SELECT DEPARTMENT_ID, JOB_ID, ROUND(AVG(SALARY),2), SUM(SALARY) AS TOTAL
+FROM EMPLOYEES GROUP BY DEPARTMENT_ID , JOB_ID ORDER BY TOTAL DESC;
+
+--문제6) EMPLOYEES 테이블에서 부서 인원이 4명보다 많은 부서의 부서번호, 인원수, 급여의 합을 구하여 
+--출력하여라.(GROUP BY, HAVING)
+SELECT DEPARTMENT_ID , COUNT(*), SUM(SALARY)
+FROM EMPLOYEES GROUP BY DEPARTMENT_ID HAVING COUNT(*) > 4 ORDER BY COUNT(*) DESC;
+
+--문제7) EMPLOYEES 테이블에서 급여가 최대 10000이상인 부서에 대해서 
+--부서번호, 평균 급여, 급여의 합을 구하여 출력하여라.
+SELECT DEPARTMENT_ID , ROUND(AVG(SALARY),2) AS AV, SUM(SALARY)
+FROM EMPLOYEES GROUP BY DEPARTMENT_ID HAVING MAX(SALARY) >= 10000 ORDER BY AV DESC;
+
+--문제8) EMPLOYEES 테이블에서 업무별 급여의 평균이 10000 이상인 업무에 대해서 
+--업무명,평균 급여, 급여의 합을 구하여 출력하라.
+SELECT JOB_ID , ROUND(AVG(SALARY),2) AS AV, SUM(SALARY)
+FROM EMPLOYEES GROUP BY JOB_ID HAVING AVG(SALARY) >= 10000 ORDER BY AV DESC;
+
+--문제9) EMPLOYEES 테이블에서 전체 월급이 10000을 초과하는 각 업무에 대해서 업무와 월급여 합계를 출력하라. 
+--단 판매원은 제외하고 월 급여 합계로 정렬(내림차순)하라.(SA_)
+SELECT JOB_ID , ROUND(AVG(SALARY),2) AS AV, SUM(SALARY) AS TOTAL
+FROM EMPLOYEES WHERE JOB_ID NOT LIKE 'SA_%' GROUP BY JOB_ID HAVING AVG(SALARY) >= 10000 ORDER BY TOTAL DESC;
