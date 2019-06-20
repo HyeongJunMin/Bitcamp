@@ -1,3 +1,6 @@
+--conn to scott
+--subquery work2
+
 --60) BLAKE와 같은 부서에 있는 사원들의 이름과 입사일을 구하는데 
 --    BLAKE는 제외하고 출력하시오.(BLAKE가 여러명일 수 있음)
 select ename, hiredate
