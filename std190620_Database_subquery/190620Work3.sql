@@ -83,22 +83,37 @@ where e.deptno = d.deptno
 
 --<<8>> 10번 부서 사람들 중에서 20번 부서의 사원과 같은 업무를 하는 사원의 
 --사원번호, 이름, 부서명, 입사일, 지역을 출력하라.
-
+select  e.empno, e.ename , d.dname, e.hiredate, d.loc
+from emp e, dept d
+where e.deptno = d.deptno
+    and e.job in (select job from emp where deptno = 20 )
+    and e.deptno = 10;
    
 --<<9>> 10번 부서 중에서 30번 부서에는 없는 업무를 하는 사원의 사원번호, 이름, 부서명, 입사일자, 지역을 출력하라.
-
-
+select  e.empno, e.ename , d.dname, e.hiredate, d.loc
+from emp e, dept d
+where e.deptno = d.deptno
+    and e.job not in (select job from emp where deptno = 30 )
+    and e.deptno = 10;
    
-<<10>> 10번 부서에 근무하는 사원의 사원번호, 이름, 부서명, 지역, 급여를 급여가 많은 순으로 출력하라.
+--<<10>> 10번 부서에 근무하는 사원의 사원번호, 이름, 부서명, 지역, 급여를 급여가 많은 순으로 출력하라.
+select  e.empno, e.ename , d.dname, d.loc, e.sal
+from emp e, dept d
+where e.deptno = d.deptno
+    and e.deptno = 10
+order by sal desc;
+    
+--<<11>> 'MARTIN'이나 'SCOTT'의 급여와 같은 사원의 사원번호, 이름, 급여를 출력하라.
+select empno, ename, sal
+from emp
+where sal in (select sal from emp where ename in ('MARTIN', 'SCOTT'));
 
+--<<12>> 급여가 30번 부서의 최고 급여보다 높은 사원의 사원번호, 이름, 급여를 출력하라.
+select empno, ename, sal
+from emp
+where sal > (select max(sal) from emp where deptno = 30);
   
-  
-<<11>> 'MARTIN'이나 'SCOTT'의 급여와 같은 사원의 사원번호, 이름, 급여를 출력하라.
-
-
-<<12>> 급여가 30번 부서의 최고 급여보다 높은 사원의 사원번호, 이름, 급여를 출력하라.
-
-
-  
-<<13>> 급여가 30번 부서의 최저 급여보다 높은 사원의 사원번호, 이름, 급여를 출력하라.
-
+--<<13>> 급여가 30번 부서의 최저 급여보다 높은 사원의 사원번호, 이름, 급여를 출력하라.
+select empno, ename, sal
+from emp
+where sal > (select min(sal) from emp where deptno = 30);
