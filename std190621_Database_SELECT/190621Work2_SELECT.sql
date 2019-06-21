@@ -145,9 +145,9 @@ order by mon;
 --    평균급여가 ‘IT’ 부서의 평균급여보다 많고, ‘Sales’ 부서의 평균보다 적은 부서 정보만 출력하시오. 
 select *
 from (select max(salary) as max, min(salary) as min, round(avg(salary),2) as avg from employees group by department_id)
-where avg > (select avg(salary) from employees e, departments d where e.department_id = d.department_id and d.department_name = 'IT')
-    and avg < (select avg(salary) from employees e, departments d where e.department_id = d.department_id and d.department_name = 'Sales');
- 
+where avg > (select round(avg(salary),2) from employees e, departments d where e.department_id = d.department_id and d.department_name = 'IT')
+    and avg < (select round(avg(salary),2) from employees e, departments d where e.department_id = d.department_id and d.department_name = 'Sales');
+
 --16. 각 부서별로 직원이 한명만 있는 부서만 조회하시오. 
 --    단, 직원이 없는 부서에 대해서는 ‘<신생부서>’라는 문자열이 출력되도록 하고,
 --    출력결과는 다음과 같이 부서명이 내림차순 으로 정렬되어야한다. 
