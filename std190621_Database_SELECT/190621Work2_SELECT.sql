@@ -92,7 +92,6 @@ where e.department_id = d.department_id(+)
     and e.manager_id = b.employee_id(+)
     and l.city = 'Seattle'
 order by e.last_name;
-
  
 --10. 각 업무(job) 별로 연봉(salary)의 총합을 구하고자 한다. 연봉 총합이 가장 높은 업무부터 
 --    업무명(job_title)과 연봉 총합을 조회하시오. 단 연봉총합이 30,000보다 큰 업무만 출력하시오. 
@@ -197,7 +196,7 @@ from (select e.department_id as maxId, round(max(salary),2) as maxOfDpt from emp
     where maxId = avgId
         and (e.department_id = maxId and e.salary = maxOfdpt)
 order by e.department_id;
-                    
+
 
 --20. 커미션(commission_pct)별 직원수를 조회하시오. 
 --    커미션은 아래실행결과처럼 0.2, 0.25는 모두 .2로, 0.3, 0.35는 .3 형태로 출력되어야 한다. 
