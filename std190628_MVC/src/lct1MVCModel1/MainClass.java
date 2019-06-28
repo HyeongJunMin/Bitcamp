@@ -6,7 +6,7 @@ public class MainClass {
 
 		View_Login v = new View_Login();
 
-
+		
 	}
 
 }
