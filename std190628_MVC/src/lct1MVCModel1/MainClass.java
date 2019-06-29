@@ -5,7 +5,8 @@ public class MainClass {
 	public static void main(String[] args) {
 
 		View_Login v = new View_Login();
-
+//		BbsDAO d = BbsDAO.getInstance();
+//		d.selectContent();
 		
 	}
 

@@ -72,6 +72,8 @@ public class View_Login extends JFrame implements ActionListener, WindowListener
 				}else {	//ID있음
 					if(dto.getPw().equals(inputPw)) {
 						JOptionPane.showMessageDialog(null, "Login Success.");
+						dao.currId = dto.getId();
+						new View_Board();
 					}else {
 						JOptionPane.showMessageDialog(null, "Wrong Password.");
 					}

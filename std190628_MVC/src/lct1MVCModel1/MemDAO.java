@@ -16,6 +16,7 @@ public class MemDAO {
 	public static Map<String, MemDTO> hm = null;
 	public static Connection memCon = null;
 	public static DBConnection d = null;
+	public static String currId = null;
 	
 	private MemDAO() {
 		hm = new HashMap<String, MemDTO>();
