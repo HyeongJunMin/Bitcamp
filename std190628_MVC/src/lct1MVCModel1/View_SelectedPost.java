@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 public class View_SelectedPost extends JFrame implements ActionListener, WindowListener {
 
 	private BbsDAO dao;
-	private JLabel lblTitle, lblContent;
+	private JLabel lblTitle, lblHit;
 	private JTextArea txtContent;
 	private int seq = 1;
 	private BbsDTO dto = null;
@@ -42,6 +42,11 @@ public class View_SelectedPost extends JFrame implements ActionListener, WindowL
 		lblTitle.setBounds(20, 30, 300, 30);
 		add(lblTitle);
 		lblTitle.setText("제목 : " + dto.getTitle());
+		
+		lblHit = new JLabel();
+		lblHit.setBounds(220, 30, 300, 30);
+		lblHit.setText("조회수 : ");
+		add(lblHit);
 	}
 	
 	public void mkTxt() {
@@ -55,6 +60,8 @@ public class View_SelectedPost extends JFrame implements ActionListener, WindowL
 		txtContent.setText("내용입니다 :) \n내용이다내용");
 		txtContent.setEditable(false);
 		txtContent.setText(str);
+		lblHit.setText("조회수 : " + dto.getReadcount());
+		dao.updateReadCount(seq);
 //		System.out.println(str);
 	}
 	

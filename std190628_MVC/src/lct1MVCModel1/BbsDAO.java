@@ -19,6 +19,37 @@ public class BbsDAO {
 		return single;
 	}
 	
+	public boolean updateReadCount(int seq) {
+		boolean complete = false;
+		
+		String sql = " UPDATE BBS SET READCOUNT = READCOUNT + 1 WHERE SEQ = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+						
+		try {
+			conn = DBConnection.getConnection();		
+			psmt = conn.prepareStatement(sql);			
+			psmt.setInt(1, seq);
+			
+			psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+				psmt.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		
+		return complete;
+	}
+	
 	public BbsDTO selectContent() {
 		BbsDTO dto = null;
 		
