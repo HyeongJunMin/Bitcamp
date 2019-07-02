@@ -19,6 +19,71 @@ public class BbsDAO {
 		return single;
 	}
 	
+	public boolean deleteContent(BbsDTO dto) {
+		boolean complete = false;
+		
+		String sql = " UPDATE BBS SET "
+				+ " DEL = 0 "
+				+ " WHERE SEQ =" + dto.getSeq() + " ";
+
+		Connection con = null;
+		PreparedStatement psmt = null;
+
+		try {
+			con = DBConnection.getConnection();
+			psmt = con.prepareStatement(sql);
+
+			psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				psmt.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return complete;
+	}
+	
+	public boolean updateContent(BbsDTO dto) {
+		boolean complete = false;
+		
+		String sql = " UPDATE BBS SET "
+				+ " TITLE = '" + dto.getTitle() + "', "
+				+ " CONTENT = '" + dto.getContent() + "' "
+				+ "WHERE SEQ =" + dto.getSeq() + " ";
+
+		Connection con = null;
+		PreparedStatement psmt = null;
+
+		try {
+			con = DBConnection.getConnection();
+			psmt = con.prepareStatement(sql);
+
+			psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				psmt.close();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return complete;
+	}
+	
 	public boolean updateReadCount(int seq) {
 		boolean complete = false;
 		
@@ -53,7 +118,7 @@ public class BbsDAO {
 	public BbsDTO selectContent() {
 		BbsDTO dto = null;
 		
-		String sql = " SELECT * FROM BBS WHERE SEQ = 8 ";
+		String sql = " SELECT * FROM BBS WHERE SEQ = 1 ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -242,6 +307,73 @@ public class BbsDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				psmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return lst;
+	}
+	
+	public List<BbsDTO> getBbsList(String title, int sel){
+		List<BbsDTO> lst = null;
+		
+		String sql = null;
+		//sel > 제목=0, 내용=1, 작성자=2
+		switch(sel){
+			case 0: sql = " SELECT SEQ, ID, TITLE, CONTENT, "
+					+ " WDATE, DEL, READCOUNT "
+					+ " FROM BBS WHERE TITLE = '" + title + "' "
+					+ " ORDER BY WDATE DESC ";
+					break;
+			case 1:sql = " SELECT SEQ, ID, TITLE, CONTENT, "
+					+ " WDATE, DEL, READCOUNT "
+					+ " FROM BBS WHERE CONTENT LIKE '%" + title + "%' "
+					+ " ORDER BY WDATE DESC ";
+					break;
+			case 2:sql = " SELECT SEQ, ID, TITLE, CONTENT, "
+					+ " WDATE, DEL, READCOUNT "
+					+ " FROM BBS WHERE ID = '" + title + "' "
+					+ " ORDER BY WDATE DESC ";
+					break;
+			default: break;
+		}
+		
+		
+		
+		Connection con = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		lst = new ArrayList<BbsDTO>();
+		
+		try {
+			con = DBConnection.getConnection();
+			psmt = con.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while( rs.next() ) {
+				BbsDTO dto = new BbsDTO(rs.getInt(1), 
+										rs.getString(2), 
+										rs.getString(3), 
+										rs.getString(4), 
+										rs.getString(5), 
+										rs.getInt(6), 
+										rs.getInt(7) );
+				lst.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception ee){
+			System.out.println("없음");
 		} finally {
 			try {
 				con.close();

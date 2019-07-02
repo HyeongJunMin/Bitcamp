@@ -71,6 +71,7 @@ public class View_NewPost extends JFrame implements ActionListener, WindowListen
 					JOptionPane.showMessageDialog(null, MemDAO.getInstance().currId);
 					BbsDTO dto = new BbsDTO(MemDAO.getInstance().currId, txtTitle.getText(), txtContent.getText());
 					dao.insertNewWrite(dto);
+					dispose();
 				}
 			}
 		});

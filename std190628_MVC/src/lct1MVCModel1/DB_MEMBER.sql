@@ -11,5 +11,6 @@ CREATE TABLE MEMBER(
 
 SELECT * FROM MEMBER;
 INSERT INTO MEMBER VALUES('system', 'system', 'admin', 'dd@dd.com', 1);
-
+INSERT INTO MEMBER VALUES('1', '1', 'ad', '313@133.com', 1);
 INSERT INTO MEMBER VALUES('minhj', '1234', 'minhj', '33@33.com', 3);
+ROLLBACK;

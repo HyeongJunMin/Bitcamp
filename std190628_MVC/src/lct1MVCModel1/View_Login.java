@@ -71,9 +71,14 @@ public class View_Login extends JFrame implements ActionListener, WindowListener
 					JOptionPane.showMessageDialog(null, "Invalid Account. plz Retry or Sign in");
 				}else {	//ID있음
 					if(dto.getPw().equals(inputPw)) {
-						JOptionPane.showMessageDialog(null, "Login Success.");
 						dao.currId = dto.getId();
-						new View_Board();
+						if(dto.getId().equals("1")) {
+							JOptionPane.showMessageDialog(null, "Manager Login.");
+							new View_Mgr();
+						}else {
+							JOptionPane.showMessageDialog(null, "Login Success.");							
+							new View_Board();
+						}
 					}else {
 						JOptionPane.showMessageDialog(null, "Wrong Password.");
 					}

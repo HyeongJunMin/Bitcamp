@@ -1,6 +1,7 @@
 package lct1MVCModel1;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,8 +26,61 @@ public class MemDAO {
 		this.syncDBToMap();
 	}
 	
+	public boolean updateMember(MemDTO dto) {
+		boolean complete = false;
+		
+		String sql = " UPDATE MEMBER SET ID = ?, PW = ?, NAME = ?, EMAIL = ?, AUTH = ? WHERE ID = ? ";
+		
+		PreparedStatement psmt = null;
+		
+		try {
+			psmt = memCon.prepareStatement(sql);
+			
+			System.out.println(dto.toString());
+			psmt.setString(1, dto.getId() );
+			psmt.setString(2, dto.getPw() );
+			psmt.setString(3, dto.getName() );
+			psmt.setString(4, dto.getEmail() );
+			psmt.setInt(5, dto.getAuth());
+			psmt.setString(6, dto.getId() );
+			
+			psmt.executeUpdate();
+			System.out.println("okok" + "  " + dto.toString());
+			complete = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return complete;
+	}
+	
+	public boolean alterAuth(int auth, String id) {
+		boolean complete = false;
+		
+		int authTo = 1;
+		if(auth == 1)
+			authTo = 3;
+		
+		String sql = " UPDATE MEMBER SET AUTH = " + authTo + "  WHERE ID = '" + id + "'  ";
+		PreparedStatement psmt = null;
+		int rs = 0;
+		
+		try {
+			psmt = memCon.prepareStatement(sql);
+			rs = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return complete;
+	}
+	
 	public boolean syncDBToMap() {
 		boolean complete = false;
+		
+		hm = new HashMap<String, MemDTO>();
 		
 		Statement stmt = null;
 		ResultSet rs = null;
