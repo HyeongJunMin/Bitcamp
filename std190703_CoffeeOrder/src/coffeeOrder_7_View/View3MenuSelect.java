@@ -31,7 +31,7 @@ import coffeeOrder_8_Singleton.Singleton;
 public class View3MenuSelect extends JFrame implements ActionListener, WindowListener {
 
 	JPanel pnlHeader, pnlSelectMenu, pnlBtm, pnlBtmAmount, pnlSelectMenuSize, pnlSelectMenuSyrup, pnlSelectMenuEtc;
-	JButton btnOrder, btnShowMenu, btnLogin;
+	JButton btnOrder, btnShowMenu, btnLogin, btnShowOrderLog;
 	JLabel lblSize, lblSyrup, lblEtc, lblAmountInfo, lblAmount;
 	JRadioButton rdSizeShort, rdSizeTall, rdSizeGrande;
 	JRadioButton srVanilla, srCaramel, srHazle;
@@ -114,12 +114,15 @@ public class View3MenuSelect extends JFrame implements ActionListener, WindowLis
 			}			
 		}
 		if( e.getSource().equals(btnShowMenu) ) {	//메뉴보기 버튼 클릭
-			s.ctrl.showAllMenu();
+			s.ctrl.showAllMenu(s.menuOpened);
 		}
 		if( e.getSource().equals(btnLogin) ) {	//돌아가기 버튼 클릭
 			this.dispose();
 			s.orderBucket.clear();
 			s.ctrl.login();
+		}
+		if( e.getSource().equals(btnShowOrderLog) ) {
+			s.ctrl.showOrderLog();
 		}
 	}	
 	
@@ -162,7 +165,6 @@ public class View3MenuSelect extends JFrame implements ActionListener, WindowLis
 		pnlBtmAmount.setBackground(new Color(205, 205, 205));
 		pnlBtm.add(pnlBtmAmount);
 	}
-
 	
 	public void mkLbl() {
 		lblSize = new JLabel("크기");
@@ -288,6 +290,11 @@ public class View3MenuSelect extends JFrame implements ActionListener, WindowLis
 		btnLogin.setVisible(false);
 		btnLogin.setVisible(true);
 		btnLogin.addActionListener(this);
+		
+		btnShowOrderLog = new JButton("주문기록 열람");
+		btnShowOrderLog.setBounds(50, 145, 150, 30);
+		pnlBtm.add(btnShowOrderLog);
+		btnShowOrderLog.addActionListener(this);
 		
 		selectAmount = new JComboBox<String>();
 		selectAmount.setBounds(230, 60, 50, 30);

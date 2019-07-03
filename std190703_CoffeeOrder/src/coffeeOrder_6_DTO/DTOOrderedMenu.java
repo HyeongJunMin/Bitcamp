@@ -1,6 +1,7 @@
 package coffeeOrder_6_DTO;
 
 public class DTOOrderedMenu {
+	private int orderNum;
 	private String customerName;
 	private String menuName;
 	private String size;
@@ -8,6 +9,8 @@ public class DTOOrderedMenu {
 	private String shot;
 	private String whip;
 	private int amount;
+	private int price = 0;
+	private String orderDate = "";
 	
 	public DTOOrderedMenu() {}
 	
@@ -21,8 +24,23 @@ public class DTOOrderedMenu {
 		this.shot = shot;
 		this.whip = whip;
 		this.amount = amount;
-	}
+	}	
 	
+	public DTOOrderedMenu(int orderNum, String customerName, String menuName, String size, String syrup, String shot, String whip,
+			int amount, int price, String orderDate) {
+		super();
+		this.orderNum = orderNum;
+		this.customerName = customerName;
+		this.menuName = menuName;
+		this.size = size;
+		this.syrup = syrup;
+		this.shot = shot;
+		this.whip = whip;
+		this.amount = amount;
+		this.price = price;
+		this.orderDate = orderDate;
+	}
+
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -70,6 +88,30 @@ public class DTOOrderedMenu {
 	public String toString() {
 		return "DTOOrderedMenu [customerName=" + customerName + ", menuName=" + menuName + ", size=" + size + ", syrup="
 				+ syrup + ", shot=" + shot + ", whip=" + whip + ", amount=" + amount + "]";
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public int getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import coffeeOrder_5_DB.DBConnection;
@@ -28,7 +30,7 @@ public class LogDAOImpl implements LogDAO {
 		boolean complete = false;
 		PreparedStatement psmt = null;
 		int rs = -1;
-		String sql = " INSERT INTO ORDER_LOG VALUES(SEQ_COF_ORDER.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE) ";
+		String sql = " INSERT INTO COFFEE_ORDER VALUES(SEQ_COF_ORDER.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE) ";
 
 		try {
 			
@@ -68,6 +70,69 @@ public class LogDAOImpl implements LogDAO {
 		}
 		
 		return complete;
+	}
+
+	//View6ShowOrderList에 COFFEE_ORDER DB 정보를 List 형태로 전달
+	@Override
+	public List<DTOOrderedMenu> getOrderLog() {
+		// TODO Auto-generated method stub
+		
+		List<DTOOrderedMenu> lstOrder = new ArrayList<DTOOrderedMenu>();
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = " SELECT * FROM COFFEE_ORDER ";
+
+		try {
+			
+			int orderNum;
+			String customerName;
+			String menuName;
+			String size;
+			String syrup;
+			String shot;
+			String whip;
+			int amount;
+			int price = 0;
+			String orderDate = "";
+			
+			Singleton s = Singleton.getInstance();
+			
+			stmt = memCon.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			DTOOrderedMenu dto = null;
+			
+			while( rs.next() ) {
+				orderNum = rs.getInt(1);
+				customerName = rs.getString(2);
+				menuName = rs.getString(3);
+				size = rs.getString(4);
+				syrup = rs.getString(5);
+				shot = rs.getString(6);
+				whip = rs.getString(7);
+				amount = rs.getInt(8);
+				price = (s.ctrl.menuPrice(menuName, size) * amount);
+				orderDate = rs.getString(9)+"";
+				
+				lstOrder.add(new DTOOrderedMenu(orderNum, customerName, menuName, size, syrup, shot, whip, amount, price, orderDate));
+			}
+						
+			
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return lstOrder;
 	}
 	
 }

@@ -1,6 +1,5 @@
 package coffeeOrder_7_View;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -62,6 +61,8 @@ public class View4ShowMenu extends JFrame implements ActionListener, WindowListe
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				s.menuOpened = false;
+				System.out.println("menu opened" + s.menuOpened);
 				dispose();
 			}
 		});

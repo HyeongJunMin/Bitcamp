@@ -13,6 +13,7 @@ public class Singleton {
 	public CoffeeOrderController ctrl = null;
 	public String sessionId = "";
 	public List<DTOOrderedMenu> orderBucket = null;
+	public boolean menuOpened = false;
 	
 	private Singleton() {
 		ctrl = new CoffeeOrderController();

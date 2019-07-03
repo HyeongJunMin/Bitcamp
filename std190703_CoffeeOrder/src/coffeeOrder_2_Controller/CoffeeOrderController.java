@@ -1,5 +1,6 @@
 package coffeeOrder_2_Controller;
 
+import java.util.List;
 import java.util.Map;
 
 import coffeeOrder_3_Service.*;
@@ -54,14 +55,23 @@ public class CoffeeOrderController {
 	}
 	
 	//View3MenuSelect에서 메뉴보기 버튼을 클릭하면 View4ShowMenu 생성
-	public void showAllMenu() {
-		new View4ShowMenu();
+	public void showAllMenu(boolean d) {
+		if( d ) {
+		}else {
+			Singleton.getInstance().menuOpened = true;
+			new View4ShowMenu();
+		}
 	}
 	
 	//View3MenuSelect에서 주문 버튼을 클릭하면 주문내용이 Map에 담기고 View5ShowOrderList 생성
 	public void showOrderList(DTOOrderedMenu dto) {
 		Singleton.getInstance().orderBucket.add(dto);
 		new View5ShowOrderList();
+	}
+	
+	//View3MenuSelect에서 주문기록을 조회하는 view 생성
+	public void showOrderLog() {
+		new View6ShowOrderLog();
 	}
 	
 	//메뉴이름과 사이즈에 맞는 가격 리턴
@@ -77,6 +87,11 @@ public class CoffeeOrderController {
 	//View5ShowOrderList에서 주문 버튼을 클릭하면 추가된 모든 메뉴를 ORDER_LOG DB에 저장
 	public boolean order() {
 		return logSer.order();
+	}
+	
+	//View6ShowOrderList에 COFFEE_ORDER DB 정보를 List 형태로 전달
+	public List<DTOOrderedMenu> getOrderLog(){
+		return logSer.getOrderLog();
 	}
 
 }
