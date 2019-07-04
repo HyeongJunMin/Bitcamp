@@ -140,7 +140,8 @@ public class View4ShowMenu extends JFrame implements ActionListener, WindowListe
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-
+		s.menuOpened = false;
+		dispose();
 	}
 
 	@Override
