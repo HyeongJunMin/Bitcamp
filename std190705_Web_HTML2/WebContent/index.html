@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>190705 Table</title>
+<style type="text/css">
+/* 선택자 */
+#tblId td{
+		text-align : center;
+	}
+td {
+	
+}
+</style>
+</head>
+<body>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work1.html">to work1</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work2.html">to work2</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work3.html">to work3</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work4.html">to work4</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work5.html">to work5</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work6.html">to work6</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work7.html">to work7</a><br>
+<a href="http://localhost:8090/std190705_Web_HTML2/work/work8.html">to work8</a><br>
+	<div align="center">
+		<table id="tblId" border="1">
+			<col width="30">
+			<col width="50">
+			<col width="100">
+			<col width="50">
+			<tr>
+				<th>No</th>
+				<th>성</th>
+				<th>이름</th>
+				<th>나이</th>
+			</tr>
+			<tr>
+				<th>1</th>
+				<td>ddd</td>
+				<td>이이이</td>
+				<td>25</td>
+			</tr>
+
+		</table>
+	</div>
+	<br>
+	<br>
+	<div align="center">
+		<table border="1" style="width: 100%">
+			<caption>주소록 - 셀 병합(열)</caption>
+			<colgroup>
+				<col width="30">
+				<col width="50">
+				<col width="100">
+				<col width="80">
+				<col width="80">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>성</th>
+					<th>이름</th>
+					<th colspan="2">전화번호</th>
+					<!-- <th>전화번호</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>1</th>
+					<td>ddd</td>
+					<td>이이이</td>
+					<td>25234324</td>
+					<td>34234</td>
+				</tr>
+				<tr>
+					<th>2</th>
+					<td>hhhh</td>
+					<td>ggdgdg</td>
+					<td>999999</td>
+					<td>000000</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+		<br>
+	<br>
+	<div align="center">
+		<table border="1" style="width: 100%">
+			<caption>주소록 - 셀 병합(행)</caption>
+			<colgroup>
+				<col width="30">
+				<col width="50">
+				<col width="100">
+				<col width="80">
+				<col width="80">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>성</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>전화번호</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th rowspan="2">1</th>
+					<td>ddd</td>
+					<td>이이이</td>
+					<td>25234324</td>
+					<td>34234</td>
+				</tr>
+				<tr>
+					<!-- <th>2</th> -->
+					<td>hhhh</td>
+					<td>ggdgdg</td>
+					<td>999999</td>
+					<td>000000</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
