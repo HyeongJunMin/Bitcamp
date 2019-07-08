@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML(3)</title>
+
+<script src="./javascript/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="./javascript/index.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/index.css">
+
+</head>
+<body>
+	<br>
+	<div id="loginSection" align="center">
+	<form id="loginSection_Form" action="./sub/sub1.jsp">
+		<table id="loginSection_Form_tbl">
+			<tr>
+				<td class="tbl_td_txt">ID:</td>
+				<td><input name="inputId" type="text" value="ID" size="12"></td>
+			</tr>
+			<tr>
+				<td class="tbl_td_txt">PW:</td>
+				<td><input name="inputPw" type="password" value="" size="12"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" class="tbl_btn" value="제출" size="15"></td>
+				<td><input type="reset" class="tbl_btn" value="초기화" size="15"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
+	
+	<form action="./sub/sub2.jsp" method="post">
+		<input name="i1" type="number" max="5" min="1" value="1">
+		<input name="i2" type="date" value="1991-02-18">
+		<input name="i3" type="color" value="#ff0000">
+		<input name="i4" type="range" max="10" min="0" value="10">
+		<input name="i5" type="search" value="검색">
+		<input name="i6" type="submit" value="선택">
+	</form> <br><br><br>
+
+	<form action="./sub/sub3.jsp" method="post">
+		<input name="chk" type="checkbox" value="크롬">크롬&nbsp;&nbsp;
+		<input name="chk" type="checkbox" value="IE">IE&nbsp;&nbsp;
+		<input name="chk" type="checkbox" value="파이어폭스">파이어폭스&nbsp;&nbsp;
+		<input name="chk" type="checkbox" value="EDGE">EDGE&nbsp;&nbsp;
+		<input name="chk" type="checkbox" value="BING">BING&nbsp;&nbsp;
+		<input type="submit" value="chk">
+	</form> <br><br>
+	
+	<form action="./sub/sub4.jsp" method="post">
+		<input name="car" type="radio" value="벤츠" checked="checked">벤츠&nbsp;&nbsp;
+		<input name="car" type="radio" value="BMW" >BMW&nbsp;&nbsp;
+		<input name="car" type="radio" value="아우디" >아우디&nbsp;&nbsp;
+		<input type="submit" value="radio">
+	</form> <br><br>
+	
+	<form action="./sub/sub5.jsp">
+	<select name="sel" multiple="multiple">
+		<option value="볼보">Volvo</option>
+		<option value="사브">Saab</option>
+		<option value="피아트">Fiat</option>
+		<option value="프리우스" selected="selected">Prius</option>
+	</select>
+		<input type="submit" value="rrr">
+	</form> <br><br>
+
+	<textarea name="textA" rows="20" cols="30">입력ㄱ</textarea>
+	<button  onclick="" >ss</button>
+
+	<input type="button" onclick="test()" value="AJAX">
+</body>
+</html>

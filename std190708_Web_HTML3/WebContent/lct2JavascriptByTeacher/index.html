@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+		Java Script != Java		
+		Front End 제어하기 위한 스크립트.
+		보조 프로그래밍적인 요소이다.
+		화면제어 언어이다. Client
+		컴파일을 하지 않는다.
+		속도가 빠르다. 가볍다.
+		
+		예) 회원가입 -> 빈칸조사, ID글자수를 조사, PW 숫자, 문자 포함 첵크
+		
+		Timer를 설정해서 특수효과 같은 처리를 할 수 있다.
+		차트, 그래프등도 표현이 가능하다.
+		
+		id(1개, data), class(다수, CSS), name(link)
+ -->
+
+<p id="demo">p tag id demo</p>
+
+<script type="text/javascript">
+// 한줄주석문
+
+/*
+ 범위 주석문  
+ */
+
+// alert("Java Script 실행"); 
+
+// console.log("Java Script 실행");
+
+// getter
+var p = document.getElementById("demo").innerHTML;
+//		현재문서             요소의 id "demo"      html 코드
+//alert("p = " + p);
+
+// setter
+document.getElementById("demo").innerHTML = "p태그 데모아이디";
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<link rel="stylesheet" href="./css/index.css" type="text/css"></link>
+<script type="text/javascript" src="./javascript/index.js"></script>
+</head>
+<body id="indexBody">
+	<br>	<br>	<br>
+	
+	<form action="./jsp/MemberController.jsp" method="post" name="f1">
+		<div id="Signin" align="center">
+			<h1 align="center" style="color: #ffffff">Free Board</h1>
+			<table id="SigninTable">
+				<tr>
+					<th>ID :</th>
+					<th><input type="text" name="id" id="txtId" size="12" onclick="javascript:document.f1.id.value=''"/></th>
+					<td colspan="2" rowspan="2"><input class="btnSignin" type="submit" value="Sign in"></td>
+				</tr>
+				<tr>
+					<th>PW :</th>
+					<th style="padding: 1px;"><input type="password" name="pw" id="txtPw" size="12"></th>
+				</tr>
+				<tr height="5">
+					<td colspan="4" style="padding-top:5px; padding-left:10px; text-align: left" align="left">&nbsp;&nbsp;&nbsp;<input type="checkbox">&nbsp;&nbsp;ID저장</td>
+				</tr>
+				<tr height="5">
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<th colspan="2"><input class="btn" type="submit" value="Forget account..."></th>
+					<th colspan="2"><input class="btn" type="button" value="Sign up" onclick="LayerPopupView('LayerPopup_Signup',100,0,200,1000)"></th>
+					
+				</tr>
+			</table>
+		</div>
+
+	</form>
+	
+	<br><br><br>
+	
+	<!-- 회원가입 정보입력, 회원가입 버튼 -->
+
+	<div id="LayerPopup_Signup" align="center"
+		style="display: none; position: absolute">
+		<form action="./jsp/MemberController.jsp" method="post">
+			<table id="SignupTable" style="text-align: center">
+				<colgroup>
+					<col width="20%">
+					<col width="30%">
+					<col width="30%">
+					<col width="20%">
+				</colgroup>
+				<tr height="5">
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<th colspan="4">Sign up</th>
+				</tr>
+				<tr height="5">
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td colspan="2">ID :</td>
+					<td><input type="text" name="inputId" size="15"></td>
+					<td><input type="submit" name="confirmDup" size="15" value="중복확인"></td>
+				</tr>
+				<tr>
+					<td colspan="2">PW :</td>
+					<td><input type="text" name="inputPw" size="15"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="2">Name :</td>
+					<td><input type="text" name="inputName" size="15"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="2">E-mail :</td>
+					<td><input type="text" name="inputEmail" size="15"></td>
+					<td></td>
+				</tr>
+				<tr height="5">
+					<td colspan="4"></td>
+				</tr>
+				<tr>
+					<td style="padding-left: 30px"  colspan="2"><input class="btn"
+						type="submit" id="btnSignupOk" name="btnSignup" value="Sign up"></td>
+					<td colspan="2" style="padding-left: 30px"><input class="btn" type="button" id="btnSignupCancel"
+						name="btnSignupCancel" value="Cancel"
+						onclick="LayerPopupClose('LayerPopup_Signup');"></td>
+					<!-- <th colspan="2"><a href="#" onclick="LayerPopupClose('LayerPopup_Signup')">close</a></th> -->
+				</tr>
+				<tr height="5">
+					<td colspan="4"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+
+</body>
+</html>

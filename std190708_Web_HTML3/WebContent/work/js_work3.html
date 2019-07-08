@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>변수의 연산</h2>
+a=10, b=4에 대해서<br>
+변수 a와 b의 계산 결과를 표시합니다.<br>
+<input type="button" name="btnPlus" value="덧셈" onclick="f1()">
+<input type="button" name="btnMinus" value="뺄셈" onclick="f2()">
+<input type="button" name="btnMul" value="곱셈" onclick="f3()">
+<input type="button" name="btnDiv" value="나눗셈" onclick="f4()">
+<input type="button" name="btnMod" value="나머지" onclick="f5()">
+<p id="result">결과 : </p>
+
+
+<script type="text/javascript">
+function f1(){	document.getElementById("result").innerHTML = "결과 : " + (10 + 4); }
+function f2(){	document.getElementById("result").innerHTML = "결과 : " + (10 - 4); }
+function f3(){	document.getElementById("result").innerHTML = "결과 : " + (10 * 4); }
+function f4(){	document.getElementById("result").innerHTML = "결과 : " + (10 / 4); }
+function f5(){	document.getElementById("result").innerHTML = "결과 : " + (10 % 4); }
+</script>
+
+</body>
+</html>

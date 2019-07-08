@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p id="demo"> p tag id demo</p>
+<script type="text/javascript">
+//한 줄 주석
+/*범위 주석*/
+var p = document.getElementById('demo').innerHTML;
+//      현재문서. 요소의ID(명세). HTML코드
+alert("sdfsd" + p);
+console.log('p =' + p );
+
+document.getElementById('demo').innerHTML = 'dddddd';
+function func(){
+  alert("func() 호출");
+}
+</script>
+<br><br><br>
+<p id="f1" onclick="func()">야호</p>
+</body>
+</html>

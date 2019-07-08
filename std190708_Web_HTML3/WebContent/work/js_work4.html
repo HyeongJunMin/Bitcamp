@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js_work4.js"></script>
+</head>
+<body>
+<h1>체육관 이용 요금</h1>
+기본 사용료(2면, 4시간) : 40,800원<br>
+<input type="checkbox" id="light" onclick="f1()" > 야간 조명 (20,000원)<br>
+<input type="checkbox" id="net" onclick="f2()"> 배구 네트x2면 (4,000원)<br>
+<input type="checkbox" id="ball" onclick="f3()"> 배구x10개 (5,000원)<br>
+
+합계 금액 <input type="text" id="charge" value="40,800" size="3">원<br>
+
+<script type="text/javascript">
+amount = document.getElementById("charge").value
+console.log(amount.replace(",",""));
+</script>
+
+</body>
+</html>

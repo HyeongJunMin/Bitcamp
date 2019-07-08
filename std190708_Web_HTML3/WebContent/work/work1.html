@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>설문조사</h3>
+<form action="./work1.jsp" method="get">
+이름 : <input type="text" name="inputName" size="15"> <br>
+<br><br>
+[질문1]<br>영어로 대화할 수 있습니까?<br>
+<input type="radio" name="q1" checked="checked" value="1">예&nbsp;&nbsp;
+<input type="radio" name="q1" checked="checked" value="2">모르겠습니다&nbsp;&nbsp;
+<input type="radio" name="q1" checked="checked" value="3">아니오&nbsp;&nbsp;
+<br><br>
+[질문2]<br>영어 외 관심 언어 선택(복수 선택 가능)<br>
+<input type="checkbox" name="q2" value="GER">독일어&nbsp;&nbsp;
+<input type="checkbox" name="q2" value="CHN">중국어&nbsp;&nbsp;
+<input type="checkbox" name="q2" value="FRA">프랑스어&nbsp;&nbsp;
+<br><br>
+[질문3]<br>영어 수업에 대한 의견 기입.<br>
+<textarea name="q3" rows="10" cols="50"></textarea>
+<br><br>
+[질문4]<br>연령대 선택<br> 
+		<select name="q4">
+			<option value="10대">10대</option>
+			<option value="20대">20대</option>
+			<option value="30대">30대</option>
+			<option value="40대">40대</option>
+			<option value="50대">50대 이상</option>
+		</select>
+<br><br>		
+<input type="submit" value="제출">		
+</form>
+</body>
+</html>

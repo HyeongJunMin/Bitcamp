@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+link -> anchor <a href="이동하고 싶은 주소" 	http .html id
+ -->
+ 
+<!-- form --> 
+
+<!-- 
+		id		: 현재 페이지에서 1개만 인식. JavaScript(==JQuery)
+		class	: 다중 인식. CSS(디자인). JavaScript(==JQuery)
+		name	: link. 값을 가지고 이동. 변수의 역할
+ -->
+
+<form action="NewFile.html">
+	<input type="submit" value="클릭">
+</form> 
+
+<br><br>
+
+<form action="NewFile.html">
+name:<input type="text" value="여기에 입력" size="12">
+<br>
+password:<input type="password" value="" size="12">
+<br>
+<input type="submit" value="이동">
+<br>
+<input type="reset" value="초기화">
+</form>
+
+<br><br>
+<!-- input -->
+
+<div align="center">
+<form action="NewFile.jsp" method="post">
+<table border="1">
+<tr>
+	<td>id:</td>
+	<td><input type="text" name="id" value="여기에 입력" size="12"></td>
+</tr>
+<tr>
+	<td>password:</td>
+	<td>
+		<input type="password" name="pwd" value="" size="12">
+	</td>
+</tr>
+<tr>
+<td colspan="2">
+	&nbsp;<input type="submit" value="이동">
+	<input type="reset" value="초기화">
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+<br><br>
+
+<form action="NewFile1.jsp">
+<!-- html5 -->
+number:<input type="number" max="5" min="1"> <!-- number = 1 ~ 5 -->
+<br>
+date:<input type="date">
+<br>
+color:<input type="color" value="#ff0000">
+<br>
+range:<input type="range" max="10" min="0">
+<br>
+search:<input type="search">
+<br>
+<input type="submit" value="선택">
+</form>
+
+<br><br><br>
+
+CheckBox 
+<form action="NewFile2.jsp">
+<input type="checkbox" name="job" value="패션">패션<br>
+<input type="checkbox" name="job" value="음악">음악<br>
+<input type="checkbox" name="job" value="게임">게임<br>
+<input type="submit" value="선택">
+</form>
+
+<br><br><br>
+
+<form action="">
+<input type="radio" name="car" value="벤츠">벤츠
+<br>
+<input type="radio" name="car" value="BMW" checked="checked">BMW
+<br>
+<input type="radio" name="car" value="아우디">아우디
+<br>
+<input type="submit" value="차선택">
+</form>
+
+<br><br><br>
+
+<!-- select == choice, combobox -->
+
+<form action="">
+
+<select name="cars" multiple="multiple">
+	<option value="볼보">Volvo</option>
+	<option value="사브">Saab</option>
+	<option value="피아트" selected="selected">Fiat</option>
+	<option value="프리우스">Prius</option>
+</select>
+
+</form>
+
+<br><br><br>
+
+<textarea name="textA" rows="20" cols="30">여기에 입력</textarea>
+
+<br><br>
+
+<button type="button" onclick="alert('클릭')">버튼</button>
+
+
+</body>
+</html>
+
+
+
+
+
