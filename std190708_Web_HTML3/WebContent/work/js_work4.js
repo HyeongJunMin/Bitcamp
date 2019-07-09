@@ -20,6 +20,7 @@ function f2(){
 		amount = Number(amount) - 4000 +"";
 	}
 	document.getElementById("charge").value = numberWithCommas(amount);
+	f4();
 }
 function f3(){
 	var chk = document.getElementById("ball").checked;
@@ -34,4 +35,13 @@ function f3(){
 
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function f4(){
+	
+		alert(document.getElementsByName("form1").length);
+	
+	/*if(document.form1.elements[1].checked == true){
+		alert('chk!');
+	}*/
 }

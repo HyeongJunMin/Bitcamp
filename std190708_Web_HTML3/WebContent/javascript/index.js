@@ -33,10 +33,10 @@ function LayerPopupView(sDivName, nTop, nLeft, nHeight, nWidth) {
 	oPopup.style.display = "block";
 
 	//위치 및 크기 설정
-	oPopup.style.top = nTop + "px";
+/*	oPopup.style.top = nTop + "px";
 	oPopup.style.left = nLeft + "px";
 	oPopup.style.height = nHeight + "px";
-	oPopup.style.width = nWidth + "px";
+	oPopup.style.width = nWidth + "px";*/
 //	oPopup.style.top = "10px";
 //	oPopup.style.left = "1px";
 //	oPopup.style.height = "200px";

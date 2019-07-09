@@ -41,6 +41,17 @@
 	height: 40px;
 }
 
+#LayerPopup_Signup {
+	display: none;
+	vertical-align: center; 
+	top: 10%; 
+	margin-top: -300px; 
+	position: relative; 
+	left: 0px; 
+	height: 200px; 
+	width:100%;
+}
+
 #SignupTable {
 	/* color : white; */
 	background-color: white;
@@ -71,6 +82,8 @@
 //
 레이어팝업
  #pop {
+ 	display: none;
+ /*
 	width: 300px;
 	height: 400px;
 	background: #3d3d3d;
@@ -80,4 +93,5 @@
 	left: 100px;
 	text-align: center;
 	border: 2px solid #000;
+	*/
 }
