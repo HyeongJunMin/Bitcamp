@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./object.js"></script>
+</head>
+<body>
+<div align="center">
+<h3>라면 타이머</h3>
+<select id="timer1" onchange="ftimer()">
+	<option value="0" >시간선택
+	<option value="5" >5분
+	<option value="3" >3분
+	<option value="1" >1분
+</select>
+<p id="showlefttime"></p>
+</div>
+
+
+
+<a href="../index.html">홈으로</a>
+
+<h3 id="h3tag" onclick="f1()"><b>h3입니당</b></h3>.innerHTML = 태그까지 다 가져올것이다!<br>
+<h3 id="h3tag2" onclick="f2()"><b>h3입니당</b></h3>.value 값만 가져올것이다!<br>
+<br>
+<p id="p1"></p><br>
+<input type="text" id="t1" width="30"><br>
+<input type="button" onclick="showDate()" value="date">
+<br>
+<p id="p2"></p><br>
+<input id="b2" type="button" onclick="getDateInfo()" value="date">
+</body>
+</html>

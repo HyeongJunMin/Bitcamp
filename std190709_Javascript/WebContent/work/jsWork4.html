@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function f1(){
+	var result = Math.floor(Math.random()*6);
+	var result2 = Math.floor(Math.random()*6);
+	
+	var arr = ["./images/sai_1.gif", "./images/sai_2.gif", "./images/sai_3.gif",
+		"./images/sai_4.gif", "./images/sai_5.gif", "./images/sai_6.gif"];
+	document.getElementById("img1").src = arr[result];
+	document.getElementById("img2").src = arr[result2];
+}
+</script>
+</head>
+<body>
+<a href="../index.html">홈으로</a><br>
+<a href="./jsWork1.html">과제1</a><br>
+<a href="./jsWork2.html">과제2</a><br>
+<a href="./jsWork3.html">과제3</a><br>
+<a href="./jsWork4.html">과제4</a><br>
+<a href="./jsWork5.html">과제5</a><br>
+<h1>2개의 주사위</h1>
+<a href="./images/sai_1.gif" target="photo"><img id="img1" alt="" src="./images/sai_1.gif"></a>
+<a href="./images/sai_2.gif" target="photo"><img id="img2" alt="" src="./images/sai_1.gif"></a><br>
+
+<input type="button" value="주사위를 굴린다" onclick="f1()">
+
+</body>
+</html>

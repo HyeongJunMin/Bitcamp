@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function pr() {
+    var text = prompt("이름을 입력하세요.","홍길동");
+    var arr1 = text.split('-');
+    var yourDate = new Date(arr1[0], arr1[1], arr1[2]);
+    var today = new Date();
+    if(text == null) {
+        alert("똑바로;");
+    } else {
+    	
+        var you = parseInt((yourDate-today)/(24*60*60*1000)) + "일";
+        document.getElementById("days").innerHTML = you;
+    }
+}
+</script>
+</head>
+<body>
+<a href="../index.html">홈으로</a><br>
+<a href="./jsWork1.html">과제1</a><br>
+<a href="./jsWork2.html">과제2</a><br>
+<a href="./jsWork3.html">과제3</a><br>
+<a href="./jsWork4.html">과제4</a><br>
+<a href="./jsWork5.html">과제5</a><br>
+<h1>다음 생일까지 남은 일수</h1>
+<input type="button" id="b1" onclick="pr()" value="생일을 입력">&nbsp;&nbsp;
+<p id="days"></p>
+</body>
+</html>

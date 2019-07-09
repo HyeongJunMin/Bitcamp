@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function f1(){
+	document.getElementById("txtTime").value="dddd";
+}
+var c = 1;
+
+function f2(){
+	var todayDate = new Date();
+	var h = todayDate.getHours();
+	var m = todayDate.getMinutes();
+	var s = todayDate.getSeconds();
+	document.getElementById("txtTime").value=h+":"+m+":"+s;
+	myTime = setInterval(function() {
+		var todayDate = new Date();
+		var h = todayDate.getHours();
+		var m = todayDate.getMinutes();
+		var s = todayDate.getSeconds();
+		document.getElementById("txtTime").value=h+":"+m+":"+s;
+	}, 1000);	
+}
+
+</script>
+</head>
+<body>
+<a href="../index.html">홈으로</a><br>
+<a href="./jsWork1.html">과제1</a><br>
+<a href="./jsWork2.html">과제2</a><br>
+<a href="./jsWork3.html">과제3</a><br>
+<a href="./jsWork4.html">과제4</a><br>
+<a href="./jsWork5.html">과제5</a><br>
+<h1>환영합니다</h1>
+※현재 시각은 <input type="text" id="txtTime" value="00:00:00" onclick="f2();">입니다.
+<p id="txtchk"></p>
+<script type="text/javascript">f2();</script>
+</body>
+</html>
