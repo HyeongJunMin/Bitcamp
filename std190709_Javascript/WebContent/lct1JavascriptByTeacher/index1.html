@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id="demo"></p>
+<br>
+
+<input type="text" id="time" size="50">
+<br><br>
+
+<button onclick="displayDate()">지금시각</button>
+
+<script type="text/javascript">
+function displayDate() {
+	document.getElementById("demo").innerHTML = Date();
+	document.getElementById("time").value= Date();
+}
+setInterval("displayDate()", 1000);
+</script>
+
+<br><br>
+
+<h3 id="h3t"></h3>
+
+<script type="text/javascript">
+
+var d = new Date();
+
+// setter
+// d = new Date(2019, 10-1, 12, 3, 27, 25, 100);
+//			연도       월      일    시   분     초     밀리세컨초
+// d = new Date("October 15 2020 12:32:45");
+
+//document.getElementById("h3t").innerHTML = d.getDay();  // 요일
+//document.getElementById("h3t").innerHTML = d.getFullYear();
+//document.getElementById("h3t").innerHTML = d.getMonth() + 1;
+//document.getElementById("h3t").innerHTML = d.getDate();
+//document.getElementById("h3t").innerHTML = d.getHours();
+//document.getElementById("h3t").innerHTML = d.getMinutes();
+//document.getElementById("h3t").innerHTML = d.getSeconds();
+
+// 달의 마지막 날
+var lastDay = (new Date(d.getFullYear() + "", d.getMonth() + 1 + "", 0)).getDate();	
+document.getElementById("h3t").innerHTML = lastDay;
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

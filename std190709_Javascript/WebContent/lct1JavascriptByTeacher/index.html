@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p id="demo"></p>
+
+<script type="text/javascript">
+
+var num = 12;
+var str = "hello";
+var fnum = 12.34;
+var swit = true;
+
+// switch, if, for, foreach
+
+// Object
+var person = {
+		firstname:"길동",
+		lastname:"홍",
+		age:24,
+		info:function(){
+			return this.firstname + " " + this.lastname + " " + this.age;
+		}
+}
+
+document.getElementById("demo").innerHTML = person.info();
+</script>
+
+<br><br>
+
+<h3 id="h3tag"><b>여기는 h3 태그입니다</b></h3>
+
+<p id="ptag">여기는 p 태그입니다</p>
+<br>
+
+<input type="text" id="text" value="world">
+<br><br>
+
+<button type="button" onclick="_chick()">클릭</button>
+
+<script type="text/javascript">
+function _chick() {
+	// innerHTML, value
+	var h3str = document.getElementById("h3tag").innerHTML;
+	alert(h3str);
+	var pstr = document.getElementById("ptag").innerHTML;
+	alert(pstr);
+	
+	var text = document.getElementById("text").value;
+	alert(text);
+}
+</script>
+
+<select id="car">
+	<option value="볼보" selected="selected">볼보</option>
+	<option value="사브">사브</option>
+	<option value="BMW">BMW</option>
+</select>
+
+<button type="button" onclick="carChoice()">선택</button>
+
+<script type="text/javascript">
+function carChoice() {
+	var cho = document.getElementById("car").value;
+	alert(cho);
+}
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
