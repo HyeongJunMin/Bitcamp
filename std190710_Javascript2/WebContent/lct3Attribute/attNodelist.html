@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p>오늘날 다양한 산업이 발전하면서 산업부산물의 발생도 매년 증가하고 있습니다.</p> 
+<p>증가하는 산업부산물로 환경문제가 심각해지면서 산업부산물을 재활용하는 연구들이 꾸준히 진행되고 있고,</p> 
+<p>그 결과 많은 산업부산물이 건설 분야에 활용되고 있습니다.</p> 
+<p>그중 재활용의 개념을 벗어나 필수재료가 된 산업부산물이 있습니다.</p> 
+<p>바로 플라이애시, 고로슬래그, 실리카흄입니다.</p> 
+<p>이것들은 콘크리트 혼화재로 이용되어 콘크리트의 품질을 크게 향상해줄 뿐만 아니라 매우 친환경적이며 경제적입니다.</p> 
+<p>그래서 오늘은 이런 산업부산물을 재활용한 혼화재들의 발생 과정과 특징에 대해 알아보겠습니다.</p>
+
+<input type="button" value="확인" onclick="lstFunc()">
+<script type="text/javascript">
+var str;
+var ok = true;
+function lstFunc(){
+	//var nList = document.getElementsByName("pName")
+	var nList = document.getElementsByTagName("p")
+	if(ok){
+		str = nList[3].innerHTML;  
+		nList[3].innerHTML = "안녕?";
+		ok = false;
+	}else{
+		nList[3].innerHTML = str;
+		ok = true;
+	}
+	
+}
+</script>
+
+</body>
+</html>

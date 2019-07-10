@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./CSS/jsWork4.css" type="text/css"></link> 
+</head>
+<body>
+<a href="../index.html">홈으로</a><br>
+<a href="./jsWork1.html">과제1</a><br>
+<a href="./jsWork2.html">과제2</a><br>
+<a href="./jsWork3.html">과제3</a><br>
+<a href="./jsWork4.html">과제4</a><br>
+<table id="tbl1">
+<tr>
+	<th>네이버</th>
+	<td>naver.com</td>
+	<td><input type="button" value="열기" onclick="f1(1)"></td>
+</tr>
+<tr>
+	<th>다음</th>
+	<td>daum.net</td>
+	<td><input type="button" value="열기" onclick="f1(2)"></td>
+</tr>
+<tr>
+	<th>구글</th>
+	<td>google.com</td>
+	<td><input type="button" value="열기" onclick="f1(3)"></td>
+</tr>
+</table>
+
+<script type="text/javascript">
+function f1(num){
+	switch(num){
+		case 1: window.open('http://www.naver.com'); break;
+		case 2: window.open('http://www.daum.net'); break;
+		case 3: window.open('http://www.google.com'); break;
+		default : break; 
+	}
+}
+</script>
+</body>
+</html>

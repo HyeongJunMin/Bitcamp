@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Javascript 2</title>
+<link rel="stylesheet" href="./CSS/index.css" type="text/css"></link>
+</head>
+<body>
+<a href="./lct2Link/link1.html">2교시 링크 - 1</a><br><br><br>
+
+	<div id="container">
+		<div id="selectIn">
+			<form id="f1">
+				입력타입선택<br> 
+				<input type="radio" name="c1" value="16" checked="checked">16진수<br> 
+				<input type="radio" name="c1" value="10">10진수<br> 
+				<input type="radio"	name="c1" value="8">8진수<br> 
+				<input type="radio" name="c1" value="2">2진수<br>
+				
+			</form>
+		</div>
+		<div id="input">
+			값 입력<br>
+			<input type="text" id="txtIn" size="15">
+		</div>
+		<div id="selectOut">
+			출력타입선택<br>
+			<input type="radio" name="c2" value="16" checked="checked">16진수<br> 
+			<input type="radio" name="c2" value="10">10진수<br> 
+			<input type="radio"	name="c2" value="8">8진수<br> 
+			<input type="radio" name="c2" value="2">2진수<br>
+			
+		</div>
+	</div><br><br><br><br><br><br><br>
+		<div id="output">
+			출력결과 : 
+			<input type="text" id="txtOut">
+			<input type="button" id="go" value="실행" onclick="f1();">
+		</div>
+		<script type="text/javascript">
+			function f1(){
+				var	inChk = '';
+				var outChk = '';
+				
+				if(document.getElementById("txtIn").value === ''){
+					alert('입력해라');
+				}else{
+					var strIn = parseInt(document.getElementById("txtIn").value);
+					
+					var obj = document.getElementsByName("c1");
+					for(i = 0 ; i < obj.length ; i++ ){
+						if(obj[i].checked){
+							inChk = parseInt(obj[i].value);
+						}
+					}
+					
+					var obj2 = document.getElementsByName("c2");
+					for(i = 0 ; i < obj2.length ; i++ ){
+						if(obj2[i].checked){
+							outChk = parseInt(obj2[i].value);
+						}
+					}					
+					
+					var result = parseInt(strIn, inChk).toString(outChk);
+					
+					//document.getElementById("txtOut").value = parseInt(strIn).toString(2);
+					document.getElementById("txtOut").value = result;
+				}
+			}
+		</script>
+
+</body>
+</html>

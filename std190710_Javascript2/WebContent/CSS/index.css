@@ -1,0 +1,30 @@
+#container {
+	margin: auto;	
+	width: 100%;
+}
+#selectIn {
+	text-align:center;
+	width: 20%;
+	height: 100px;
+	float: left;
+}
+#input {
+	text-align:center;
+	width: 20%;
+	height: 100px;
+	float: left;
+}
+#selectOut {
+	text-align:center;
+	width: 20%;
+	height: 100px;
+	float: left;
+}
+/* 
+#output {
+	text-align:center;
+	width: 30%;
+	height: 100px;
+	float: left;
+}
+ */

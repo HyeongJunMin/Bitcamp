@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div id="div1">
+<p id="p2">기준!</p>
+</div>
+<input type="button" value="111" onclick="f1()">
+<input type="button" value="222" onclick="deleteBtndeleteBtn()">
+
+
+<script type="text/javascript">
+posY = 0;
+function f1(){
+	var ptag = document.createElement("h3","gggg");
+	var element = document.getElementById("div1")
+	var elementBefore = document.getElementById("p2");
+	element.insertBefore(ptag, elementBefore);
+}
+
+function deleteBtn(){
+	var element = document.getElementById("div1")
+	var elementBefore = document.getElementById("p2");
+	element.removeChild(elementBefore);
+}
+</script>
+</body>
+</html>

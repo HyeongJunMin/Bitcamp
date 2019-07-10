@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+<!-- 
+DOM : Document Object Model
+ -->
+
+<!-- childNodes -->
+<h3 id="intro">h3 tag intro</h3>
+
+<p id="demo">p tag</p>
+
+<button onclick="func()">버튼</button>
+
+<script type="text/javascript">
+function func() {
+	var text = document.getElementById("intro").childNodes[0].nodeValue;
+	document.getElementById("demo").innerHTML = text;
+}
+</script>
+
+<br><br>
+
+<select id="car">
+	<option>아우디</option>
+	<option>벤츠</option>
+	<option>볼보</option>
+</select>
+
+<button onclick="myfunc()">클릭</button>
+
+<script type="text/javascript">
+function myfunc() {
+	var text = document.getElementById("car").childNodes;
+	alert(text[1].text);
+}
+</script>
+
+<br><br>
+
+<!-- appendChild, insertChild -->
+
+<div id="div1">
+	<p id="p1">첫번째 p태그</p>
+	<p id="p2">두번째 p태그</p>
+</div>
+ 
+<button onclick="appendBtn()">뒤에 추가</button> 
+<button onclick="insertBtn()">앞에 추가</button>
+<button onclick="deleteBtn()">삭제</button>
+
+<script type="text/javascript">
+function appendBtn() {
+	// tag 생성
+	var ptag = document.createElement("p");				// <p>  </p>
+	var textNode = document.createTextNode("새로운 p태그");	 // 문자열
+	
+	ptag.appendChild(textNode);							// <p>새로운 p태그</p>
+	
+	// div1에 추가
+	var element = document.getElementById("div1");
+	element.appendChild(ptag);
+}
+function insertBtn() {
+	// tag 생성
+	var h3tag = document.createElement("h3");				// <h3></h3>
+	var textNode = document.createTextNode("새로운 h3태그");	 // 문자열
+	
+	h3tag.appendChild(textNode);							// <p>새로운 h3태그</p>
+	
+	// div1에 추가
+	var element = document.getElementById("div1");
+	// 누구?
+	var elementBefore = document.getElementById("p2");
+	
+	element.insertBefore(h3tag, elementBefore);	
+}
+function deleteBtn() {
+	var element = document.getElementById("div1");
+	var delChild = document.getElementById("p2");
+	element.removeChild(delChild);
+}
+</script> 
+
+<!-- NodeList -->
+
+<p onclick="pdelfunc(this)">Hello</p>
+<p onclick="pdelfunc(this)">World</p>
+<p onclick="pdelfunc(this)">I can do it</p>
+<p onclick="pdelfunc(this)">Never Change My Mind</p>
+
+<button onclick="listfunc()">NodeList</button>
+
+<script type="text/javascript">
+function listfunc() {
+	var nodeList = document.getElementsByTagName("p");	
+	// alert(nodeList.length);
+	
+	nodeList[3].innerHTML = "안녕하세요";
+	
+	for(i = 0;i < nodeList.length; i++){
+		nodeList[i].style.backgroundColor = "#0f0";
+	}
+}
+
+function pdelfunc( obj ) {
+//	obj.remove();
+	obj.style.backgroundColor = "#ff0";
+}
+</script>
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

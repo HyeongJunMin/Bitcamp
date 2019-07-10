@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="../index.html">홈으로</a><br>
+<a href="./jsWork1.html">과제1</a><br>
+<a href="./jsWork2.html">과제2</a><br>
+<a href="./jsWork3.html">과제3</a><br>
+<a href="./jsWork4.html">과제4</a><br>
+<h1>미술관 및 박물관의 링크</h1>
+<select id="slc" onchange="f1(this)">
+<option>선택하세요
+<option value="1">서울시립미술관
+<option value="2">국립현대미술관
+<option value="3">예술의전당
+<option value="4">국립중앙박물관
+<option value="5">서울역사박물관
+<option value="6">국립민속박물관
+</select>
+<script type="text/javascript">
+function f1(e){	
+	switch(parseInt(e.value)){
+		case 1: location.href = "http://sema.seoul.go.kr"; break;
+		case 2: location.href = 'http://www.mmca.go.kr'; break;
+		case 3: location.href = 'http://www.sac.or.kr'; break;
+		case 4: location.href = 'http://www.museum.go.kr'; break;
+		case 5: location.href = 'http://www.museum.seoul.kr'; break;
+		case 6: location.href = 'http://www.nfm.go.kr'; break;
+		default: break;
+	}
+
+}
+function f2(){
+	alert('dd');
+}
+</script>
+</body>
+</html>

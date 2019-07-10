@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<!-- 
+<body onload="checkMessage()">
+
+onload
+<p id="demo"></p>
+
+<script type="text/javascript">
+function checkMessage() {
+//	document.getElementById("demo").innerHTML = "checkMessage() 호출";
+}
+</script>
+</body>
+ -->
+
+<!-- 
+<body onload="viewScroll()">
+
+세계사를 바꿔놓은 '돌격소총 AK47'
+<pre>
+전 세계 인구 77명당 1명꼴로 널리 보급된 총기. 
+한 자루가 고작 닭 한 마리 가격에 거래돼 '치킨건'이라고도 불린다. 
+지난 반세기 동안 AK47 돌격소총은 지구상에 가장 널리 퍼진 살상 도구로 자리 잡았다.
+
+처음 발명된 때는 1947년이었다. 
+지금까지 생산·유통된 이 소총은 약 1억 정으로 추산된다. 내구성,
+미국의 저널리스트이자 작가인 필자는 베트남전쟁에서 이라크전쟁까지, 
+아메리카에서 아프리카까지 이 소총이 어떤 역할을 했는지 낱낱이 추적했다. 
+저서 'AK47'은 세계사를 바꿔놓은 이 무기의 생애를 추적한 전기라고 할 수 있다. 
+AK47을 둘러싼 기술적·전술적·정치적 이야기가 흥미진진한 일화로 펼쳐진다.
+
+AK47은 냉전의 가장 파괴적인 유산이었다. 
+매년 25만 명이 이 대량 살상무기에 희생된다. 
+아프리카, 아시아, 남아메리카, 중동의 '작은 전쟁'뿐 아니라 
+많은 나라의 내부 범죄에 이르기까지 그 전면에 AK47이 있다. 
+이처럼 초강대국 냉전의 대리전에서 큰 위력을 떨친 무기도 없었다. 
+기네스북에는 '세계에서 가장 많이 사용된 무기'로 등재돼 있다.
+
+</pre>
+
+<script type="text/javascript">
+posY = 0;
+function viewScroll() {
+	window.scroll(0, posY);
+	posY = posY + 2;
+	if(posY == 300) posY = 0;
+	
+	setTimeout("viewScroll()", 100);
+}
+</script>
+
+</body> 
+ -->
+
+<body>
+
+<!-- onblur : 포커스가 이동했을 때 -->
+나이:<input type="text" onblur="isRegNum()" size="10" maxlength="3">세<br>
+<br>
+
+<script type="text/javascript">
+function isRegNum() {
+	alert("onblur실행");
+}
+</script>
+
+<br><br>
+
+<!-- onchange : 입력 값이 바뀌고 포커스가 다른 곳을 설정한 경우-->
+우편번호 입력란
+T:<input type="text" size="5" maxlength="3" onchange="isPostNum(this)">
+-
+<input type="text" size="5" maxlength="3" onchange="isPostNum(this)">
+<br>
+
+<script type="text/javascript">
+function isPostNum( obj ) {
+//	alert("onchange 실행됨");
+	
+	var str = obj.value;
+//	alert(str);
+	// 숫자가 아닌 문자열이 포함되어 있는 경우
+	if(str.match(/[^0-9]/g)){
+		alert("숫자가 아닌 문자가 포함되어 있습니다");
+	}
+}
+</script>
+
+<br><br>
+
+<!-- onkeydown, onkeypress -->
+
+<input type="text" name="title">
+
+<script type="text/javascript">
+/* 
+document.getElementsByName("title")[0].onkeydown = function(event) {
+	console.log("keydown = keycode:" + event.keyCode);
+}
+ */
+document.getElementsByName("title")[0].onkeypress = function(event) {
+	console.log("onkeypress = keycode:" + event.keyCode);
+}
+</script>
+
+<br><br>
+
+<!-- onMouseDown, onMouseUp, onMouseOver, onMouseOut -->
+
+<input type="image" src="./images/san0.gif"
+	onmousedown="mouseDown(this)"
+	onmouseup="mouseUp(this)"
+	onmouseover="mouseOver(this)"
+	onmouseout="mouseOut(this)">
+	
+<script type="text/javascript">
+function mouseDown(obj) {
+	obj.src = "./images/san1.gif";
+}
+function mouseUp(obj) {
+	obj.src = "./images/san0.gif";
+}
+function mouseOver(obj) {
+	obj.src = "./images/san2.gif";
+}
+function mouseOut(obj) {
+	obj.src = "./images/san0.gif";
+}
+</script>	
+
+<br><br>
+
+<a href="#" onmouseover="document.box.src='surprise.gif'"
+	onmouseout="document.box.src='box.gif'">
+	<img alt="" name="box" src="box.gif" border="0">
+</a>
+
+</body> 
+ 
+</html>
+
+
+
+
+
+
+
+
+
+

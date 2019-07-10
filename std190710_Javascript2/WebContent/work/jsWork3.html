@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="../index.html">홈으로</a><br>
+<a href="./jsWork1.html">과제1</a><br>
+<a href="./jsWork2.html">과제2</a><br>
+<a href="./jsWork3.html">과제3</a><br>
+<a href="./jsWork4.html">과제4</a><br>
+<h3>(문제)</h3>
+<h6>탑건은 육군 해군 공군?</h6>
+<input type="button" id="btnAnswer" value="답을 보다" onclick="f1()">
+<p id="answer"></p>
+*버튼 한번 클릭 힌트 표시<br>
+*버튼 두번 클릭 답 표시
+
+<script type="text/javascript">
+var cnt = 0;
+function f1(){
+	if(cnt < 2){
+		cnt++;
+	}else{
+		cnt=0;
+	}
+	
+	switch(cnt){
+	case 1: document.getElementById("answer").innerHTML = 'ㄱㄱ'; break;
+	case 2: document.getElementById("answer").innerHTML = '공군'; break;
+	case 0: document.getElementById("answer").innerHTML = ' '; break;
+	default: break;
+	}
+}
+</script>
+</body>
+</html>

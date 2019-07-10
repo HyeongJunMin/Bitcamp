@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="viewScroll()">
+<pre>
+위의 1번 문단에서
+ 따온 말로, 한 페이
+ 지에 접속시 자동으
+ 로 다른 페이지로 넘
+ 어가는 것이다. 
+대개 검색의 편의성을
+ 위한 축약표현이나 같
+ 은 대상을 가리키는 
+ 다른 명칭 등을 리다
+ 이렉트하고 있으며 
+중립성 등의 이유로 
+사용되기도 한다. 대
+부분의 위키위키 엔진
+에 있는 기능이다. 
+위키백과 등의 미디어
+위키와, 도쿠위키에서
+는 넘겨주기라고 한다. 
+오위키에는 리다이렉
+트 기능이 없어서 당시
+ 엔하위키에서는 한줄
+ 글로 대체하는 현상이
+  존재했다.
+</pre>
+<script type="text/javascript">
+posY = 0;
+function viewScroll(){
+	window.scroll(0, posY);
+	posY = posY + 2;
+	if(posY === 300) posY = 0;
+	
+	setTimeout("viewScroll()", 50);
+}
+</script>
+</body>
+</html>
