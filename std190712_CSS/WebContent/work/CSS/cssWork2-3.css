@@ -1,0 +1,10 @@
+.message{
+	width: 100%;
+	background: orange;
+	border: 1px solid #804040;
+	padding: 30px;
+}
+
+img{
+	margin-right: 10px;
+}

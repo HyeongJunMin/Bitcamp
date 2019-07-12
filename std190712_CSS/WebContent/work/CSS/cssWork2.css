@@ -1,0 +1,115 @@
+#mainBodyOne {
+	width: 600px;
+	height: 600px;
+	background: #c0c0c0;
+	/* position: fixed; */
+	margin: auto;
+	text-align: center;
+}
+#subBodyOne {
+	width: 200px;
+	height: 600px;
+	background: #e3e3e3;
+	float:left;
+	
+}
+#subBodyOneSubOne{
+	float: inherit;
+	width:200px;
+	height: 500px;
+	background: red;
+}
+#subBodyOneSubTwo{
+	float: inherit;
+	width:200px;
+	height: 100px;
+	background: yellow;
+}
+
+#subBodyTwo {
+	width: 200px;
+	height: 600px;
+	background: #e3e3e5;
+	float:left;
+}
+#subBodyTwoSubOne{
+	float: left;
+	width: 200px;
+	height: 200px;
+	background: blue;
+}
+#subBodyTwoSubTwo{
+	float: left;
+	width: 200px;
+	height: 400px;
+	background: green;
+}
+
+#subBodyThree {
+	width: 200px;
+	height: 600px;
+	background: #e3e3e7;
+	
+	float:left;
+}
+#subBodyThreeSubOne{
+	float: left;
+	width: 200px;
+	height: 300px;
+	background: black;
+}
+#subBodyThreeSubTwo{
+	float: left;
+	width: 200px;
+	height: 300px;
+	background: #ff80c0;
+}
+
+#mainBodyTwo {
+	width: 600px;
+	height: 600px;
+	background: #fff9f9;
+	margin: auto;
+	text-align: center;
+}
+
+#twoHeader {
+	width: 600px;
+	height: 180px;
+	background: #808000;
+	float: inherit;
+	border: solid 1px;
+}
+
+#twoMain{
+	width: 450px;
+	height: 180px;
+	background: #b8e3f8;
+	/* float: inherit; */
+	float: none;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#twoMainBoxOne{
+	width:50%;
+	height:140px;
+	background-color: #8080c0;
+	margin-top: 20px;
+	float: left;
+}
+#twoMainBoxTwo{
+	width:50%;
+	height:140px;
+	background-color: #6f6fb7;
+	margin-top: 20px;
+	float: left;
+}
+
+#twoFooter{
+	width: 600px;
+	height: 180px;
+	background: #f7d3f8;
+	float: inherit;
+	border: dotted 1px;
+}

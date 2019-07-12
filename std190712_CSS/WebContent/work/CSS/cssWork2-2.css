@@ -1,0 +1,3 @@
+ul.ul1{
+	list-style: square inside url('../images/star.gif');
+}
