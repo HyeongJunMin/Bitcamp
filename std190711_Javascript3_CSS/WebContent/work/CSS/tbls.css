@@ -1,0 +1,17 @@
+.tbl{
+	text-align: center; 
+	border: solid 1px;
+}
+.tbl td{
+	margin: 5px;
+	padding: 5px;
+	text-align: center; 
+	border: solid 1px;	
+}
+.tbl th{
+	background: #eeeeee;
+	margin: 5px;
+	padding: 5px;
+	text-align: center; 
+	border: solid 1px;	
+}

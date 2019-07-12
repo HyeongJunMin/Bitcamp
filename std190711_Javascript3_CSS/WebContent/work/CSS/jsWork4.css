@@ -1,0 +1,16 @@
+body{
+	background: black;
+	color: white;
+}
+img{
+	border: solid 10px;
+	border-color: #fad029;
+}
+#divImg{
+position: relative; 
+}
+#divSelect{
+	position: relative;
+	top: -470px;
+	left: 340px;
+}
