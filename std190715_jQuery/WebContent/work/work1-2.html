@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="../index.html">go to home</a>
+<a href="./work1-1.html">work1-1</a>
+<a href="./work1-2.html">work1-2</a>
+<a href="./work1-3.html">work1-3</a>
+<a href="./work1-4.html">work1-4</a>
+<h3>Life on the water</h3>
+<img alt="" src="images/photo1.jpg">
+<img alt="" src="images/photo2.jpg">
+<img alt="" src="images/photo3.jpg">
+<img alt="" src="images/photo4.jpg">
+
+<script type="text/javascript">
+$("img").mouseover(function(){
+	$(this).css('border','solid 5px');
+	$(this).css('border-color','red');
+});
+
+$("img").mouseout(function(){
+	$(this).css('border','solid 0px');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+</head>
+<body>
+<h1>jQuery</h1>
+<a href="./jQuery/lct1Function.html">jQuery1</a>
+<a href="./jQuery/lct2Function2.html">jQuery2</a>
+<a href="./views/jsptest1.jsp">JSP test 1</a>
+<a href="./work/work1-1.html">work1-1</a>
+<a href="./work/work2-1.html">work2-1</a>
+<br><br><br>
+<form action="./views/jsptest1.jsp" method="post">
+	<input type="text" name="name1" placeholder="dd">
+	<input type="submit" value="rr">
+</form>
+<h1>How to include other file</h1>
+<input type="button" value="alter" id="btnAlter">
+<div w3-include-html="./jQuery/lct1Function.html" id="divhtml"></div>
+<script type="text/javascript">w3.includeHTML();</script>
+<script type="text/javascript">
+$("#btnAlter").click(function(){
+	$("#dibHtml").w3-include-html("./jQuery/lct2Function2.html")
+	w3.includeHTML();
+});
+</script>
+</body>
+</html>

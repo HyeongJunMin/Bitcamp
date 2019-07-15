@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ -->
+<!-- 
+<script type="text/javascript" src="./js/jquery.min.js"></script> 
+ -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+ 
+</head>
+<body>
+
+<!-- 
+	Java Script: client언어(화면). front end. web server 관련없음.
+	
+	CSS(Cascading Style Sheet): 디자인. front end.
+	
+	JQuery : Java Script를 경량화. 간략화 해 놓은 것. client언어 
+			 Ajax를 포함.	server + client
+			 DOM 을 단순화 시켜 놓은 것이다.
+			 
+	JQuery-UI : 버튼, 슬라이드...
+	
+			 this -> 자기 자신을 가리키는 Object.
+ -->
+
+<p>여기가 p태그입니다</p>
+
+<p id="demo">여기가 p태그입니다. id demo</p>
+
+<h3 id="demo">여기가 h3태그입니다. id demo</h3> 
+
+<p class="cls">여기가 p태그입니다. class cls</p>
+
+<h3 class="cls">여기가 h3태그입니다. class cls</h3>
+
+<pre>
+입력:<input type="text" id="tid" value="abcde">
+<button type="button" id="btn">입력</button>
+</pre>
+
+<script type="text/javascript">
+// JS
+/* 
+var arrPtag = document.getElementsByTagName("p");
+for(i = 0;i < arrPtag.length; i++){
+	arrPtag[i].innerHTML = "Hello P tag";		
+}
+ */
+
+$(document).ready(function () {
+//	alert("JQuery 실행");
+
+	/*
+		$(태그명 or class or id).핸들러함수명(파라메터 값).핸들러함수명(파라메터 값);	
+	*/
+//	$("p").html("Hello P tag");	// innerHTML
+//	$("p").html("<b>Hello P tag</b>");
+	
+//	$("p").text("Hello P tag JQuery");
+//	$("p").text("<b>Hello P tag JQuery</b>");
+	
+	// JS
+//	var demo = document.getElementById("demo").innerHTML;	// getter
+//	document.getElementById("demo").innerHTML = "World JS";
+	
+	// JQuery
+	var demo = $("#demo").text();	// getter
+	alert(demo);
+	$("#demo").text( "World JQuery" );	// setter;
+	
+	$("#btn").click(function () {
+		var text = $("#tid").val();	// getter
+	//	alert(text);
+		$("#tid").val("안녕하세요");
+	});
+	
+});
+/*
+function func() {
+	var text = document.getElementById("tid").value;
+	alert(text);
+} 
+*/ 
+
+ 
+</script>
+
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<p>p tag</p>
+
+<div>
+	<p>div in p tag1</p>
+
+	<p>div in p tag2</p>
+</div>
+
+<script type="text/javascript">
+$(function () {
+	/* 
+	$('p').click(function () {
+		alert("p tag click");
+	});
+	 */
+	/*  
+	$('div p').click(function () {
+		alert("div p tag click");
+		$('div p').hide();	// <-> show()
+	});
+	 */
+	$('p').on("click", function () {
+	//	$(this).hide();
+		$(this).css("background", "#00ff00");	// setter
+		
+		var color = $(this).css("background");
+		alert(color);
+	});	
+});
+</script>
+
+<br><br>
+<!-- 
+<h3 class="cls" onmouseover="mousefunc()"
+	style="background-color: green">h3 tag class cls</h3>
+ -->
+
+<h3 class="cls" style="background-color: green">h3 tag class cls</h3>
+ 
+<script type="text/javascript">
+function mousefunc() {
+	alert("h3 범위에 들어 왔습니다");
+}
+
+$(document).ready(function() {
+	$(".cls").mouseover(function() {
+	//	alert("JQuery h3 범위에 들어 왔습니다");
+	//	$(".cls").css("background", "#ffff00");
+		$(this).css("background", "#ff0000");		
+	});
+	
+	$(".cls").mouseout(function() {
+		$(this).css("background", "green");		
+	});
+	
+	$('p').mouseover(function() {
+		$(this).css("background", "#aabbcc");
+	});
+	$('p').mouseout(function() {
+		$(this).css("background", "#ffffff");
+	});
+});
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+

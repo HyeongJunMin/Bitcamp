@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="../index.html">go to home</a>
+<a href="./lct1Function.html">jQuery1</a>
+<a href="./lct2Function2.html">jQuery2</a>
+<br><br>
+<div>
+	<p>p tag 1 in div</p>
+	<p>p tag 2 in div</p>
+</div>
+<input type="text" name="txt1" placeholder="name=txt1">
+<input type="button" name="btn1" value="btn1">
+<br>
+<ul id="list1">
+	<li>
+		<ol>
+			<li>aaa</li>
+			<li>bbb</li>
+			<li>ccc</li>
+		</ol>
+	</li>
+	<li>22</li>
+</ul>
+<input type="text" id="txtResultVal" placeholder="result of val()">
+<input type="text" id="txtResultText" placeholder="result of text()">
+<input type="button" id="hideFirstChild" value="hideFirstChild">
+
+
+<script type="text/javascript">
+//$(function() {
+	/* $('p').click(function (){
+		alert("dd");
+	}); */
+	
+	//div태그 안에 있는 p태그만 해당
+	$('div p').click(function (){
+		alert("dd");
+		//$('div p').hide();
+		//$('div p').show();
+		
+		//클릭된 오브젝트만 해당
+		//$(this).hide();
+		 $(this).css("background", "#000000");
+		 var temp = $(this).css("background");
+		 alert(temp);
+	});
+	
+	//name으로 객체 접근
+	$("input[name=btn1]").click(function(){
+		$("input[name=txt1]").val("123123");
+	});
+	
+	$("#hideFirstChild").click(function(){
+		$("#txtResultVal").val( $("#list1 ol li:first-child").val() );
+		$("#txtResultText").val( $("#list1 ol li:first-child").text() );	
+	});
+	
+//});
+</script>
+</body>
+</html>

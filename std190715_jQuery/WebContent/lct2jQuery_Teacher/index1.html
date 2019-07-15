@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<p>p tag</p>
+
+<p id="demo">p tag id demo</p>
+
+<p class="cls">p tag class cls</p>
+
+<p name="_name">p tag name name</p>
+
+<button>click</button>
+
+<script type="text/javascript">
+$(function () {
+	
+	$("p").click(function () {
+		console.log( $(this).text() );
+	});
+	
+	$("button").click(function() {
+	//	$('p').hide();
+	//	$('*').hide();
+	//	$('p#demo').hide();		// id
+	//	$('p.cls').hide();		// class
+		$('p[name=_name]').hide();	// name
+	});	
+});
+</script>
+
+<br><br>
+
+<form id="frm">
+<ul id="list">
+	<li>Coffee
+		<ul>
+			<li>black</li>
+			<li>milk</li>
+		</ul>
+	</li>
+	<li>Tea</li>
+	<li>Milk</li>
+</ul>
+</form>
+<button type="button" id="btn">선택</button>
+<button type="button" id="btn1">보이기</button>
+
+<script type="text/javascript">
+$(function () {
+	$("#btn").click(function() {
+	//	$("#list").hide();
+		
+	//	$("ul li:first").hide();
+	//	$("#list li:first").hide();
+	
+	//	$("ul ul li:first-child").hide();	// black
+		$("ul ul li:nth-child(2)").hide();	// milk
+	});	
+	
+	$("#btn1").click(function () {
+		
+	});
+	
+	
+});
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+

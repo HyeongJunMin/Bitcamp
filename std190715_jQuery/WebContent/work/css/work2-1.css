@@ -1,0 +1,11 @@
+.frame{
+	background: #00ff00;
+	padding: 10px;
+	padding-bottom: 50px;
+}
+
+.images{
+	width:200px;
+	height: 100px;
+	background: #00ff00;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="./css/work2-1.css" type="text/css"></link>
+</head>
+<body>
+<a href="../index.html">go to home</a>
+<a href="./work2-1.html">work2-1</a>
+<a href="./work2-2.html">work2-2</a>
+<a href="./work2-3.html">work2-3</a>
+<a href="./work2-4.html">work2-4</a>
+<h1>Life on the water</h1>
+<input type="button" value="add" id="btnAdd">
+<input type="button" value="delete" id="btnDel">
+<input type="button" value="add/del" id="btnAddDel">
+<div class="outerDiv">
+<img alt="" src="images/photo1.jpg" class="images">
+<img alt="" src="images/photo2.jpg" class="images">
+<img alt="" src="images/photo3.jpg" class="images">
+<img alt="" src="images/photo4.jpg" class="images">
+</div>
+
+<script type="text/javascript">
+$(".innerDiv").css("background","green");
+$(".innerDiv").css("width","120px");
+$(".innerDiv").css("height","100px");
+$(".innerDiv").css("margin","5px");
+$(".innerDiv img").css("margin","10px");
+
+$("#btnAdd").click(function(){
+	$(".images").addClass("frame");
+});
+$("#btnDel").click(function(){
+	$(".images").removeClass("frame");
+});
+$("#btnAddDel").click(function(){
+	if ( $(".images").hasClass("frame") ){
+		$(".images").removeClass("frame");	
+	}else{
+		$(".images").addClass("frame");
+	}
+});
+</script>
+</body>
+</html>

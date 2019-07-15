@@ -1,0 +1,4 @@
+img, iframe{
+	border: 3px solid;
+	border-color: blue;
+}

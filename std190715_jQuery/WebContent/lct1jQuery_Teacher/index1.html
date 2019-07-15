@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<!-- 
+Java Script
+<p id="ptag" onclick="func()">클릭</p>
+<button type="button" onclick="func()">클릭</button>
+
+<script type="text/javascript">
+function func() {
+	alert("클릭");
+}
+</script>
+ -->
+
+JQuery
+<p id="ptag">클릭</p>
+<button type="button">클릭</button>
+
+<script type="text/javascript">
+$(document).ready(function () {	
+});
+
+$(function () {	
+	/*
+	$("#ptag").click(function () {
+		alert("p tag click");
+	});	
+	$("button").click( function(){  
+		alert("button click");
+	});
+	*/
+	
+	/*
+	$("#ptag").on("click", function () {
+		alert("on p tag click");
+	});
+	*/
+	
+	$("#ptag").on("click", clickFunc);
+	
+});
+
+function clickFunc() {
+	alert("clickFunc() 호출");
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+

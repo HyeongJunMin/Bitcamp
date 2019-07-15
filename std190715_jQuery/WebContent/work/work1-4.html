@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+<a href="../index.html">go to home</a>
+<a href="./work1-1.html">work1-1</a>
+<a href="./work1-2.html">work1-2</a>
+<a href="./work1-3.html">work1-3</a>
+<a href="./work1-4.html">work1-4</a>
+<h3>~요금~</h3>
+
+<table class="tbl" id="tblFare" width="100%" style="text-align: center">
+	<tr>
+		<th>유형</th>
+		<th>정원</th>
+		<th>화장실</th>
+		<th>목욕탕</th>
+		<th>1박 요금</th>
+	</tr>
+	<tr>
+		<td>A타입</td>
+		<td>15명</td>
+		<td>유</td>
+		<td>유</td>
+		<td>28,000원</td>
+	</tr>
+	<tr>
+		<td>B타입</td>
+		<td>12명</td>
+		<td>유</td>
+		<td>유</td>
+		<td>25,000원</td>
+	</tr>
+	<tr>
+		<td>C타입</td>
+		<td>10명</td>
+		<td>유</td>
+		<td>무</td>
+		<td>21,000원</td>
+	</tr>
+	<tr>
+		<td>D타입</td>
+		<td>8명</td>
+		<td>유</td>
+		<td>무</td>
+		<td>19,500원</td>
+	</tr>
+	<tr>
+		<td>E타입</td>
+		<td>6명</td>
+		<td>무</td>
+		<td>무</td>
+		<td>15,000원</td>
+	</tr>
+	<tr>
+		<td>F타입</td>
+		<td>4명</td>
+		<td></td>
+		<td>무</td>
+		<td>15,000원</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+$("pre").mouseover(function(){
+	$(this).css('background','orange');
+});
+
+$("pre").mouseout(function(){
+	$(this).css('background','white');
+});
+
+$(document).ready(function() {
+	$("#tblFare tr").each(function(i){
+		if( (i%2) < 1) {
+			$(this).css("background", "#bed196");
+		}
+	});
+});
+</script>
+</body>
+</html>
