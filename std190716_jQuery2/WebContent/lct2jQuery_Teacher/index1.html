@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h3>JQuery</h3>
+
+<form>
+이름:<input type="text" id="name"><br>
+나이:<input type="text" id="age"><br>
+주소:<input type="text" id="address"><br>
+<button type="button" id="btn">전송</button>
+</form>
+
+<script type="text/javascript">
+$(function () {
+//	$("#btn").click(function() {		
+//	});
+	
+	$("#btn").on("click", function () {
+	//	alert("click");
+		location.href = "NewFile1.jsp?name=" + $("#name").val() + "&age=" + $("#age").val() + "&address=" + $("#address").val();
+	});
+	
+});
+</script>
+
+<br><br><br>
+
+<form id="frm">
+이름:<input type="text" name="name"><br>
+나이:<input type="text" name="age"><br>
+주소:<input type="text" name="address"><br>
+<button type="button" id="frmBtn">전송</button>
+</form>
+
+<script type="text/javascript">
+$(function () {
+	$("#frmBtn").click(function() {
+		$("#frm").attr("action", "NewFile1.jsp").submit();
+	});
+});
+
+</script>
+
+
+</body>
+</html>
+
+
+
+

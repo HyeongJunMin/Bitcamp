@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+이름:<input type="text"><br><br>
+
+이메일:<input type="text"><br><br>
+<!-- 
+<input onchange="func()">	handling
+ -->
+<p>여기가 p1 태그입니다</p>
+<p>여기가 p2 태그입니다</p>
+<br> 
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$("input").focus(function () {
+		$(this).css("background-color", "#0000ff");		
+	});
+	
+	$("input").blur(function () {
+		$(this).css("background-color", "#fff");
+	});
+	
+	$("p").mouseover(function() {
+		$(this).css("background-color", "#ffff00");
+	});
+	
+	$("p").mouseout(function() {
+		$(this).css("background-color", "#ffffff");
+	});
+	
+	$("p").dblclick(function() {
+		alert( $(this).text() );
+	});	
+});
+</script>
+
+<br><br>
+
+<button id="hideBtn">감추기</button>
+<button id="showBtn">보여주기</button>
+<button id="toggleBtn">스위치</button>
+
+<br><br>
+
+<div align="center">
+	<div class="test" style="background-color: green; width: 50%; height: 100px; text-align: center">
+	I can do it!!	
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+
+	$("#hideBtn").click(function() {
+		$(".test").hide(2000);
+	});
+	$("#showBtn").click(function() {
+		$('.test').show(3000);
+	});
+	$("#toggleBtn").click(function() {
+		$('.test').toggle(5000);
+	});
+	
+	/* 
+	$(".test").mouseenter(function() {
+		$(this).css("background-color", "#0000ff");
+	});
+	$(".test").mouseleave(function() {
+		$(this).css("background-color", "#00ff00");
+	});
+	 */
+	$(".test").hover(function() {
+		$(this).css("background-color", "#ff00ff");
+	},function(){
+		$(this).css("background-color", "#00ff00");
+	});
+	 
+
+	
+	
+});
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

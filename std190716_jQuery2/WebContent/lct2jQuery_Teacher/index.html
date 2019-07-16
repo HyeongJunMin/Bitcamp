@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- 
+Link
+html
+<a
+<form
+
+Java Script
+location.href
+
+Java
+ -->
+ 
+<form action="NewFile.jsp">
+	ID:<input type="text" name="id" id="id" placeholder="id 입력"><br>
+	<!-- <input type="submit" value="form이동"> -->
+	<!-- <button type="button" onclick="btnClick()">JS이동</button> -->
+	<button type="button" id="btn">JQuery이동</button>
+</form> 
+
+<script type="text/javascript">
+function btnClick() {
+	var id = document.getElementById("id").value;	// DOM
+	location.href = "NewFile.jsp?id=" + id;
+}
+
+$("#btn").click(function() {
+//	alert("click");
+	location.href = "NewFile.jsp?id=" + $("#id").val();
+});
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
