@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<div id="div1" style="width: 500px; height: 150px; 
+	border: 1px solid blue; background-color: #00ff00">
+
+<p id="pid">수요일인 17일은 전국에 구름이 많고</p>
+
+<p class="cls">제주도는 낮부터 전라도와 경상남도는 저녁부터 장맛비가 내리겠다</p>
+
+<h3 class="cls">예상 강수량은 50∼100㎜고 많은 곳은 150㎜ 이상 오겠다</h3>	
+	
+</div>
+
+<button type="button" id="btn">삭제</button>
+
+<script type="text/javascript">
+$(function () {
+	
+	$("#btn").click(function () {
+		
+	//	$("*").remove();
+	//	$("#div1").remove();
+	//	$("#div1").empty();
+	//	$(".cls").remove();
+		
+		$("p").remove("#pid, .cls");		
+	});
+	
+});
+</script>
+
+
+</body>
+</html>
+
+
+
+

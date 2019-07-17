@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<style type="text/css">
+.q5{
+	color:#ff0000;
+	border: 2px solid;
+}
+.q8{
+	padding: 10px;
+	border: #000 2px solid;
+	background-color: gray;
+}
+</style>
+
+</head>
+<body>
+
+<button type="button">실행</button>
+
+<p id="q01">Hello JQuery</p>
+
+<p id="q02">Hello JQuery</p>
+
+<p id="q03">Hello JQuery</p>
+
+<p id="q04">Hello JQuery</p>
+
+<ul id="q05">
+	<li>사과</li>
+	<li>배</li>
+	<li>바나나</li>
+</ul>
+
+<p id="q06">최선을 다함으로 </p>
+
+<ul id="q07">
+	<li>커피</li>
+</ul>
+
+<p id="q08">나는 최선을 다 할것이다</p>
+
+<div class="q8">
+	<p id="q09">나는 끝까지 도전할 것입니다</p>
+</div>
+
+<p id="q10" class="q10">나는 문제 없어</p>
+
+<p id="q11">
+	<a href="http://www.naver.com">Naver</a>
+</p>
+
+<script type="text/javascript">
+$(function () {
+	
+	$("button").click(function () {
+		// font color 변경
+		$("#q01").css("color", "#ff0000");
+		
+		// font color, background-color 변경
+		$("#q02").css({
+			"color":"#00f",
+			"background-color": "#ffff00"
+		});
+		
+		// $("#q03").text("헬로우 제이쿼리");
+		$("#q03").html("<b>헬로우</b> 제이쿼리");
+		
+		// html 변경
+		$("#q04").html("<a href='#'>World JQuery</a>");
+		
+		// class 추가
+		$("#q05").addClass("q5");
+		
+		// 항목 추가
+		$("#q05").append("<li>오렌지</li>");
+		
+		var app = $("<li></li>").text("복숭아");
+		$("#q05").append(app);
+		
+		// 항목 삭제
+		// $("#q05 li").remove();
+		
+		// 항목 추가
+		$("#q06").prepend("<p>끝까지</p>");		
+		$("#q06").append("<p>나는 성공할 것이다</p>");
+		
+		// 항목 추가
+		$("#q07 li").before("<li>홍차</li>");
+		$("#q07 li").after("<li>우유</li>");
+		
+		$("#q08").wrap("<div class='q8'></div>");
+		
+		$("#q09").unwrap("div.q8");
+		
+		$("#q10").attr("class", "q11");
+		
+	//	alert( $("#q10").attr("class") );
+	
+		// attr 제거
+		$("#q11 a").removeAttr("href");
+	});
+	
+});
+</script>
+
+</body>
+</html>
+
+
+

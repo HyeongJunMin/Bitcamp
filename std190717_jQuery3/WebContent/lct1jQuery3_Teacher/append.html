@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<h3>Detail</h3>
+<textarea rows="2" cols="20">기본글</textarea>
+
+<br><br>
+
+<button id="app">답글입력</button>
+
+<br>
+
+<div id="answerForm">
+</div>
+
+<script type="text/javascript">
+$(function () {
+
+	$("#app").click(function () {		
+		var txt = "<br>답글:<input type='text' id='answer'>";
+		$("body").append(txt);
+		
+		var btn = "<br><br><button type='button' id='answerBtn'>답글작성완료</button>";
+		$("body").append(btn);
+	});	
+	/*
+	$("#answerBtn").click(function () {
+		alert("답글작성완료");
+	});
+	*/
+	/* 	1. div 태그에 resource를 모아 놓고 hide로 설정
+		   클릭시에 show로 설정되어 보여지도록 한다. */
+	
+	$(document).on("click", '#answerBtn', function () {
+	//	alert("on 답글작성완료");
+		alert( $("#answer").val() );
+	});	   
+
+	
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

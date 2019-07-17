@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+<ul id="list">
+	<li>커피</li>
+	<li>홍차</li>
+	<li>우유</li>
+	<li>쥬스</li>
+	<li>녹차</li>
+</ul>
+
+<p id="len">리스트의 요소 수</p>
+선택한 항목:<input type="text" id="choice">
+
+<br><br>
+
+추가항목:<input type="text" id="col"><br>
+<button type="button">추가</button>
+
+<script type="text/javascript">
+$(function () {
+	
+	// 클릭한 항목
+	/* 
+	$("ul#list").children().click(function () {
+		alert($(this).text());
+	});
+	 */
+	/* 
+	$("ul#list li").click(function () {
+	//	alert($(this).text());
+		$("#choice").val( $(this).text() );
+	});
+	 */	 
+	$(document).on("click", "ul#list li", function () {
+		$("#choice").val( $(this).text() );	
+	});
+	 
+	$("button").click(function () {
+		
+		var len = $("ul#list").children().length;	// parent()
+		$("#len").text(len + "개의 요소가 있습니다");	
+		
+		// 추가 항목
+		var append = $("<li></li>").text( $("#col").val() );
+		$("ul#list").append( append );
+	});	
+	
+});
+
+
+</script>
+
+</body>
+</html>
+
+
+
