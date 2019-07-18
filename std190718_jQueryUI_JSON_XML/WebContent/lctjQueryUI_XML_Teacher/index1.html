@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="./index.html">index</a>
+<a href="./index1.html">index1</a>
+<a href="./index2.html">index2</a>
+<a href="./index3.html">index3</a>
+<br>
+<button type="button" onclick="loadXMLDoc()">내용변경</button>
+
+<p id="demo">p tag</p>
+
+<script type="text/javascript">
+
+var xhttp = new XMLHttpRequest();
+
+function loadXMLDoc() {
+	
+	xhttp.onreadystatechange = function () {
+		if(this.readyState == 4 && this.status == 200){
+			document.getElementById("demo").innerHTML = this.responseText;
+		}		
+	}
+	xhttp.open("GET", "test.txt", true);
+	xhttp.send();
+}
+
+</script>
+
+<!-- 
+readyState
+0:	open() 메소드를 수행하기 전
+1:	로딩중...
+2:	로딩완료
+3:	서버 처리중...
+4:	서버 처리 완료
+
+status
+200: 성공
+403: 접근금지
+404: 파일, 페이지가 없음
+500: 구문(문법)이 이상 
+ -->
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

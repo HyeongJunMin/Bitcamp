@@ -1,0 +1,22 @@
+[
+	{
+		"title":"book1",
+		"author":"person1",
+		"price":30000
+	},
+	{
+		"title":"book2",
+		"author":"person2",
+		"price":60000
+	},
+	{
+		"title":"book3",
+		"author":"person3",
+		"price":40000
+	},
+	{
+		"title":"book4",
+		"author":"person4",
+		"price":5000
+	}
+]

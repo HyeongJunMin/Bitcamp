@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Movies> <!-- Root Tag -->
+	<movie 장르="스릴러">
+		<title>신세계</title>
+		<point>95</point>
+		<review>매우 재밌음</review>
+	</movie>
+	<movie 장르="코믹">
+		<title>극한직업</title>
+		<point>99</point>
+		<review>매우 재밌음</review>
+	</movie>
+</Movies>

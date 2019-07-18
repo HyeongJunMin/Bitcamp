@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="./index.html">index</a>
+<a href="./index1.html">index1</a>
+<a href="./index2.html">index2</a>
+<a href="./index3.html">index3</a>
+<br>
+<p id="demo">p tag</p>
+
+<script type="text/javascript">
+var text = "<bookstore>" +
+				"<book>" +
+					"<title>탈무드</title>" +
+					"<author>man</author>" +
+					"<year>2001</year>" +
+				"</book>" +
+				"<book>" +
+					"<title>이솝이야기</title>" +
+					"<author>woman</author>" +
+					"<year>2004</year>" +
+				"</book>" +
+			"</bookstore>";
+			
+var parser, xmlDoc;			
+
+parser = new DOMParser();
+xmlDoc = parser.parseFromString(text, "text/html");
+
+document.getElementById("demo").innerHTML
+	//= xmlDoc.getElementsByTagName("book")[0].childNodes[0].nodeName; // title
+	//= xmlDoc.getElementsByTagName("book")[0].childNodes[1].nodeName; // author
+
+	= xmlDoc.getElementsByTagName("book")[1].childNodes[1].childNodes[0].nodeValue; // 탈무드	
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

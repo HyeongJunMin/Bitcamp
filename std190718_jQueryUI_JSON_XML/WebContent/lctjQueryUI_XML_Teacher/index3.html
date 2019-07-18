@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="./index.html">index</a>
+<a href="./index1.html">index1</a>
+<a href="./index2.html">index2</a>
+<a href="./index3.html">index3</a>
+<br>
+<p id="demo">p tag</p>
+
+<script type="text/javascript">
+
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function () {	
+	if(this.readyState == 4 && this.status == 200){
+	//	func( this );
+	//	nodefunc( this );
+		childNodefunc( this );
+	}		
+};
+xhttp.open("GET", "job.xml", true);
+xhttp.send();
+
+function func( xml ) {
+	var num, name;
+	var txt, ntxt, xmlDoc;
+	
+	txt = ntxt = "";
+	
+	xmlDoc = xml.responseXML;
+	//alert(xmlDoc);
+	
+	num = xmlDoc.getElementsByTagName("번호");
+	name = xmlDoc.getElementsByTagName("이름");
+//	alert(num.length);
+
+	for(i = 0;i < num.length; i++){
+		txt += num[i].childNodes[0].nodeValue + "<br>";
+		ntxt += name[i].childNodes[0].nodeValue + "<br>";
+	}
+	
+	document.getElementById("demo").innerHTML = txt + ntxt;
+}
+
+function nodefunc( xml ) {
+	var arr, xmlDoc, txt;
+	txt = "";
+	
+	xmlDoc = xml.responseXML;
+	
+	arr = xmlDoc.documentElement.childNodes;
+	
+	for(i = 0;i < arr.length; i++){
+		if(arr[i].nodeType == 1){
+			txt += arr[i].nodeName + "<br>";
+		}			
+	}
+		
+	document.getElementById("demo").innerHTML = txt; 
+}
+
+function childNodefunc( xml ) {
+	var arr, xmlDoc, txt;	
+	txt = "";
+	
+	xmlDoc = xml.responseXML;
+	
+	arr = xmlDoc.getElementsByTagName("고객")[0];
+	var len = arr.childNodes.length;
+//	alert(len);
+
+	var fChild = arr.firstChild;
+	
+	for(i = 0;i < len; i++){
+		if(fChild.nodeType == 1){
+			txt += i + " " + fChild.nodeName + "<br>";
+		}
+		fChild = fChild.nextSibling;	
+	}
+	document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+<!-- 
+1. select -> job.xml, movie.xml
+2. button
+
+결과:
+node : 3개
+node in node : 4개
+datas : 출력
+ -->
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
