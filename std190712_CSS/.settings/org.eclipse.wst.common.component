@@ -2,7 +2,8 @@
     <wb-module deploy-name="std190712_CSS">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="std190712_CSS"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent"/>
         <property name="java-output-path" value="/std190712_CSS/build/classes"/>
+        <property name="context-root" value="/"/>
     </wb-module>
 </project-modules>
