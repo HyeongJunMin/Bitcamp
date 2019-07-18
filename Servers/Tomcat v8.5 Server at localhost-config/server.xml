@@ -136,10 +136,7 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
-		
-		<!-- D:\workspace\LectureContent\std190704_Web_HTML -->
-		<!-- <Host appBase="D:\workspace\LectureContent" autoDeploy="true" name="localhost" unpackWARs="true"> -->
-       <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
+      <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
@@ -152,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="std190704_Web_HTML" path="/std190704_Web_HTML" reloadable="true" source="org.eclipse.jst.jee.server:std190704_Web_HTML"/><Context docBase="std190705_Web_HTML2" path="/std190705_Web_HTML2" reloadable="true" source="org.eclipse.jst.jee.server:std190705_Web_HTML2"/><Context docBase="std190708_Web_HTML3" path="/std190708_Web_HTML3" reloadable="true" source="org.eclipse.jst.jee.server:std190708_Web_HTML3"/><Context docBase="std190709_Javascript" path="/std190709_Javascript" reloadable="true" source="org.eclipse.jst.jee.server:std190709_Javascript"/><Context docBase="std190712_CSS" path="/std190712_CSS" reloadable="true" source="org.eclipse.jst.jee.server:std190712_CSS"/></Host>
+      <Context docBase="std190716_jQuery2" path="/std190716_jQuery2" reloadable="true" source="org.eclipse.jst.jee.server:std190716_jQuery2"/><Context docBase="std190717_jQuery3" path="/std190717_jQuery3" reloadable="true" source="org.eclipse.jst.jee.server:std190717_jQuery3"/><Context docBase="std190718_jQueryUI_JSON_XML" path="/std190718_jQueryUI_JSON_XML" reloadable="true" source="org.eclipse.jst.jee.server:std190718_jQueryUI_JSON_XML"/></Host>
     </Engine>
   </Service>
 </Server>
