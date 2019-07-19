@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book>
+		<title>배꼽</title>
+		<author>오쑈 라즈니쉬</author>
+		<price>8,100</price>
+	</book>
+	<book>
+		<title>화폐전쟁</title>
+		<author>쑹훙빙</author>
+		<price>18,000</price>
+	</book>
+	<book>
+		<title>4차산업혁명</title>
+		<author>최진기</author>
+		<price>15,120</price>
+	</book>
+	<book>
+		<title>달러 이야기</title>
+		<author>홍익희</author>
+		<price>22,500</price>
+	</book>
+</books>
+
+

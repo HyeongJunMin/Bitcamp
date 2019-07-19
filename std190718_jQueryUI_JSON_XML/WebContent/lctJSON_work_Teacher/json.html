@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div id="demo"></div>
+
+<script type="text/javascript">
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function () {
+	if(this.readyState == 4 && this.status == 200){
+		func( xmlhttp.responseText );
+	}
+}
+xmlhttp.open("GET", "books.json", true);
+xmlhttp.send();
+
+function func( resp ) {
+	
+	arr = JSON.parse(resp);	// String -> Json
+	
+	var out = "<table border='1'>";
+	out += "<col width=100><col width=140><col width=100>";
+	
+	// key의 출력 -> column
+	out += "<tr>";
+	for(key in arr[0]){
+		out += "<th>" + key + "</th>";
+	}
+	out += "</tr>";
+	
+	// datas 출력
+	for(i = 0;i < arr.length; i++){
+		out += "<tr>";
+		/* 
+		out += "<td>" + arr[i].title + "</td>";
+		out += "<td>" + arr[i].author + "</td>";
+		out += "<td>" + arr[i].price + "</td>";		
+		 */
+		
+		for(key in arr[i]){
+			out += "<td>" + arr[i][key] + "</td>";
+		}
+		 
+		out += "</tr>";
+	}
+	
+	
+	out += "</table>";
+	document.getElementById("demo").innerHTML = out;
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+

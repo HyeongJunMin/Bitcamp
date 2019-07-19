@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div id="demo"></div>
+
+<script type="text/javascript">
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function () {
+	if(this.readyState == 4 && this.status == 200){
+		func(this);
+	}
+}
+xhttp.open("GET", "books.xml", true);
+xhttp.send();
+
+function func( xml ) {
+//	alert( xml );
+	
+	var nodeArr;
+	var xmlDoc = xml.responseXML;
+	
+	// root tag 취득
+	var rootTagName = xmlDoc.documentElement.nodeName;
+//	alert(rootTagName);
+	
+	// node명을 취득
+	var nodeName;
+	nodeArr = xmlDoc.documentElement.childNodes;
+	for(i = 0;i < nodeArr.length; i++){
+		if(nodeArr[i].nodeType == 1){	// tag name
+			nodeName = nodeArr[i].nodeName;
+		//	alert(nodeName);
+			break;
+		}
+	}
+	
+	// table 준비
+	var out = "<table border='1'>";
+	out += "<col width=100><col width=140><col width=100>";
+	out += "<tr>";
+	
+	// column명을 취득 
+	nodeArr = xmlDoc.getElementsByTagName( nodeName )[0];
+	
+	var child = nodeArr.firstChild;
+	for(i = 0;i < nodeArr.childNodes.length; i++){
+		if(child.nodeType == 1){
+			out += "<th>" + child.nodeName + "</th>";
+		}
+		child = child.nextSibling;
+	}
+	
+	out += "</tr>";
+	
+	// data를 출력
+	
+	var len = xmlDoc.getElementsByTagName( nodeName ).length;
+//	alert(len);
+	var dataArr;
+	for(i = 0;i < len; i++){
+		out += "<tr>";
+		dataArr = xmlDoc.getElementsByTagName(nodeName)[i];
+		
+		child = dataArr.firstChild;
+		for(j = 0;j < dataArr.childNodes.length; j++){
+			if(child.nodeType == 1){
+				out += "<td>" + child.childNodes[0].nodeValue + "</td>";				
+			}			
+			child = child.nextSibling;
+		}		
+		out += "</tr>";
+	}	
+	
+	out += "</table>";
+	document.getElementById("demo").innerHTML = out;
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
