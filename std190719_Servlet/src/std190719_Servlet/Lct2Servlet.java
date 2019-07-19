@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Lct2Servlet
  */
-@WebServlet("/Lct2Servlet")
+
 public class Lct2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

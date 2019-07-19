@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ddd</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<form action="/std190719_Servlet/lct4/go2" method="get" id="form1">
+<table>
+	<tr>
+		<td>이름</td>
+		<td><input type="text" size="20" value="" name="txtName"></td>
+	</tr>
+	<tr>
+		<td>나이</td>
+		<td><input type="text" size="20" value="" name="txtAge"></td>
+	</tr>
+	<tr>
+		<td>좋아하는 과일</td>
+		<td>
+			<select multiple="multiple" name="selectFruits">
+				<option value="apple" selected>사과</option>
+				<option value="pear">배</option>
+				<option value="banana">바나나</option>
+			</select>
+		</td>
+	</tr>
+</table>
+<input type="submit">
+<input type="button" id="move" value="move">
+</form>
+<script type="text/javascript">
+$(function(){
+	$("#move").click(function(){
+		alert('click');
+		$("#form1").attr("action","/std190719_Servlet/lct4/go2").submit();		
+	});
+});
+</script>
+</body>
+</html>

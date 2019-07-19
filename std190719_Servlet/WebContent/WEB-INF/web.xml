@@ -56,11 +56,51 @@
 	</servlet-mapping>
  
   	<servlet>
-		<servlet-name>lct4servlet1</servlet-name>
-		<servlet-class>std190719_Servlet.lct4.Lct4Servlet1</servlet-class>
+		<servlet-name>ErrMsgServlet</servlet-name>
+		<servlet-class>std190719_Servlet.lct4.ErrMsgServlet</servlet-class>
+		<init-param>
+			<param-name>tax</param-name>
+			<param-value>0.15</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>lct4servlet1</servlet-name>
+		<servlet-name>ErrMsgServlet</servlet-name>
 		<url-pattern>/lct4/go1</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>lct4Servlet2</servlet-name>
+		<servlet-class>std190719_Servlet.lct4.Lct4Servlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lct4Servlet2</servlet-name>
+		<url-pattern>/lct4/go2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>lct5Servlet1</servlet-name>
+		<servlet-class>std190719_Servlet.lct5.Lct5Servlet1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lct5Servlet1</servlet-name>
+		<url-pattern>/lct5/go1</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>includeSev</servlet-name>
+		<servlet-class>std190719_Servlet.lct5.IncludeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>includeSev</servlet-name>
+		<url-pattern>/lct5/include</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>forwardSev</servlet-name>
+		<servlet-class>std190719_Servlet.lct5.ForwardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>forwardSev</servlet-name>
+		<url-pattern>/lct5/goForward</url-pattern>
 	</servlet-mapping>
  </web-app>

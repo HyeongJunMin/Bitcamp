@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Lct1Servlet
  */
-@WebServlet({ "/Lct1Servlet" })//이 주소로 접속이 되면! 이 서블릿을 호출한거다!
+
 public class Lct1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

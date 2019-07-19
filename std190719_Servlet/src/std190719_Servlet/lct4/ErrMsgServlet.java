@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Lct4Servlet1
  */
 
-public class Lct4Servlet1 extends HttpServlet {
+public class ErrMsgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Lct4Servlet1() {
+    public ErrMsgServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +31,8 @@ public class Lct4Servlet1 extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		String code = request.getParameter("slcCode");
+		String tax = this.getInitParameter("tax");
+		
 		
 		if( code.equals("200") ) {
 			
@@ -51,6 +52,7 @@ public class Lct4Servlet1 extends HttpServlet {
 		pw.println("</head>");
 		pw.println("<body>");
 		pw.println("<p>code: " + code + "</p>");
+		pw.println("<p>tax: " + tax + "</p>");
 		pw.println("</body>");
 		pw.println("</html>");
 		pw.flush();
