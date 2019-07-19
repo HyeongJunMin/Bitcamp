@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  version="3.1">
+  
+  <servlet>
+  	<servlet-name>helloServlet</servlet-name>
+  	<servlet-class>std190719_Servlet.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>helloServlet</servlet-name>
+  	<url-pattern>/location</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>Lct1Servlet</servlet-name>
+  	<servlet-class>std190719_Servlet.Lct1Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Lct1Servlet</servlet-name>
+  	<url-pattern>/locLct1</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+  	<servlet-name>Lct2Servlet</servlet-name>
+  	<servlet-class>std190719_Servlet.Lct2Servlet</servlet-class>
+  </servlet>
+	<servlet-mapping>
+		<servlet-name>Lct2Servlet</servlet-name>
+		<url-pattern>/locLct2</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Lct3HelloServlet</servlet-name>
+		<servlet-class>std190719_Servlet.lct3.Lct3HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Lct3HelloServlet</servlet-name>
+		<url-pattern>/lct3/get.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Lct3HelloServlet</servlet-name>
+		<url-pattern>/lct3/post.html</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SampleServlet</servlet-name>
+		<servlet-class>std190719_Servlet.lct3.SampleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SampleServlet</servlet-name>
+		<url-pattern>/ggggg</url-pattern>
+	</servlet-mapping>
+ 
+  	<servlet>
+		<servlet-name>lct4servlet1</servlet-name>
+		<servlet-class>std190719_Servlet.lct4.Lct4Servlet1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lct4servlet1</servlet-name>
+		<url-pattern>/lct4/go1</url-pattern>
+	</servlet-mapping>
+ </web-app>
