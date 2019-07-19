@@ -1,3 +1,2 @@
 # Bitcamp
-Coding school
-D:\java\lectureContents
+Coding school Lecture Contents Record
