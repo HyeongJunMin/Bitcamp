@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Node type</h1>
+<div id="divMain"></div>
+<!-- 
+1 : ELEMENT_NODE
+2 : ATTRIBUTE_NODE
+3 : TEXT_NODE
+4 : CDATA_SECTION_NODE
+5 : ENTITY_REFERENCE_NODE
+6 : ENTITY_NODE
+7 : PROCESSING_INSTRUCTION_NODE
+8 : COMMENT_NODE
+9 : DOCUMENT_NODE
+10 : DOCUMENT_TYPE_NODE
+11 : DOCUMENT_FRAGMENT_NODE
+12 : NOTATION_NODE
+1 : DOCUMENT_POSITION_DISCONNECTED
+2 : DOCUMENT_POSITION_PRECEDING
+4 : DOCUMENT_POSITION_FOLLOWING
+8 : DOCUMENT_POSITION_CONTAINS
+16 : DOCUMENT_POSITION_CONTAINED_BY
+32 : DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC
+ -->
+<script type="text/javascript">
+var txt = '';
+for(var name in Node){
+	txt += Node[name] + ' : ' + name + '<br/>';
+}
+document.getElementById("divMain").innerHTML = txt;
+</script>
+</body>
+</html>
