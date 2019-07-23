@@ -48,10 +48,11 @@ public class WorkMainServlet1 extends HttpServlet {
 		}else {
 			System.out.println("female!");
 			
-			req.setAttribute("human", dto);
-			
+			//req에 전송할 attr 설정
+			req.setAttribute("human", dto);			
 			//HttpServletRequest에서 dispatcher를 받아옴. 매개변수는 servlet url-pattern
-			RequestDispatcher dispatch = req.getRequestDispatcher("workFemale");			
+			RequestDispatcher dispatch = req.getRequestDispatcher("workFemale");	
+			//forward 메소드를 통해 url-pattern으로 이동
 			dispatch.forward(req, resp);
 			//req.getRequestDispatcher("workFemale").forward(req, resp);
 			
