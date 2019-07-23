@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+<a href="../index.html">go to home</a>
+<h1>Work 1</h1>
+<p>attr name : inputName, age, gender, hobby, birth, salary</p>
+<form action="workmainChk">
+	<table>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="inputName" size="10"></td>
+		</tr>
+		<tr>
+			<td>나이</td>
+			<td>
+				<select name="age">
+					<option value="10">10대</option>
+					<option value="20">20대</option>
+					<option value="30">30대</option>
+					<option value="40">40대</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td>
+				<input type="radio" name="gender" value="m" checked="checked">male
+				<input type="radio" name="gender" value="f">female
+			</td>
+		</tr>
+		<tr>
+			<td>취미</td>
+			<td>
+				<input type="checkbox" name="hobby" value="snowboarding">보드
+				<input type="checkbox" name="hobby" value="videogame">게임
+			</td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td>
+				<input type="text" placeholder="클릭하면 달력" name="birth" id="txtBirth">
+			</td>
+		</tr>
+		<tr>
+			<td>연봉</td>
+			<td>
+				<select name="salary">
+					<option value="1">0~3,000</option>
+					<option value="2">3,000~</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="submit" id="btnSubmit">
+			</td>
+		</tr>
+	</table>
+</form>
+<script type="text/javascript">
+$("#txtBirth").datepicker({
+	dateFormat: "yy/mm/dd"
+	,dayNamesMin: ['일','월','화','수','목','금','토']
+	,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+	,onSelect: function( d ){
+	$("#txtBirth").val(d);
+	var arr = d.split('/');
+	/* $("#year").val( arr[0].trim() );
+	$("#month").val( arr[1].trim() );
+	$("#dateNum").val( arr[2].trim() );			
+	var week = new Date( $("#date").datepicker( {dateFormat: "yy/mm/dd"} ).val() );
+	$("#dayOfWeek").val( dow[week.getDay()] ); */
+}
+});
+</script>
+</body>
+</html>

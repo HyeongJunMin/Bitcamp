@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
+<style type="text/css">
+.center{
+	margin: auto;
+	width: 60%;
+	border: 3px solid #ff0000;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+<a href="../index.html">go to home</a>
+<a href="./cookie1.html">cookie1.html</a>
+<a href="./cookie2Login.html">cookie2Login.html</a><br><br>
+
+<h1 style="margin: auto; margin-bottom: 10px;" align="center">Login using cookie</h1>
+<div class="center">
+	<form id="frm1" style="margin: auto">
+		<table border="1" style="margin: auto">
+			<tr>
+				<td>ID</td>
+				<td>
+					<input type="text" id="inputId" size="10">
+					<input type="checkbox" id="chk_save_id">save my id
+				</td>
+				<td rowspan="2">
+					<input type="button" id="btnLogin" value="Login" style="padding: 10px">
+				</td>
+			</tr>
+			<tr>
+				<td>PW</td>
+				<td>
+					<input type="password" id="inputPw" size="10">
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<script type="text/javascript">
+$("#btnLogin").click(function(){
+	if( $("#inputId").val().trim() === ""){
+		alert('Please write ID');
+		$("#inputId").focus();
+	}else if( $("#inputPw").val().trim() === "" ){
+		alert('Please write pw')
+		$("#inputPw").focus();
+	}else{
+		$("#frm1").attr( { "action" : "loginAf" ,
+							"target" : "blank"}).submit();
+	}
+});
+
+//cookie를 찾는 부분
+var userId = $.cookie("userId");
+if(userId != null){
+	alert('cookie exist');
+	$("#inputId").val(userId);
+	$("#chk_save_id").attr("checked", "checked");
+}else{
+	alert("cookie doesn't exist");
+	
+}
+
+//체크박스에 클릭이벤트 추가
+$("#chk_save_id").click(function(){
+	if( $(this).is(":checked") ){
+		if( $("#inputId").val().trim() === ""){
+			$(this).prop("checked", false);
+		}else{//쿠키이름, 저장데이터, 조건(유효기한7일, root경로-모든 경로에서 접근 가능 해당)
+			$.cookie("userId", $("#inputId").val().trim(), {expires:7, path:'/'} );
+		}
+	}else{//체크를 해제하면 쿠키삭제(=기한을 0으로 설정)
+		$.removeCookie("userId", {path:'/'} );
+	}
+});
+</script>
+
+</body>
+</html>
