@@ -12,6 +12,13 @@
 		}
 		return arrOutput;
 	}
+	
+	//강사코드
+	public String setColorHTML(String strSen, String color){
+		return "<font color=\"" + color +"\">" + strSen + "</font>";
+	}
+	
+	String styleStr = "style=\"color: red;\"";
 %>
 <!DOCTYPE html>
 <html>
@@ -31,5 +38,11 @@
 	for(String s : arrStr)
 		out.println(s);
 %>
+
+<h3 <%=styleStr %>>강사 코드</h3>
+<%
+	String redText = setColorHTML("빨간 텍스트", "#ff0000");
+%>
+<p><%=redText %></p>
 </body>
 </html>

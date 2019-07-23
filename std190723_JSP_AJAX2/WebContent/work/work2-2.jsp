@@ -34,5 +34,20 @@
 	//ses.invalidate();
 	//visitTimes = 0;
 %>
+
+<%
+	int i;
+	if( session.getAttribute("countTeacher") != null){
+		i = (Integer)(session.getAttribute("countTeacher"));
+	}else{
+		i = 0 ;
+	}
+	i++;
+%>
+<p>방문 횟수 : <input type="text" value="<%=i %>" size="10"></p>
+<%
+	session.setAttribute("countTeacher", new Integer(i));
+%> 
+
 </body>
 </html>
