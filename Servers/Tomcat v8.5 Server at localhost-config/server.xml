@@ -149,7 +149,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="std190719_Servlet" path="/std190719_Servlet" reloadable="true" source="org.eclipse.jst.jee.server:std190719_Servlet"/><Context docBase="std190722_Servlet2_AJAX" path="/std190722_Servlet2_AJAX" reloadable="true" source="org.eclipse.jst.jee.server:std190722_Servlet2_AJAX"/><Context docBase="std190723_JSP_AJAX2" path="/std190723_JSP_AJAX2" reloadable="true" source="org.eclipse.jst.jee.server:std190723_JSP_AJAX2"/></Host>
+      <Context docBase="std190719_Servlet" path="/std190719_Servlet" reloadable="true" source="org.eclipse.jst.jee.server:std190719_Servlet"/><Context docBase="std190722_Servlet2_AJAX" path="/std190722_Servlet2_AJAX" reloadable="true" source="org.eclipse.jst.jee.server:std190722_Servlet2_AJAX"/><Context docBase="std190723_JSP_AJAX2" path="/std190723_JSP_AJAX2" reloadable="true" source="org.eclipse.jst.jee.server:std190723_JSP_AJAX2"/>
+      <Context docBase="std190724_JSP2_JDBC_MVC1" path="/190724" reloadable="true" source="org.eclipse.jst.jee.server:std190724_JSP2_JDBC_MVC1"/>
+      </Host>
     </Engine>
   </Service>
 </Server>
