@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<h3>190724 JSP</h3>
+<ol>
+	<li><a href="lct1jdbc/jdbc1.jsp">jdbc</a></li>
+	<li><a href="lct2MVCModel1/MVCModel1.jsp">MVC model 1</a></li>
+</ol>
+
+
+<input type="text" id="inReplace" value="123.456">
+<input type="button" value="go" id="btnReplace">
+<br>
+<input type="text" id="inTest" value="123">
+<input type="button" value="go" id="btnTest">
+
+<script type="text/javascript">
+$(document).ready(function(){
+	//버튼 클릭 이벤트
+	$("#btnReplace").on("click", function(){
+		//텍스트 저장
+		var txt = $("#inReplace").val();
+		//정규식을 통해 텍스트 교체
+		$("#inReplace").val( txt.replace( /(\w+)\.(\w+)/, "$2.$1" ) );
+	});
+	
+	$("#btnTest").click(function(){
+		//정규식 설정
+		var fncTest = /^[0-9]+$/;
+		//정규식 결과 저장
+		var testResult = fncTest.test( $("#inTest").val() );
+	});
+});
+</script>
+
+</body>
+</html>
