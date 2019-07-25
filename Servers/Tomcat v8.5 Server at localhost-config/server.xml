@@ -151,7 +151,7 @@
 
       <Context docBase="std190719_Servlet" path="/std190719_Servlet" reloadable="true" source="org.eclipse.jst.jee.server:std190719_Servlet"/><Context docBase="std190722_Servlet2_AJAX" path="/std190722_Servlet2_AJAX" reloadable="true" source="org.eclipse.jst.jee.server:std190722_Servlet2_AJAX"/><Context docBase="std190723_JSP_AJAX2" path="/std190723_JSP_AJAX2" reloadable="true" source="org.eclipse.jst.jee.server:std190723_JSP_AJAX2"/>
       <Context docBase="std190724_JSP2_JDBC_MVC1" path="/190724" reloadable="true" source="org.eclipse.jst.jee.server:std190724_JSP2_JDBC_MVC1"/>
-      </Host>
+      <Context docBase="std190725_JSP3_MVC2" path="/std190725_JSP3_MVC2" reloadable="true" source="org.eclipse.jst.jee.server:std190725_JSP3_MVC2"/></Host>
     </Engine>
   </Service>
 </Server>
