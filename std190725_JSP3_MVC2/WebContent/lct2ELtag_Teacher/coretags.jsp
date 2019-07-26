@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.model.dto.MemberDto"%>
 <%@page import="java.util.List"%>
@@ -130,9 +132,18 @@ index:<c:out value="${i.index }"/>
 data:<c:out value="${m.message }"/><br>
 </c:forEach>
 
-
-
-
+<%
+	Map<Integer, String> hm = new HashMap<>();
+	hm.put(1,"111");
+	hm.put(2,"222");
+	hm.put(3,"333");
+	request.setAttribute("_map", hm);
+%>
+<br>
+<c:forEach var="mapi" items="${_map }" varStatus="i">
+<br>key : <c:out value="${mapi.key }"></c:out>
+value : <c:out value="${mapi.value }"></c:out>
+</c:forEach>
 
 
 
