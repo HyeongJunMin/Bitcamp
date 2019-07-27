@@ -1,0 +1,22 @@
+[
+
+	{
+		"name":"gd",
+		"age":24,
+		"add":"seoul",
+		"phone":"1-1-1"
+	},
+	{
+		"name":"hs",
+		"age":55,
+		"add":"PSN",
+		"phone":"2-2-2"
+	},
+	{
+		"name":"hh",
+		"age":11,
+		"add":"ICN",
+		"phone":"3-3-3"
+	}
+
+]
