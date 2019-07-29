@@ -34,22 +34,34 @@
 </head>
 <body>
 <%
+	System.out.println("bbslist.jsp 접속함.");
 	Object ologin = session.getAttribute("login");
 	MemberDto mem = null;
-	if(ologin == null){%>
+
+	if(ologin == null){	%>
 		<script type="text/javascript">
 		alert('로그인해주세요');
-		location.href = "login.jsp";
+		location.href = "login.jsp";			
 		</script>	
-	<%}
+	<%
+	}
+ 
+ /*
+	if(ologin == null){	
+		response.sendRedirect("./login.jsp");
+		return;
+	}
+ */
 	mem = (MemberDto)ologin;
 %>
 
 <%
 	iBbsDao dao = BbsDao.getInstance();
 	List<BbsDto> list = dao.getBbsList();
+	
+	String currUser = (mem.getName() == null)? "guest" : mem.getName();
 %>
-<h4 align="right" style="background-color: #f0f0f0">환영합니다 <%=mem.getName() %>님</h4>
+<h4 align="right" style="background-color: #f0f0f0">환영합니다 <%=currUser %>님</h4>
 <h1>게시판</h1>
 
 <div align="center">

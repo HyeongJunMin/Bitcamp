@@ -10,22 +10,25 @@ import db.DBClose;
 import db.DBConnection;
 import dto.BbsDto;
 
-public class BbsDao implements iBbsDao{
-	
+public class BbsDao implements iBbsDao {
+
 	private static BbsDao bbsdao = new BbsDao();
 	
-	private BbsDao() {}
+	private BbsDao() {
+	}
 	
 	public static BbsDao getInstance() {
 		return bbsdao;
 	}
-	
-	public List<BbsDto> getBbsList(){
+
+	@Override
+	public List<BbsDto> getBbsList() {
+		
 		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, "
 				+ " TITLE, CONTENT, WDATE, PARENT, "
 				+ " DEL, READCOUNT "
 				+ " FROM BBS190729 "
-				+ "ORDER BY REF DESC, STEP ASC, SEQ DESC ";
+				+ " ORDER BY REF DESC, STEP ASC ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -35,103 +38,108 @@ public class BbsDao implements iBbsDao{
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 get BbsList suc");
+			System.out.println("1/6 getBbsList suc");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 get BbsList suc");
+			System.out.println("2/6 getBbsList suc");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 get BbsList suc");
+			System.out.println("3/6 getBbsList suc");
 			
-			while( rs.next() ) {
+			while(rs.next()) {
 				BbsDto dto = new BbsDto(rs.getInt(1), 
-								rs.getString(2), 
-								rs.getInt(3), 
-								rs.getInt(4), 
-								rs.getInt(5), 
-								rs.getString(6), 
-								rs.getString(7), 
-								rs.getString(8), 
-								rs.getInt(9), 
-								rs.getInt(10), 
-								rs.getInt(11)	);
-				list.add(dto);
-			}
+										rs.getString(2), 
+										rs.getInt(3), 
+										rs.getInt(4), 
+										rs.getInt(5), 
+										rs.getString(6), 
+										rs.getString(7), 
+										rs.getString(8), 
+										rs.getInt(9), 
+										rs.getInt(10), 
+										rs.getInt(11));
+				list.add(dto);				
+			}			
+			System.out.println("4/6 getBbsList suc");
 			
-			System.out.println("4/6 get BbsList suc");
-			
-		}catch(Exception e) {
-			System.out.println("getBbsList fail in BbsDao " + e.getMessage());
-		}finally {
-			DBClose.close(conn, psmt, rs);
-		}
+		} catch (Exception e) {
+			System.out.println("getBbsList fail " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);			
+		}	
 		
 		return list;
 	}
 	
-	//새 글 저장
-	public int insertBbs(BbsDto dto) {
-		int isDone = 0;
+	@Override
+	public boolean writeBbs(BbsDto bbs) {
+		String sql = " INSERT INTO BBS190729 "
+				+ " (SEQ, ID, "
+				+ " REF, STEP, DEPTH, "
+				+ " TITLE, CONTENT, WDATE, PARENT, "
+				+ " DEL, READCOUNT) "
+				+ " VALUES(SEQ_BBS.NEXTVAL, ?, "
+				+ " (SELECT NVL(MAX(REF), 0)+1 FROM BBS190729), "	// 1 2 3		// ref
+				+ " 0, 0, "							// step, depth
+				+ " ?, ?, SYSDATE, 0, "
+				+ " 0, 0) ";
 		
-		String sql = " INSERT INTO BBS190729 VALUES ( SEQ_BBS190729.NEXTVAL, '" 
-					+ dto.getId() + "', 0, 0, 0, '" +
-						dto.getTitle() + "', '" + 
-						dto.getContent() + "', SYSDATE, 0, 0, 0 ) ";
+		int count = 0;
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		ResultSet rs = null;
 		
 		try {
-			System.out.println("0/6 insertBbs suc");
-			
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 insertBbs suc");
+			System.out.println("1/6 writeBbs Success");	
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 insertBbs suc");
+			System.out.println("2/6 writeBbs Success");
 			
-			psmt.executeUpdate();
-			System.out.println("3/6 insertBbs suc");
+			psmt.setString(1, bbs.getId());
+			psmt.setString(2, bbs.getTitle());
+			psmt.setString(3, bbs.getContent());
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 writeBbs Success");
 						
-			System.out.println("4/6 insertBbs suc");
-			
-			isDone = 1;
-		}catch(Exception e) {
-			System.out.println("insertBbs fail in BbsDao " + e.getMessage());
-		}finally {
-			DBClose.close(conn, psmt, rs);
+		} catch (Exception e) {
+			System.out.println("writeBbs Fail");
+		} finally {
+			DBClose.close(conn, psmt, null);			
 		}
-		
-		return isDone;
+				
+		return count>0?true:false;
 	}
 
-	//seq로 글 검색
-	public BbsDto getOnePost(int seq) {
-		BbsDto dto = null;
-		
+	@Override
+	public BbsDto getBbs(int seq) {
 		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, "
 				+ " TITLE, CONTENT, WDATE, PARENT, "
 				+ " DEL, READCOUNT "
 				+ " FROM BBS190729 "
-				+ "WHERE SEQ = " + seq + " ";
+				+ " WHERE SEQ=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
+		BbsDto dto = null;
+		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 get BbsList suc");
+			System.out.println("1/6 getBbs Success");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 get BbsList suc");
+			psmt.setInt(1, seq);
+			System.out.println("2/6 getBbs Success");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 get BbsList suc");
+			System.out.println("3/6 getBbs Success");
 			
-			while( rs.next() ) {
-				dto = new BbsDto(rs.getInt(1), 
+			if(rs.next()) {				
+				dto = new BbsDto(rs.getInt(1), 	// seq
 								rs.getString(2), 
 								rs.getInt(3), 
 								rs.getInt(4), 
@@ -141,53 +149,110 @@ public class BbsDao implements iBbsDao{
 								rs.getString(8), 
 								rs.getInt(9), 
 								rs.getInt(10), 
-								rs.getInt(11)	);
+								rs.getInt(11));				
 			}
 			
-			System.out.println("4/6 get BbsList suc");
-			
-		}catch(Exception e) {
-			System.out.println("getBbsList fail in BbsDao " + e.getMessage());
-		}finally {
-			DBClose.close(conn, psmt, rs);
+		} catch (Exception e) {
+			System.out.println("getBbs fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);			
 		}
 		
 		return dto;
 	}
 
-	//bbs 내용 업데이트
-	public int updateOnePost(BbsDto dto) {
-		int isDone = 0;
-		
-		String sql = " UPDATE BBS190729 SET TITLE='" + dto.getTitle() + "', "
-					+ "CONTENT='" + dto.getContent() + "' WHERE SEQ=" + dto.getSeq() + " ";
+	@Override
+	public void readcount(int seq) {
+		String sql = " UPDATE BBS190729 SET "
+				+ " READCOUNT=READCOUNT+1 "
+				+ " WHERE SEQ=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		ResultSet rs = null;
 		
 		try {
-			System.out.println("0/6 insertBbs suc");
-			
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 insertBbs suc");
+			System.out.println("1/6 readcount Success");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 insertBbs suc");
+			psmt.setInt(1, seq);
+			System.out.println("2/6 readcount Success");
 			
 			psmt.executeUpdate();
-			System.out.println("3/6 insertBbs suc");
-						
-			System.out.println("4/6 insertBbs suc");
+			System.out.println("3/6 readcount Success");			
 			
-			isDone = 1;
-		}catch(Exception e) {
-			System.out.println("insertBbs fail in BbsDao " + e.getMessage());
-		}finally {
-			DBClose.close(conn, psmt, rs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, null);			
 		}
+	}
+	
+	@Override
+	public boolean updateBbs(int seq, String title, String content) {
+		String sql = " UPDATE BBS190729 SET "
+				+ " TITLE=?, CONTENT=? "
+				+ " WHERE SEQ=? ";
 		
-		return isDone;
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("2/6 S updateBbs");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, title);
+			psmt.setString(2, content);
+			psmt.setInt(3, seq);
+			
+			System.out.println("3/6 S updateBbs");
+			
+			count = psmt.executeUpdate();
+			System.out.println("4/6 S updateBbs");
+			
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} finally{
+			DBClose.close(conn, psmt, null);
+			System.out.println("5/6 S updateBbs");
+		}		
+		
+		return count>0?true:false;
 	}
 
+	@Override
+	public boolean deleteBbs(int seq) {
+		
+		String sql = " UPDATE BBS190729 "
+					+ " SET DEL=1 "
+					+ " WHERE SEQ=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 S deleteBbs");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, seq);
+			System.out.println("2/6 S deleteBbs");
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 S deleteBbs");
+			
+		} catch (Exception e) {		
+			System.out.println("fail deleteBbs");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, null);			
+		}
+		
+		return count>0?true:false;
+	}
 }

@@ -12,18 +12,17 @@
 	
 	BbsDto inputDto = new BbsDto(seq, title, content);
 	
-	isDone = BbsDao.getInstance().updateOnePost(inputDto);
-
+	BbsDao.getInstance().updateBbs(seq, title, content);
+			
 	String str = "";
 	
 	//업데이트 성공한 경우 
-	if( isDone == 1 ){
-		BbsDto dto = BbsDao.getInstance().getOnePost(seq);
+	BbsDto dto = BbsDao.getInstance().getBbs(seq);
 		
 		str = "{  \"seq\":" + seq +  ", "
 				+ "\"title\" :" + title +  "\", "
 				+ "\"content\":\"" + content + "}";	
-	}
+
 	
 	
 %>

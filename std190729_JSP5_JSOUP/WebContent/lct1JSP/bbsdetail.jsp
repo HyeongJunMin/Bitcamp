@@ -28,7 +28,7 @@
 
 			seq = Integer.parseInt(request.getParameter("seq") + "");
 			
-			dto = BbsDao.getInstance().getOnePost(seq);
+			dto = BbsDao.getInstance().getBbs(seq);
 			
 		}
 	} catch (Exception e) {

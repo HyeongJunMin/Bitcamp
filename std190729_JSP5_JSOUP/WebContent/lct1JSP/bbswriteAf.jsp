@@ -29,13 +29,8 @@
 			
 			BbsDto dto = new BbsDto(id, title, content);
 			
-			int isDone = BbsDao.getInstance().insertBbs(dto);
+			BbsDao.getInstance().writeBbs(dto);
 			
-			if( isDone == 0 ){
-				response.sendRedirect("./bbswrite.jsp");	
-			}else{
-				response.sendRedirect("./bbslist.jsp");	
-			}
 			
 			out.println("title : " + title);
 			out.println("content : " + content);

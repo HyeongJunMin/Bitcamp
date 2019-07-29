@@ -1,4 +1,3 @@
-<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,15 +21,6 @@
 
 <h2>Login Page</h2>
 홍길동 홈페이지에 오신 것을 환영합니다 
-<h3>Session info</h3>
-<p id="showSession">
-<%
-	Enumeration enum_session = session.getAttributeNames();
-	while(enum_session.hasMoreElements()){
-		out.println(enum_session.nextElement().toString() + "<br/>");
-	}
-%>
-</p>
 <br>
 <br>
 

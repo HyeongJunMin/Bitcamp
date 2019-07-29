@@ -13,13 +13,12 @@ MemberDto mem = dao.login(new MemberDto(id, pwd, null, null, 0));
 
 if(mem != null && !mem.getId().equals("")){
 	session.setAttribute("login", mem);
-	//세션 유효시간 설정
 	session.setMaxInactiveInterval(30*60*60);
-	//session.setMaxInactiveInterval(2);
 %>
 	<script>
 	alert("안녕하세요 <%=mem.getName() %>님");
-	location.href = "./bbslist.jsp";
+	//location.href = "./bbslist.jsp";
+	location.href = "./bbslist_css.jsp";
 	</script>
 <%
 }else{
