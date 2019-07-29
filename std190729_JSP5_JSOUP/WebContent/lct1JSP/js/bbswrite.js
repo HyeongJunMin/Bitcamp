@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+$(function(){
+	$("#_btnSave").click(function(){
+		//alert('dd');
+		$("#frmWrite").submit();
+	});
+});
