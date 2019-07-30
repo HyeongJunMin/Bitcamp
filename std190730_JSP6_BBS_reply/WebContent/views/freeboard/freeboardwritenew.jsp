@@ -2,12 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<div id="writenewMain" align="center">
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/static/js/freeboard/freeboardwritenew.js"></script>
+<div id="writenewMain" align="center"  style="display:none;">
 	<form action="http://localhost:8090/std190730_JSP6_BBS_reply/bbs" id="writenewForm" method="GET">
 	<div id="writenewContent">
 		<input type="hidden" name="command" value="writenewpost">
 		<input type="hidden" name="id" value="<%=session.getAttribute("currId") %>">
 		<table>
+			<tr class="writenewTblLable">
+				<td colspan="4"><h3>새 글 작성</h3></td>
+			</tr>
 			<tr class="writenewTblLable">
 				<td colspan="4">작성자</td>
 			</tr>

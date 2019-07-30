@@ -14,13 +14,12 @@
 		lst = (List<BbsDTO>)obj;
 		
 		for(BbsDTO dto : lst){
-			out.println("<tr>");
+			out.println("<tr onclick=\"viewPostDetail("+ dto.getSeq() +"); \">");
 			out.println("<td>");
 			out.println(dto.getSeq());
-			out.println("</td>");
-			out.println("<td>");
+			out.println("</td><td><a href=\"#\">");
 			out.println(dto.getTitle());
-			out.println("</td>");
+			out.println("</a></td>");
 			out.println("<td>");
 			out.println(dto.getId());
 			out.println("</td>");

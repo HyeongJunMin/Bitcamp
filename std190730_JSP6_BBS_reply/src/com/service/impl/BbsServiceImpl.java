@@ -16,4 +16,16 @@ public class BbsServiceImpl implements BbsService {
 		return dao.getBbsList();
 	}
 
+	@Override
+	public boolean writeNewPost(BbsDTO dto) {
+		// TODO Auto-generated method stub
+		return dao.writeNewPost(dto);
+	}
+
+	@Override
+	public BbsDTO selectOnePost(int seq) {
+		// TODO Auto-generated method stub
+		return dao.selectOnePost(seq);
+	}
+	
 }

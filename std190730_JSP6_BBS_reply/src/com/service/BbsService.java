@@ -6,4 +6,8 @@ import com.dto.BbsDTO;
 
 public interface BbsService {
 	public List<BbsDTO> getBbsList();
+	
+	public boolean writeNewPost(BbsDTO dto);
+	
+	public BbsDTO selectOnePost(int seq);
 }

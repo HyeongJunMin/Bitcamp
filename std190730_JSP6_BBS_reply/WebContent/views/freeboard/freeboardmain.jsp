@@ -9,9 +9,6 @@
 
 <!-- Custom js, css -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/views/static/js/freeboard/freeboardmain.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/views/static/js/freeboard/freeboardwritenew.js"></script>
-<!--  <link rel="stylesheet" type="text/css" href="/views/static/css/freeboard/freeboardmain.css"></link> -->
-
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/views/static/css/freeboard/freeboardmain.css"></link>
 </head>
 <body id="mainBody">
@@ -50,8 +47,14 @@
 				<div id="bbsWriteNewArea">
 				<jsp:include page="/views/freeboard/freeboardwritenew.jsp"></jsp:include>
 				</div>
+				
+				<!-- 글 상세보기 파트 -->
+				<div id="bbsPostDetailArea"  style="display:none;">
+				<jsp:include page="/views/freeboard/freeboardpostdetail.jsp"></jsp:include>
+				</div>
+				
 				<!-- 글 목록 파트 -->
-				<div id="bbsTableArea" style="display:none;">
+				<div id="bbsTableArea">
 				<table id="tblMainContentList" class="table table-hover">
 				    <colgroup>
         				<col width="60px"/>
@@ -69,7 +72,13 @@
 					</tr>
 					<jsp:include page="/views/freeboard/freeboardtablecontent.jsp"></jsp:include>
 				</table>
-				<a id="btnWriteNew" class="btn pull-right" style="border: solid 1px; margin-right: 5px;">Write</a>
+				<div id="mainContentFooter">
+					<!-- 검색기능 -->
+					<div id="mainContentSearchPostArea">
+						<jsp:include page="/views/freeboard/freeboardsearch.jsp"></jsp:include>
+					</div>
+					<a id="btnWriteNew" class="btn pull-right" style="border: solid 1px; margin-right: 5px;">Write</a>
+					</div>
 				</div>				
 			</div>			
 		</div>
@@ -79,20 +88,7 @@
 			<div id="mainAccountTemplate">
 			
 			</div>
-			<%-- <jsp:include page="../account/accountViewGuest.jsp"></jsp:include> --%>
-		<!-- 
-			Sign in and Sign up 
-			<div id="mainAccountView">
-				Button for open modal view Attribute : data-target, data-toggle
-				<button id="btnMainSignin" type="button" class="btn btn-primary"
-					data-toggle="modal" data-target="#signinModal">Sign in</button>
-				<input id="btnMainSignin" type="button" value="Sign in" onclick="echoTest()">
-				<br><br> 
-				<a onclick="echoTest()" href="">Find ID/PW</a>	&nbsp;&nbsp;&nbsp;&nbsp; 
-				<a href="" data-toggle="modal" data-target="#signupModal">Sign up here!</a>
-			</div>
-			
-			 -->
+
 			<!-- Show category  -->
 			<div id="mainCategoryView">mainCategory</div>
 		</div>

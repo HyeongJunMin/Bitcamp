@@ -40,7 +40,31 @@ public class BbsController extends HttpServlet{
 			}else if( command.equals("writenewpost") ) {
 				//System.out.println("[Bbs Controller] write new post");
 				
-				String inputId = req.getParameter("inputTitle");
+				String inputId = req.getParameter("id");
+				String title = req.getParameter("inputTitle");
+				String content = req.getParameter("inputContent");
+				
+				BbsDTO dto = new BbsDTO(inputId, title, content);
+				
+				service.writeNewPost(dto);
+				System.out.println("[Bbs Controller] write new post DONE!");
+
+				resp.sendRedirect("http://localhost:8090/std190730_JSP6_BBS_reply/bbs?command=showbbslist");
+				return;
+			
+			//글 1개 상세보기
+			}else if( command.equals("showonepost") ) {
+				resp.setContentType("text/plain");
+			    req.setCharacterEncoding("utf8");
+			    resp.setCharacterEncoding("utf8");
+			       
+				int seq = Integer.parseInt(req.getParameter("seqNum") + "");
+				
+				BbsDTO dto = service.selectOnePost(seq);
+
+				resp.getWriter().write(dto.toJson());
+			}else if( command.equals("searchpost") ) {
+				int option = Integer.parseInt( req.getParameter("option") + "" );
 			}
 		}
 		//명령어가 없으면 index page로 이동

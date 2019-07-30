@@ -1,5 +1,7 @@
 package com.dto;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BbsDTO {
+public class BbsDTO implements Serializable{
 	private int seq;
 	private String id;	//작성자
 	
@@ -35,5 +37,31 @@ public class BbsDTO {
 		this.seq = seq;
 		this.title = title;
 		this.content = content;
+	}
+	
+	public String toJson() {
+		String json = "";
+		
+		json += "{";
+		json += "\"seq\":\"" + seq + "\"";
+		json += ",\"id\":\"" + id + "\"";	//작성자
+		
+		json += ",\"ref\":\"" + ref + "\"";	//그룹 번호
+		json += ",\"step\":\"" + step + "\"";	//행 번호
+		json += ",\"depth\":\"" + depth + "\"";//깊이
+		
+		json += ",\"title\":\"" + title + "\"";
+		//json += ",\"content\":\"" + content + "\"";
+		//json += ",\"content\":\"" + content.replace("\n", "\\r\\n") + "\"";
+		//json += ",\"content\":\"" + content.replace("\n", "<br>") + "\"";
+		json += ",\"content\":\"" + content.replace("\\r\\n", "\n") + "\"";
+		json += ",\"wdate\":\"" + wdate + "\"";
+		json += ",\"parent\":\"" + parent + "\"";	//부모글 번호
+		
+		json += ",\"del\":\"" + del + "\"";
+		json += ",\"readcount\":\"" + readcount + "\"";	//조회 수
+		json += "}";
+		
+		return json;
 	}
 }

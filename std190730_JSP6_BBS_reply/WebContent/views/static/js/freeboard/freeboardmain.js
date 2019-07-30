@@ -53,6 +53,8 @@ $(function(){
     	}else{
     		$("#writenewMain").show();
     		$("#bbsTableArea").hide();
+    		location.href = "#mainHeaderBarMenu";
+    		$("#writenewTxtTitle").focus();
     	}    	
     });
 });
