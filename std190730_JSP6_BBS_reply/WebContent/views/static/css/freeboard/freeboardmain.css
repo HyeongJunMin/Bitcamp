@@ -1,0 +1,177 @@
+@charset "UTF-8";
+/* About Overroll */
+html{
+	background: #fafafa;
+}
+#mainBody {
+	background: #fafafa;
+    font-family: "Nanum Gothic", sans-serif;
+	font-size: 15px;
+}
+/* About Header */
+#mainHeaderBar{
+	margin: auto;	
+	/* width: 1024px; */
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	background-color: black;
+}
+#mainHeaderBarMenu{
+	color: white;
+	margin: auto;
+	padding: 13px;
+	width: 1050px;
+	height: 50px;
+}
+#mainHeaderBarMenu a{
+	text-align: center;
+	margin: 15px;
+	padding: 20px;
+	width: 80px;
+	height: 100%;	
+}
+#mainHeaderBarMenu a:link{
+	color:white; text-decoration: none;
+}
+#mainHeaderBarMenu a:visited{
+	color:white; text-decoration: none;
+}
+#mainHeaderBarMenu a:hover{
+	color:white; text-decoration: none;
+}
+#mainHeaderBarMenu a:active{
+	color:white; text-decoration: none;
+}
+#mainHeaderBarMenu span{
+	text-align: center;
+	margin-top: 25px;
+	width: 80px;
+	height: 100%;	
+}
+#mainHeader {
+	background: #ffffff;
+	
+	margin: 0 auto;
+	padding: 45px;	
+	/* width: 1024px; */
+	width: 100%;
+	height: 150px;
+	text-align: center;
+}
+/* About Main Contents */
+#mainContainer {
+	text-align:left;
+	background: #fafafa;
+	margin: 0 auto;
+	padding: 8px 10px 0;	
+	width: 1080px;
+	zoom:1;
+}
+#mainContentsView {
+	background: #fafafa;
+	
+	text-align:center;
+	width: 70%;
+	height: 1000px;
+	float: left;
+}
+#mainContentsList {
+	background: #ffffff;
+	
+	
+	margin:8px;
+	margin-right:0px;
+	text-align:center;
+	width: 99%;
+	height: 982px;
+	float: left;	
+}
+#tblMainContentList {
+	width: 350px;
+	table-layout: fixed;
+    word-wrap: break-word;
+}
+.table th {
+    width: auto !important;
+}
+/* About Side Menu */
+#mainSideView {
+	background: #fafafa;
+	
+	text-align:center;
+	width: 30%;
+	height: 1000px;
+	float: left;
+}
+#mainAccountView{
+	background: #ffffff;
+	
+	font-size: small;
+	margin:8px;
+	text-align:center;
+	width: 95%;
+	height: 150px;
+	float: left;
+}
+
+#btnMainSignin {
+	
+    margin-top: 30px;
+    width: 190px;
+    height: 62px;
+	
+	border:thin;
+	border-color: #ffffff;
+	border-radius: 10px;
+	color: #ffffff;
+	background: #22d5f4;
+}
+#mainCategoryView {
+	background: #ffffff;
+	
+	margin:8px;
+	margin-top:0px;
+	text-align:center;
+	width: 95%;
+	height: 825px;
+	float: left;
+}
+/* About Modal */
+.input-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.login-box {
+    line-height: 2.3em;
+    font-size: 1em;
+    color: #aaa;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+/* About Icon */
+.modal-body i{
+	padding: 3px;
+}
+#mainSigninIdIcon, #mainSignupIdIcon {
+	padding-top: 11px;
+	padding-left: 7px; 
+	padding-right: 10px;
+}
+#mainSigninPwIcon, #mainSignupPwIcon1, #mainSignupPwIcon2 {
+	padding-top: 11px;
+	padding-left: 9px; 
+	padding-right: 10px;
+}
+#mainSignupNameIcon {
+	padding-top: 11px;
+	padding-left: 9px; 
+	padding-right: 13px;	
+}
+#mainSignupEmailIcon {
+	padding-top: 11px;
+	padding-left: 7px; 
+	padding-right: 9px;	
+}
