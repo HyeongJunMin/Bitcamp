@@ -10,4 +10,6 @@ public interface BbsDAO {
 	public boolean writeNewPost(BbsDTO dto);
 	
 	public BbsDTO selectOnePost(int seq);
+	
+	public List<BbsDTO> searchPosts(String option, String condition);
 }

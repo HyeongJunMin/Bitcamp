@@ -9,8 +9,8 @@ $(function(){
 			$("#writenewTxtTitle").val( '' );
 			$("#writenewTxtContent").val( '' );
 			
-			$("#writenewMain").hide();
-			$("#bbsTableArea").show();			
+			//$("#writenewMain").hide();
+			//$("#bbsTableArea").show();			
 		}		
 	});
 	

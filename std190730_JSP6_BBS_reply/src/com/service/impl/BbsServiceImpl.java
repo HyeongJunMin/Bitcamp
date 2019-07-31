@@ -27,5 +27,12 @@ public class BbsServiceImpl implements BbsService {
 		// TODO Auto-generated method stub
 		return dao.selectOnePost(seq);
 	}
+
+	@Override
+	public List<BbsDTO> searchPosts(String option, String condition) {
+		// TODO Auto-generated method stub
+		return dao.searchPosts(option, condition);
+	}
+	
 	
 }

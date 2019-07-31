@@ -12,6 +12,19 @@
 	if( request.getAttribute("bbslist") != null ){
 		Object obj = request.getAttribute("bbslist");
 		lst = (List<BbsDTO>)obj;
+				
+		obj = session.getAttribute("searchResult");
+		
+		System.out.println("여까진왔는디!!!!!!!!!!!!");
+		
+		//검색 결과가 있는 경우
+		//if( request.getAttribute("searchResult") != null ){
+		if( session.getAttribute("searchResult") != null ){
+			System.out.println("서치리절트가있다!!!!!!!!!!!");
+			obj = session.getAttribute("searchResult");
+			//obj = request.getAttribute("searchResult");
+			lst = (List<BbsDTO>)obj;
+		}
 		
 		for(BbsDTO dto : lst){
 			out.println("<tr onclick=\"viewPostDetail("+ dto.getSeq() +"); \">");

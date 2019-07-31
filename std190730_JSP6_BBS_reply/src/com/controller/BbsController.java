@@ -63,14 +63,36 @@ public class BbsController extends HttpServlet{
 				BbsDTO dto = service.selectOnePost(seq);
 
 				resp.getWriter().write(dto.toJson());
+				
+			//검색조건에 맞는 검색어 구하기
 			}else if( command.equals("searchpost") ) {
-				int option = Integer.parseInt( req.getParameter("option") + "" );
+				//검색참고
+				//http://localhost:8090/190724/lct2MVCModel1/searchuser.jsp?serchOption=1&searchTxt=
+				System.out.println("[Bbs Controller] do search post");
+				
+				String option = req.getParameter("option") + "";
+				String condition = req.getParameter("condition") + "";
+				
+				//option, condition 확인
+				System.out.println("option: " + option + "   , condition: " + condition);
+				
+				List<BbsDTO> lst = service.searchPosts(option, condition);
+				//lst 확인
+				System.out.println("lst size : " + lst.size());
+				
+				req.getSession().setAttribute("bbslist", lst);
+				//req.setAttribute("searchResult", lst);
+				//req.getRequestDispatcher("/views/freeboard/freeboardmain.jsp").forward(req, resp);
+				resp.sendRedirect("http://localhost:8090/std190730_JSP6_BBS_reply/bbs?command=showbbslist");
+				return;
 			}
 		}
-		//명령어가 없으면 index page로 이동
+		//명령어가 없으면 bbslist로 이동
 		else {
 			//System.out.println("[Bbs Controller] none");
-			resp.sendRedirect("http://localhost:8090/std190730_JSP6_BBS_reply/views/freeboard/freeboardmain.jsp");			return;
+			List<BbsDTO> lst =  service.getBbsList();
+			req.getRequestDispatcher("/views/freeboard/freeboardmain.jsp").forward(req, resp);
+			return;
 		}
 	}
 

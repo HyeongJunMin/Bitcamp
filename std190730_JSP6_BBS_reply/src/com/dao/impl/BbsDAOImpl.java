@@ -157,4 +157,73 @@ public class BbsDAOImpl implements BbsDAO{
 		return dto;
 	}
 
+
+	/**
+	 * 조건에 맞는 글을 리스트 형태로 리턴
+	 * 조건(option)
+	 * 	1 : 제목
+	 * 	2 : 내용
+	 * 	3 : 작성자
+	 */
+	public List<BbsDTO> searchPosts(String option, String condition){
+		
+		if( condition == null ) {
+			condition = "";
+		}
+		
+		switch( option ) {
+			case "1": option = "TITLE"; break;
+			case "2": option = "CONTENT"; break;
+			case "3": option = "ID"; break;
+			default: option="TITLE"; break;
+		}
+		
+		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, "
+				+ " TITLE, CONTENT, WDATE, PARENT, "
+				+ " DEL, READCOUNT "
+				+ " FROM BBS190729 "
+				+ " WHERE " + option + " LIKE '%" + condition + "%' "
+				+ " ORDER BY REF DESC, STEP ASC ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<BbsDTO> list = new ArrayList<BbsDTO>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			//System.out.println("1/6 getBbsList suc");
+			
+			psmt = conn.prepareStatement(sql);
+			//System.out.println("2/6 getBbsList suc");
+			
+			rs = psmt.executeQuery();
+			//System.out.println("3/6 getBbsList suc");
+			
+			while(rs.next()) {
+				BbsDTO dto = new BbsDTO(rs.getInt(1), 
+										rs.getString(2), 
+										rs.getInt(3), 
+										rs.getInt(4), 
+										rs.getInt(5), 
+										rs.getString(6), 
+										rs.getString(7), 
+										rs.getString(8), 
+										rs.getInt(9), 
+										rs.getInt(10), 
+										rs.getInt(11));
+				list.add(dto);				
+			}			
+			//System.out.println("4/6 getBbsList suc");
+			
+		} catch (Exception e) {
+			//System.out.println("getBbsList fail " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);			
+		}	
+		
+		return list;
+	}
 }

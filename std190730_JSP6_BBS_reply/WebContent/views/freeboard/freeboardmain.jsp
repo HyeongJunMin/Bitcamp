@@ -49,7 +49,7 @@
 				</div>
 				
 				<!-- 글 상세보기 파트 -->
-				<div id="bbsPostDetailArea"  style="display:none;">
+				<div id="bbsPostDetailArea" >
 				<jsp:include page="/views/freeboard/freeboardpostdetail.jsp"></jsp:include>
 				</div>
 				
