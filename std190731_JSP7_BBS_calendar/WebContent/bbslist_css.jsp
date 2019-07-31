@@ -1,4 +1,5 @@
-﻿<%@page import="dto.MemberDto"%>
+﻿<%@page import="vo.PagingVO"%>
+<%@page import="dto.MemberDto"%>
 <%@page import="dto.BbsDto"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.BbsDao"%>
@@ -105,6 +106,16 @@ iBbsDao dao = BbsDao.getInstance();
 
 //List<BbsDto> list = dao.getBbsList();
 List<BbsDto> list = dao.getBbsList(choice, searchWord);
+PagingVO pagingVO = new PagingVO( list.size() ,10);
+
+//페이지번호가 있는 경우 list 갱신
+if( request.getParameter("pageNum") != null ){
+	int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+	list = BbsDao.getInstance().getPagingList(pagingVO, pageNum);
+}else{
+	//int pageNum = 1;
+	//list = BbsDao.getInstance().getPagingList(pagingVO, pageNum);
+}
 %>
 
 <h4 align="right" style="background-color: #f0f0f0">환영합니다 <%=mem.getId() %>님 반갑습니다</h4>
@@ -183,6 +194,18 @@ if(list == null || list.size() == 0){
 }
 %>
 </table>
+<table>
+	<tr align="center">
+		<td colspan="3">
+			<%
+				for(int i = 1 ; i < pagingVO.getTotalPage() + 2 ; i++ ){
+					out.println("<a href='bbslist_css.jsp?pageNum=" + i +"'>[" + i + "]</a>");
+				}
+			%>
+		</td>
+	</tr>
+</table>
+<br>
 <a href="bbswrite.jsp">글쓰기</a>
 </div>
 

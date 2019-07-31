@@ -8,6 +8,22 @@ public class CalendarDto {
 	private String rdate;	//예약 날짜
 	private String wdate;	//예약한 날짜
 	
+	public CalendarDto(int seq, String id, String title, String content) {
+		this.seq = seq;
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+	
+	public CalendarDto(int seq, String id, String title, String content, String rdate, String wdate) {
+		this.seq = seq;
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.rdate = rdate;
+		this.wdate = wdate;
+	}
+
 	public CalendarDto(String id, String title, String content, String rdate) {
 		super();
 		this.id = id;

@@ -10,6 +10,7 @@ import java.util.List;
 import db.DBClose;
 import db.DBConnection;
 import dto.BbsDto;
+import vo.PagingVO;
 
 public class BbsDao implements iBbsDao {
 
@@ -341,15 +342,15 @@ public class BbsDao implements iBbsDao {
 		
 		return count>0?true:false;
 	}	
-	
-	
+		
 	@Override
 	public List<BbsDto> getBbsList(String choice, String searchWord) {
 		
 		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, "
 				+ " TITLE, CONTENT, WDATE, PARENT, "
 				+ " DEL, READCOUNT "
-				+ " FROM BBS190729 ";		
+				+ " FROM BBS190729 "	
+				+ " ORDER BY REF DESC, STEP ASC ";
 		
 		// 검색항목과 검색어
 		String sqlWord = "";
@@ -409,6 +410,107 @@ public class BbsDao implements iBbsDao {
 		
 		return list;
 	}
+
+	public int getBbsCount() {
+		int cnt = 0;
+		String sql = " SELECT count(*) FROM BBS190729 ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getBbsList suc");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 getBbsList suc");
+			
+			rs = psmt.executeQuery();
+			System.out.println("3/6 getBbsList suc");
+			
+			rs.next();
+			cnt = rs.getInt(1);
+			
+			System.out.println("4/6 getBbsList suc");
+			
+		} catch (Exception e) {
+			System.out.println("getBbsList fail " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);			
+		}	
+		
+		return cnt;
+	}
+	
+	/**
+	 * 페이징 적용된 글만 리스트 형태로 리턴하는 메소드
+	 * start ~ end까지
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	public List<BbsDto> getPagingList(PagingVO paging, int numPage){
+		/*
+		1페이지면? 1부터 10까지
+		2페이지면? 11부터 20까지
+		시작번호 = 1 + (  (페이지번호-1) * 페이지당 글 수 )
+		*/		
+		int startSeq = 1 + ( (numPage-1) * paging.getRows() );
+		int endSeq = (startSeq + paging.getRows()) - 1;
+		
+		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT " + 
+				"  FROM " + 
+				"  (SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 ORDER BY REF DESC, STEP ASC) " + 
+				"  WHERE RNUM >= " + startSeq +  " AND RNUM <=" + endSeq + " "
+				+ " ORDER BY REF DESC, STEP ASC ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		
+		
+		List<BbsDto> list = new ArrayList<BbsDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getBbsList suc");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 getBbsList suc");
+			
+			rs = psmt.executeQuery();
+			System.out.println("3/6 getBbsList suc");
+			
+			while(rs.next()) {
+				BbsDto dto = new BbsDto(rs.getInt(1), 
+										rs.getString(2), 
+										rs.getInt(3), 
+										rs.getInt(4), 
+										rs.getInt(5), 
+										rs.getString(6), 
+										rs.getString(7), 
+										rs.getString(8), 
+										rs.getInt(9), 
+										rs.getInt(10), 
+										rs.getInt(11));
+				list.add(dto);				
+			}			
+			System.out.println("4/6 getBbsList suc");
+			
+		} catch (Exception e) {
+			System.out.println("getBbsList fail " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);			
+		}	
+		
+		return list;
+	}
+
+	
 }
 
 
