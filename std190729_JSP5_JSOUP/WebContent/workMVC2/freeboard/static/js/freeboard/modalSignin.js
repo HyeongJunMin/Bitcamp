@@ -17,14 +17,27 @@ $(function(){
 	
     //로그인 모달 폼에서 Sign in 버튼 클릭 이벤트
     $("#btnSigninInSigninModal").click(function(){
-    	if( $("#txtIdInSignin").val().length < 5 ){
+    	if( $("#txtIdInSignin").val().length < 1 ){
     		alert('ID를 입력해 주세요!');
     		$("#txtIdInSignin").focus();
-    	}else if( $("#txtPwInSignin").val().length < 5 ){
+    	}else if( $("#txtPwInSignin").val().length < 1 ){
     		alert('PW를 입력해 주세요!');
     		$("#txtPwInSignin").focus();
     	}else{
-    		$.ajax
+    		var id = $("#txtIdInSignin").val();
+    		var pw = $("#txtPwInSignin").val();
+    		
+    		$.ajax({
+    			type:"GET"
+    			, url:"ajax/signinCheck.jsp"
+    			, datatype: "json"
+    			, data: {"inputId": id , "inputPw" : pw }
+    			, success: function( data ){
+    				alert('succeed : ' + data);
+    			}, error: function( error ){
+    				alert('error : ' + error);
+    			}
+    		});
     	}
     });
     
