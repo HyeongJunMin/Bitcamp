@@ -41,13 +41,13 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 getBbsList suc");
+			//System.out.println("1/6 getBbsList suc");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 getBbsList suc");
+			//System.out.println("2/6 getBbsList suc");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 getBbsList suc");
+			//System.out.println("3/6 getBbsList suc");
 			
 			while(rs.next()) {
 				BbsDto dto = new BbsDto(rs.getInt(1), 
@@ -63,10 +63,10 @@ public class BbsDao implements iBbsDao {
 										rs.getInt(11));
 				list.add(dto);				
 			}			
-			System.out.println("4/6 getBbsList suc");
+			//System.out.println("4/6 getBbsList suc");
 			
 		} catch (Exception e) {
-			System.out.println("getBbsList fail " + e.getMessage());
+			//System.out.println("getBbsList fail " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, psmt, rs);			
@@ -96,20 +96,20 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 writeBbs Success");	
+			//System.out.println("1/6 writeBbs Success");	
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 writeBbs Success");
+			//System.out.println("2/6 writeBbs Success");
 			
 			psmt.setString(1, bbs.getId());
 			psmt.setString(2, bbs.getTitle());
 			psmt.setString(3, bbs.getContent());
 			
 			count = psmt.executeUpdate();
-			System.out.println("3/6 writeBbs Success");
+			//System.out.println("3/6 writeBbs Success");
 						
 		} catch (Exception e) {
-			System.out.println("writeBbs Fail");
+			//System.out.println("writeBbs Fail");
 		} finally {
 			DBClose.close(conn, psmt, null);			
 		}
@@ -133,14 +133,14 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 getBbs Success");
+			//System.out.println("1/6 getBbs Success");
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, seq);
-			System.out.println("2/6 getBbs Success");
+			//System.out.println("2/6 getBbs Success");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 getBbs Success");
+			//System.out.println("3/6 getBbs Success");
 			
 			if(rs.next()) {				
 				dto = new BbsDto(rs.getInt(1), 	// seq
@@ -157,7 +157,7 @@ public class BbsDao implements iBbsDao {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("getBbs fail");
+			//System.out.println("getBbs fail");
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, psmt, rs);			
@@ -177,14 +177,14 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 readcount Success");
+			//System.out.println("1/6 readcount Success");
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, seq);
-			System.out.println("2/6 readcount Success");
+			//System.out.println("2/6 readcount Success");
 			
 			psmt.executeUpdate();
-			System.out.println("3/6 readcount Success");			
+			//System.out.println("3/6 readcount Success");			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -206,23 +206,23 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("2/6 S updateBbs");
+			//System.out.println("2/6 S updateBbs");
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, title);
 			psmt.setString(2, content);
 			psmt.setInt(3, seq);
 			
-			System.out.println("3/6 S updateBbs");
+			//System.out.println("3/6 S updateBbs");
 			
 			count = psmt.executeUpdate();
-			System.out.println("4/6 S updateBbs");
+			//System.out.println("4/6 S updateBbs");
 			
 		} catch (Exception e) {			
 			e.printStackTrace();
 		} finally{
 			DBClose.close(conn, psmt, null);
-			System.out.println("5/6 S updateBbs");
+			//System.out.println("5/6 S updateBbs");
 		}		
 		
 		return count>0?true:false;
@@ -241,17 +241,17 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 S deleteBbs");
+			//System.out.println("1/6 S deleteBbs");
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, seq);
-			System.out.println("2/6 S deleteBbs");
+			//System.out.println("2/6 S deleteBbs");
 			
 			count = psmt.executeUpdate();
-			System.out.println("3/6 S deleteBbs");
+			//System.out.println("3/6 S deleteBbs");
 			
 		} catch (Exception e) {		
-			System.out.println("fail deleteBbs");
+			//System.out.println("fail deleteBbs");
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, psmt, null);			
@@ -295,16 +295,16 @@ public class BbsDao implements iBbsDao {
 		try {
 			conn = DBConnection.getConnection();
 			conn.setAutoCommit(false);
-			System.out.println("1/6 answer success");
+			//System.out.println("1/6 answer success");
 			
 			// update
 			psmt = conn.prepareStatement(sql1);
 			psmt.setInt(1, seq);
 			psmt.setInt(2, seq);
-			System.out.println("2/6 answer success");
+			//System.out.println("2/6 answer success");
 			
 			count = psmt.executeUpdate();
-			System.out.println("3/6 answer success");
+			//System.out.println("3/6 answer success");
 			
 			// psmt 초기화
 			psmt.clearParameters();
@@ -318,14 +318,14 @@ public class BbsDao implements iBbsDao {
 			psmt.setString(5, bbs.getTitle());
 			psmt.setString(6, bbs.getContent());
 			psmt.setInt(7, seq);	// parent
-			System.out.println("4/6 answer success");
+			//System.out.println("4/6 answer success");
 			
 			count = psmt.executeUpdate();
 			conn.commit();
-			System.out.println("5/6 answer success");
+			//System.out.println("5/6 answer success");
 			
 		} catch (Exception e) {
-			System.out.println("answer fail");			
+			//System.out.println("answer fail");			
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {}				
@@ -337,7 +337,7 @@ public class BbsDao implements iBbsDao {
 				e.printStackTrace();
 			}
 			DBClose.close(conn, psmt, null);
-			System.out.println("6/6 answer success");
+			//System.out.println("6/6 answer success");
 		}	
 		
 		return count>0?true:false;
@@ -349,8 +349,8 @@ public class BbsDao implements iBbsDao {
 		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, "
 				+ " TITLE, CONTENT, WDATE, PARENT, "
 				+ " DEL, READCOUNT "
-				+ " FROM BBS190729 "	
-				+ " ORDER BY REF DESC, STEP ASC ";
+				+ " FROM BBS190729 ";
+				
 		
 		// 검색항목과 검색어
 		String sqlWord = "";
@@ -364,8 +364,8 @@ public class BbsDao implements iBbsDao {
 			sqlWord = " WHERE CONTENT LIKE '%" + searchWord.trim() + "%' ";
 		}
 		sql += sqlWord;		
-				
-		sql += " ORDER BY REF DESC, STEP ASC";
+		
+		sql += " ORDER BY REF DESC, STEP ASC ";
 				
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -375,13 +375,13 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 getBbsList suc");
+			//System.out.println("1/6 getBbsList suc");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 getBbsList suc");
+			//System.out.println("2/6 getBbsList suc");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 getBbsList suc");
+			//System.out.println("3/6 getBbsList suc");
 			
 			while(rs.next()) {
 				
@@ -399,10 +399,10 @@ public class BbsDao implements iBbsDao {
 				
 				list.add(dto);
 			}
-			System.out.println("4/6 getBbsList suc");
+			//System.out.println("4/6 getBbsList suc");
 			
 		} catch (Exception e) {
-			System.out.println("getBbsList fail");
+			//System.out.println("getBbsList fail");
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, psmt, rs);			
@@ -421,21 +421,21 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 getBbsList suc");
+			//System.out.println("1/6 getBbsList suc");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 getBbsList suc");
+			//System.out.println("2/6 getBbsList suc");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 getBbsList suc");
+			//System.out.println("3/6 getBbsList suc");
 			
 			rs.next();
 			cnt = rs.getInt(1);
 			
-			System.out.println("4/6 getBbsList suc");
+			//System.out.println("4/6 getBbsList suc");
 			
 		} catch (Exception e) {
-			System.out.println("getBbsList fail " + e.getMessage());
+			//System.out.println("getBbsList fail " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, psmt, rs);			
@@ -462,7 +462,7 @@ public class BbsDao implements iBbsDao {
 		
 		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT " + 
 				"  FROM " + 
-				"  (SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 ORDER BY REF DESC, STEP ASC) " + 
+				"  (SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM (SELECT * FROM BBS190729 ORDER BY REF DESC, STEP ASC ) ) " + 
 				"  WHERE RNUM >= " + startSeq +  " AND RNUM <=" + endSeq + " "
 				+ " ORDER BY REF DESC, STEP ASC ";
 		
@@ -476,13 +476,13 @@ public class BbsDao implements iBbsDao {
 		
 		try {
 			conn = DBConnection.getConnection();
-			System.out.println("1/6 getBbsList suc");
+			//System.out.println("1/6 getPagingList suc");
 			
 			psmt = conn.prepareStatement(sql);
-			System.out.println("2/6 getBbsList suc");
+			//System.out.println("2/6 getPagingList suc");
 			
 			rs = psmt.executeQuery();
-			System.out.println("3/6 getBbsList suc");
+			//System.out.println("3/6 getPagingList suc");
 			
 			while(rs.next()) {
 				BbsDto dto = new BbsDto(rs.getInt(1), 
@@ -498,10 +498,10 @@ public class BbsDao implements iBbsDao {
 										rs.getInt(11));
 				list.add(dto);				
 			}			
-			System.out.println("4/6 getBbsList suc");
+			//System.out.println("4/6 getPagingList suc");
 			
 		} catch (Exception e) {
-			System.out.println("getBbsList fail " + e.getMessage());
+			//System.out.println("getPagingList fail " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, psmt, rs);			
@@ -511,6 +511,80 @@ public class BbsDao implements iBbsDao {
 	}
 
 	
+	public List<BbsDto> getPagingList(PagingVO paging, int numPage, String choice, String searchWord){
+		/*
+		1페이지면? 1부터 10까지
+		2페이지면? 11부터 20까지
+		시작번호 = 1 + (  (페이지번호-1) * 페이지당 글 수 )
+		*/		
+		int startSeq = 1 + ( (numPage-1) * paging.getRows() );
+		int endSeq = (startSeq + paging.getRows()) - 1;
+		
+		String sql = " SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT " + 
+				"  FROM " + 
+				"  (SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM (SELECT * FROM BBS190729 ORDER BY REF DESC, STEP ASC ) ) " + 
+				"  WHERE RNUM >= " + startSeq +  " AND RNUM <=" + endSeq + " ";
+
+		
+		// 검색항목과 검색어
+		String sqlWord = "";
+		if(choice.equals("title")) {
+			sqlWord = " AND TITLE LIKE '%" + searchWord.trim() + "%' ";
+		}
+		else if(choice.equals("writer")) {
+			sqlWord = " AND ID='" + searchWord.trim() + "' ";
+		}	
+		else if(choice.equals("content")) {
+			sqlWord = " AND CONTENT LIKE '%" + searchWord.trim() + "%' ";
+		}
+		sql += sqlWord;		
+		
+		sql += " ORDER BY REF DESC, STEP ASC ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		
+		
+		List<BbsDto> list = new ArrayList<BbsDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			//System.out.println("1/6 getPagingList suc");
+			
+			psmt = conn.prepareStatement(sql);
+			//System.out.println("2/6 getPagingList suc");
+			
+			rs = psmt.executeQuery();
+			//System.out.println("3/6 getPagingList suc");
+			
+			while(rs.next()) {
+				BbsDto dto = new BbsDto(rs.getInt(1), 
+										rs.getString(2), 
+										rs.getInt(3), 
+										rs.getInt(4), 
+										rs.getInt(5), 
+										rs.getString(6), 
+										rs.getString(7), 
+										rs.getString(8), 
+										rs.getInt(9), 
+										rs.getInt(10), 
+										rs.getInt(11));
+				list.add(dto);				
+			}			
+			//System.out.println("4/6 getPagingList suc");
+			
+		} catch (Exception e) {
+			//System.out.println("getPagingList fail " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, psmt, rs);			
+		}	
+		
+		return list;
+	}
 }
 
 

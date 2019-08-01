@@ -111,7 +111,18 @@ PagingVO pagingVO = new PagingVO( list.size() ,10);
 //페이지번호가 있는 경우 list 갱신
 if( request.getParameter("pageNum") != null ){
 	int pageNum = Integer.parseInt(request.getParameter("pageNum"));
-	list = BbsDao.getInstance().getPagingList(pagingVO, pageNum);
+	//페이지 번호만 있는 경우	
+	if( choice.equals("sel") ){		
+		list = BbsDao.getInstance().getPagingList(pagingVO, pageNum);	
+	}else{
+		//페이지 번호도 있고 검색 요청도 있는 경우
+		list = BbsDao.getInstance().getPagingList(pagingVO, pageNum, choice, searchWord);
+	}
+	
+	
+	
+	
+
 }else{
 	//int pageNum = 1;
 	//list = BbsDao.getInstance().getPagingList(pagingVO, pageNum);
@@ -199,7 +210,10 @@ if(list == null || list.size() == 0){
 		<td colspan="3">
 			<%
 				for(int i = 1 ; i < pagingVO.getTotalPage() + 2 ; i++ ){
-					out.println("<a href='bbslist_css.jsp?pageNum=" + i +"'>[" + i + "]</a>");
+					String url = "bbslist_css.jsp?pageNum=" + i ;
+					url += ( choice == null ) ? "" : "&choice=" + choice ;
+					url += ( searchWord == null ) ? "" : "&searchWord=" + searchWord ;
+					out.println("<a href='" + url +"'>[" + i + "]</a>");
 				}
 			%>
 		</td>

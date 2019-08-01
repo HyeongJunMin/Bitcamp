@@ -15,7 +15,7 @@ public class DBConnection {
 	}
 	
 	public static Connection getConnection() throws Exception{
-		String url = "jdbc:oracle:thin:@192.168.0.29:1521:xe";
+		String url = "jdbc:oracle:thin:@192.168.0.14:1521:xe";
 		String user = "hr";
 		String pw = "hr";
 
