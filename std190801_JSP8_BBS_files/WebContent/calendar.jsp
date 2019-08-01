@@ -127,7 +127,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <!-- Bootstrap, jQuery CDN -->
@@ -176,7 +176,7 @@ table.type02 td {
 <ul>
 	<li><a href="./bbslist_css.jsp?pageNum=1">게시판</a></li>
 	<li><a href="./calendar.jsp">일정관리</a></li>
-	<li><a href="./pdslist.jsp">자료실</a></li>
+	<li><a href="./Pds/pdslist.jsp">자료실</a></li>
 </ul>
 <%
 	Calendar cal = Calendar.getInstance();
@@ -240,7 +240,7 @@ table.type02 td {
 %>
 
 <div align="center">
-	<table border="1" id="calendarTbl">
+	<table border="1" id="calendarTbl" class="type02">
 	<col width="100"><col width="100"><col width="100"><col width="100">
 	<col width="100"><col width="100"><col width="100">
 	

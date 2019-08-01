@@ -84,7 +84,7 @@ public class BbsDao implements iBbsDao {
 				+ " TITLE, CONTENT, WDATE, PARENT, "
 				+ " DEL, READCOUNT) "
 				+ " VALUES(SEQ_BBS.NEXTVAL, ?, "
-				+ " (SELECT NVL(MAX(REF), 0)+1 FROM BBS), "	// 1 2 3		// ref
+				+ " (SELECT NVL(MAX(REF), 0)+1 FROM BBS190729 ), "	// 1 2 3		// ref
 				+ " 0, 0, "							// step, depth
 				+ " ?, ?, SYSDATE, 0, "
 				+ " 0, 0) ";

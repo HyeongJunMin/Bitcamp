@@ -118,14 +118,8 @@ if( request.getParameter("pageNum") != null ){
 		//페이지 번호도 있고 검색 요청도 있는 경우
 		list = BbsDao.getInstance().getPagingList(pagingVO, pageNum, choice, searchWord);
 	}
-	
-	
-	
-	
-
 }else{
-	//int pageNum = 1;
-	//list = BbsDao.getInstance().getPagingList(pagingVO, pageNum);
+	list = BbsDao.getInstance().getPagingList(pagingVO, 1);
 }
 %>
 
@@ -138,7 +132,7 @@ if( request.getParameter("pageNum") != null ){
 <ul>
 	<li><a href="./bbslist_css.jsp?pageNum=1">게시판</a></li>
 	<li><a href="./calendar.jsp">일정관리</a></li>
-	<li><a href="./pdslist.jsp">자료실</a></li>
+	<li><a href="./Pds/pdslist.jsp">자료실</a></li>
 </ul>
  
 <hr>
