@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mybatis.MemberMapper">
+
+	
+
+	<!-- parameterType : 패키지명까지 동일하게 작성해야 함 -->
+	<insert id="add" parameterType="dto.MemberDto">
+		INSERT INTO MEMBERDTO (ID, PW, EMAIL)
+		VALUES(#{id}, #{pw}, #{email})
+	</insert>
+	
+	<!-- delete query -->
+	<delete id="remove" parameterType="java.lang.String">
+		DELETE FROM MEMBERDTO
+		WHERE ID=#{id}
+	</delete>
+
+	<!-- 파라미터 타입을 MemberDto로 받는 쿼리 -->
+	<delete id="removeobj" parameterType="dto.MemberDto">
+		DELETE FROM MEMBERDTO
+		WHERE ID=#{id}
+	</delete>
+	
+	<update id="updateMem" parameterType="dto.MemberDto">
+		UPDATE MEMBERDTO SET PW=#{pw}, EMAIL=#{email}
+		WHERE ID=#{id}
+	</update>
+
+</mapper>
