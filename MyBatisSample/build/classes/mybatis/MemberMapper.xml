@@ -5,13 +5,33 @@
   
 <mapper namespace="mybatis.MemberMapper">
 
-	
-
 	<!-- parameterType : 패키지명까지 동일하게 작성해야 함 -->
 	<insert id="add" parameterType="dto.MemberDto">
 		INSERT INTO MEMBERDTO (ID, PW, EMAIL)
 		VALUES(#{id}, #{pw}, #{email})
 	</insert>
+	
+	<select id="find" parameterType="java.lang.String"
+		resultType="dto.MemberDto">
+		SELECT * FROM MEMBERDTO WHERE ID=#{id}
+	</select>
+	
+	<select id="search" parameterType="dto.BbsParam" resultType="dto.BbsDto">
+		SELECT *
+		FROM BBS
+		WHERE 1=1
+		<if test="s_category == 'title'">
+			AND TITLE LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="s_category == 'content'">
+			AND CONTENT LIKE '%'||#{content}||'%'
+		</if>		
+	</select>
+	
+	<select id="findAll" resultType="dto.MemberDto">
+		SELECT ID, PW, EMAIL
+		FROM MEMBERDTO
+	</select>
 	
 	<!-- delete query -->
 	<delete id="remove" parameterType="java.lang.String">

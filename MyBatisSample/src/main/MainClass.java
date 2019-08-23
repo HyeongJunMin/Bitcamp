@@ -2,12 +2,15 @@ package main;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import dto.BbsDto;
+import dto.BbsParam;
 import dto.MemberDto;
 
 class MainClass {
@@ -31,7 +34,7 @@ class MainClass {
 			
 			//데이터 insert
 //			MemberDto dto = new MemberDto("admin0822", "admin0822", "admin0822");
-			//MemberDto dto = new MemberDto("admin08221", "admin08221", "admin08221");
+			//MemberDto dto = new MemberDto("admin1", "admin1", "admin1");
 			//MemberDto dto = new MemberDto("admin08222", "admin08222", "admin08222");
 			
 			//int n = session.insert("add", dto);
@@ -67,16 +70,38 @@ class MainClass {
 //				System.out.println("삭제 실패!");
 //			}
 					
-			MemberDto dto = new MemberDto("admin0822", "123", "123");
-			int result = session.update("updateMem", dto);
-			if( result > 0 ) {
-				session.commit();
-				System.out.println("수정 성공!");
-			}else {
-				session.rollback();
-				System.out.println("수정 실패!");
-			}		
+//			MemberDto dto = new MemberDto("admin0822", "123", "123");
+//			int result = session.update("updateMem", dto);
+//			if( result > 0 ) {
+//				session.commit();
+//				System.out.println("수정 성공!");
+//			}else {
+//				session.rollback();
+//				System.out.println("수정 실패!");
+//			}		
+
+			//select one
+			String fId = "admin0822";
+			MemberDto dto = session.selectOne("find", fId);
+			System.out.println("결과 : " + dto.toString());
 			
+			//select list
+			List<MemberDto> lst = session.selectList("findAll");
+			
+			for( MemberDto d : lst ) {
+				System.out.println(d.toString());
+			}
+			
+			System.out.println("===============================");
+			System.out.println("검색결과");
+			
+			BbsParam bp = new BbsParam("8", "", "title");
+			
+			List<BbsDto> lst2 = session.selectList("search", bp);
+			
+			for(BbsDto d : lst2) {
+				System.out.println(d.toString());
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
