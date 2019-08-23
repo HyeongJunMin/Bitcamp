@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>std190822_Spring_1_SetProject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+  <servlet>
+  	<servlet-name>dispatcherServlet</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  	
+  	<init-param><!-- 디스패처서블릿 위치 명시(설정) -->
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>/WEB-INF/spring/dispatcherServlet.xml</param-value>
+  	</init-param>  	
+  	<load-on-startup>1</load-on-startup><!-- 저장했을 때 1로 설정해주라는 내용 -->
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>dispatcherServlet</servlet-name>
+  	<!-- <url-pattern>/</url-pattern> -->
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 중간처리 역할 : 뷰가 열리기 전에 끼어들어서 데이터를 처리하고 뷰로 넘기는 역할 -->
+  <filter><!-- 모든 URL 패턴에 대해 한글이 깨지지 않도록 인코딩 형식을 처리하는 필터 -->
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  	<init-param><!-- 인코딩 설정을 강화하기 위한 optional 설정 -->
+  		<param-name>forceEncoding</param-name>
+  		<param-value>true</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+</web-app>
