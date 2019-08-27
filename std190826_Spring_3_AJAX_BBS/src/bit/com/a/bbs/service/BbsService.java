@@ -10,6 +10,8 @@ import bit.com.a.bbs.model.SearchDto;
 public interface BbsService {
 	
 	public int getDBCountSize();
+	
+	public int getDBCountSizeByCondition(BbsOrderDto bbsOrderDto);
 
 	public List<BbsDto> getAllBbs();
 	

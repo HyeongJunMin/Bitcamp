@@ -11,6 +11,8 @@ public interface BbsDao {
 	
 	public int getDBCountSize();
 	
+	public int getDBCountSizeByCondition(BbsOrderDto bbsOrderDto);
+	
 	public List<BbsDto> getAllBbs();
 	
 	public List<BbsDto> getAllBbs(PagingVO pagingVO);

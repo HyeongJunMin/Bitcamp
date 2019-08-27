@@ -80,7 +80,7 @@ public class BitMemberController {
 				jsMsg = dbDto.getId() + "님 환영합니다";
 				req.getSession().setAttribute("currUser", dbDto);
 				model.addAttribute("msg", jsMsg);
-				return "forward:/showbbs.do";
+				return "forward:/showbbsordersearch.do";
 			}else {
 				jsMsg = "올바르지 않은 계정 정보입니다.";
 				model.addAttribute("msg", jsMsg);
@@ -150,7 +150,7 @@ public class BitMemberController {
 			jsMsg = dto.getId() + "님 환영합니다.";
 			req.getSession().setAttribute("currUser", dto);
 			model.addAttribute("msg", jsMsg);
-			return "forward:/showbbs.do";
+			return "forward:/showbbsordersearch.do";
 		}else {		
 			model.addAttribute("msg", jsMsg);
 			return "member/signup";	

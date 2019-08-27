@@ -73,6 +73,8 @@ public class BbsOrderDto implements Serializable{
 		this.setRecordCountPerPage(10);
 		this.startSeq = ( ( pageNum - 1 ) * this.getRecordCountPerPage() ) + 1;
 		this.endSeq = startSeq + this.getRecordCountPerPage() - 1;		
+		//페이지 네비게이션의 최대 사이즈
+		this.maxNavSize = (totalSize % recordCountPerPage == 0) ? (totalSize / recordCountPerPage) : (totalSize / recordCountPerPage) + 1;
 		this.setNav(totalSize);
 		this.cond = cond;
 		this.keyword = keyword;
@@ -82,7 +84,7 @@ public class BbsOrderDto implements Serializable{
 			case 2: this.condquery="id"; break;
 			default: this.condquery= "all"; break;
 		}		
-		System.out.println("[BbsOrderDto] condquery:" + condquery + " , keyword:" + keyword);
+		//System.out.println("[BbsOrderDto] condquery:" + condquery + " , keyword:" + keyword);
 	}
 	
 	/** All Args Constructor

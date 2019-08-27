@@ -37,7 +37,10 @@
 		</table>
 	</div>
 	<div class="bbsDetailNavWrap">
-		<input type="button" value="돌아가기" onclick="location.href='<%=request.getContextPath()%>/showbbs.do'">
+		<input type="button" value="돌아가기" onclick="location.href='<%=request.getContextPath()%>/showbbsordersearch.do'">
+		<c:if test="${not empty currUser }">
+			<input type="button" value="답글 달기" id="btnReply" onclick="location.href='<%=request.getContextPath()%>/shownewreply.do?seq=${BbsDto.seq }'">
+		</c:if>
 		<c:if test="${currUser.id == BbsDto.id}">
 			<input type="button" value="게시글 수정" id="btnUpdate" onclick="location.href='<%=request.getContextPath()%>/showbbsupdate.do?seq=${BbsDto.seq }'">	
 		</c:if>		

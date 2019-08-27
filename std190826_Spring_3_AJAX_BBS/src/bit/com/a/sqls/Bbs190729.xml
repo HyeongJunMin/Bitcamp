@@ -9,7 +9,7 @@
 	<!-- parameterType : 패키지명까지 동일하게 작성해야 함 -->
 	<insert id="writeNew" parameterType="bit.com.a.bbs.model.BbsDto">
 		INSERT INTO BBS190729 (SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT)
-		VALUES(SEQ_BBS190729.NEXTVAL, #{id}, 0, 0, 0, #{title}, #{content}, SYSDATE, 0, 0, 0)
+		VALUES(SEQ_BBS190729.NEXTVAL, #{id}, SEQ_BBS190729.CURRVAL, 0, 0, #{title}, #{content}, SYSDATE, 0, 0, 0)
 	</insert>
 		
 	<!-- 규칙 없이 모든 데이터를 가져오는 쿼리 -->
@@ -56,10 +56,23 @@
 				SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
 				FROM ( SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 
 					<include refid="searchOption"></include>				
-					ORDER BY SEQ DESC ) 
+					ORDER BY REF DESC, STEP ASC ) 
 				ORDER BY RNUM
 			)
 		WHERE RNUM BETWEEN #{startSeq} AND #{endSeq}
+		<!-- WHERE RNUM BETWEEN #{startSeq} AND 3 -->		
+	</select>
+	
+	<!-- 페이징 규칙과 검색 규칙에 맞는 DB의 총 개수를 가져오는 쿼리 -->
+	<select id="getDBCountSizeByCondition" parameterType="bit.com.a.bbs.model.BbsOrderDto" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM ( 
+				SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+				FROM ( SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 
+					<include refid="searchOption"></include>				
+					ORDER BY SEQ DESC ) 
+				ORDER BY RNUM
+			)
 		<!-- WHERE RNUM BETWEEN #{startSeq} AND 3 -->		
 	</select>
 	

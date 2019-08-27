@@ -23,6 +23,12 @@ public class BbsServiceImpl implements BbsService {
 		// TODO Auto-generated method stub
 		return bbsDao.getDBCountSize();
 	}
+
+	@Override
+	public int getDBCountSizeByCondition(BbsOrderDto bbsOrderDto) {
+		// TODO Auto-generated method stub
+		return bbsDao.getDBCountSizeByCondition(bbsOrderDto);
+	}
 	
 	@Override
 	public List<BbsDto> getAllBbs() {

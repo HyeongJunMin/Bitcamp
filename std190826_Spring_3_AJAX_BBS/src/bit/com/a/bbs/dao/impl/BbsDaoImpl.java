@@ -25,6 +25,13 @@ public class BbsDaoImpl implements BbsDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "getDBCountSize");
 	}
+
+	@Override
+	public int getDBCountSizeByCondition(BbsOrderDto bbsOrderDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "getDBCountSizeByCondition", bbsOrderDto);
+	}
+	
 	
 	@Override
 	public List<BbsDto> getAllBbs() {
@@ -76,5 +83,4 @@ public class BbsDaoImpl implements BbsDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(namespace + "writeNew", dto);
 	}
-	
 }

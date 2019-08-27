@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<% pageContext.setAttribute("crcn", "\r\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +29,20 @@
 					<th>step</th>
 					<th>depth</th>					
 				</tr>
+				<c:if test="${fn:length(bbsList) < 1 }">
+					<tr>
+						<td colspan="8"><a href="showbbsordersearch.do">검색 결과가 없습니다.</a></td>
+					</tr>
+				</c:if>
 				<c:forEach items="${bbsList }" var="bbs">
 					<tr class="tblBbsTr">
 						<td>${bbs.seq }</td>
-						<td>${bbs.title} </td>
+						<td>
+							<c:forEach var="i" begin="1" end="${bbs.depth }">
+								<c:out value="&nbsp;" escapeXml="false"/>
+							</c:forEach>
+							${bbs.title}							
+						</td>
 						<td>${bbs.id} </td>
 						<td>${bbs.wdate} </td>
 						<td>${bbs.readcount} </td>
@@ -41,13 +53,29 @@
 				</c:forEach>
 			</table>
 			<ul class="pagingNav">
-				<c:if test="${not empty bbsOrderDto }"><!-- 검색조건이 비어있지 않은 경우 -->
-					<c:forEach var="i" begin="${bbsOrderDto.firstNavIndex }" end="${bbsOrderDto.lastNavIndex }" step="1">
-						<li class="pagingNavItem"><c:out value="${i}"/></li>
-					</c:forEach>
-				</c:if>
+				<c:choose>				 
+				    <c:when test="${bbsOrderDto.cond eq '4'}">
+				    	<c:forEach var="i" begin="${bbsOrderDto.firstNavIndex }" end="${bbsOrderDto.lastNavIndex }" step="1">
+							<li class="pagingNavItem"><c:out value="${i}"/></li>
+						</c:forEach>
+				    </c:when>				 			 
+				    <c:otherwise>
+						<c:forEach var="i" begin="${bbsOrderDto.firstNavIndex }" end="${bbsOrderDto.lastNavIndex }" step="1">
+							<li class="pagingNavItemWithSearchCond"><c:out value="${i}"/></li>
+						</c:forEach>
+				    </c:otherwise>				 
+				</c:choose>
 			</ul>
 		</div>		
+		<div class="bbsListSearchConditions">
+			<select id="cond">
+				<option value="0" <c:out value="${bbsOrderDto.cond == '0'?'selected':'' }"/>>제목</option>
+				<option value="1" <c:out value="${bbsOrderDto.cond == '1'?'selected':'' }"/>>내용</option>
+				<option value="2" <c:out value="${bbsOrderDto.cond == '2'?'selected':'' }"/>>아이디</option>
+			</select>
+			<input type="text" id="keyword" value="${bbsOrderDto.keyword != ''?bbsOrderDto.keyword:'' }">
+			<input type="button" id="btnSearch" value="검색">
+		</div>
 	</div>
 </div>
 
@@ -70,8 +98,23 @@ $(function(){
 		location.href="showbbsdetail.do?seq=" + seq;
 	});
 	
+	//검색 조건이 없을 때 페이징 네비게이션
 	$(".pagingNavItem").click(function(){
 		location.href='showbbsordersearch.do?pageNum=' + $(this).text();
+	});
+	
+	//검색 조건이 있을 때 페이징 네비게이션
+	$(".pagingNavItemWithSearchCond").click(function(){
+		var cond = $("#cond option:selected").val();
+		var keyword = $("#keyword").val();
+		location.href='showbbsordersearch.do?pageNum=' + $(this).text() + '&cond=' + cond + '&keyword=' + keyword; 
+	});
+	
+	//검색버튼 클릭 시 조건에 맞는 검색페이지로 이동
+	$("#btnSearch").click(function(){
+		var cond = $("#cond option:selected").val();
+		var keyword = $("#keyword").val();
+		location.href='showbbsordersearch.do?pageNum=1&cond=' + cond + '&keyword=' + keyword; 
 	});
 });
 

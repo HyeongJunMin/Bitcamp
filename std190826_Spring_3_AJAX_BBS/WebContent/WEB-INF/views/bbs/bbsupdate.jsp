@@ -49,7 +49,7 @@
 		</form>
 	</div>
 	<div class="bbsDetailNavWrap">
-		<input type="button" value="돌아가기" onclick="location.href='<%=request.getContextPath()%>/showbbs.do'">		
+		<input type="button" value="돌아가기" onclick="location.href='<%=request.getContextPath()%>/showbbsordersearch.do'">		
 		<input type="button" value="수정내용 저장" id="btnUpdate">	
 		<input type="button" value="게시물 삭제" id="btnDelete">
 	</div>
@@ -81,7 +81,7 @@ $(function(){
 				//alert(resp);
 				if( resp === 1){
 					alert('삭제가 완료되었습니다.');
-					location.href="showbbs.do";
+					location.href="showbbsordersearch.do";
 				}else{
 					alert('삭제에 실패했습니다. 다시 시도해 주세요.');
 				}

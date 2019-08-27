@@ -83,15 +83,14 @@ public class BbsController {
 		BbsOrderDto dto = new BbsOrderDto(cond, keyword, pageNum, dbSize);
 		List<BbsDto> list = bbsService.getAllBbs(dto);
 		for(BbsDto d : list ) {
-			System.out.println(d.toString());
+			//System.out.println(d.toString());
 		}
+		//System.out.println("리스트싸이즈!" + list.size());
 		model.addAttribute("bbsList", list);
-		dto.setNav(list.size());
-		
-		logger.info(dto.toString());
+		dto.setNav(bbsService.getDBCountSizeByCondition(dto));
 		
 		model.addAttribute("bbsOrderDto", dto);
-		model.addAttribute("pagingVo", PagingVO.builder().pageNum(pageNum).totalSize(list.size()).build());
+		model.addAttribute("pagingVo", PagingVO.builder().pageNum(pageNum).totalSize(bbsService.getDBCountSizeByCondition(dto)).build());
 		
 		
 		return "bbs/bbsmain";
@@ -155,7 +154,7 @@ public class BbsController {
 			return "bbs/bbswritenew";
 		}else {
 			model.addAttribute("msg", "새 게시물 작성 권한이 없습니다.");
-			return "forward:/showbbs.do";
+			return "forward:/showbbsordersearch.do";
 		}
 	}
 	
@@ -178,8 +177,31 @@ public class BbsController {
 			return "1";
 		}else {
 			return "0";
-		}
+		}		
+	}
+	
+	/**새 답글을 작성할 수 있는 뷰로 이동시키는 컨트롤러
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "shownewreply.do")
+	public String showNewReply(Model model, @RequestParam int seq) {
 		
+		BbsDto dto = bbsService.getOneBySeq(seq);
 		
+		model.addAttribute("BbsDto", dto);
+		
+		return "bbs/bbsnewreply";
+	}
+	
+	/**새 댓글을 Ajax 통신으로 DB에 저장하는 기능
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "writenewcomment.do")
+	public String writeNewComment(Model model) {
+		logger.info("BbsController writeNewComment()" + new Date() );
+		
+		return "writenewcomment";
 	}
 }
