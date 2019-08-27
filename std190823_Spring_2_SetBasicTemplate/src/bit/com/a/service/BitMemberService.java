@@ -1,5 +1,7 @@
 package bit.com.a.service;
 
-public interface BitMemberService {
+import bit.com.a.model.MemberDto;
 
+public interface BitMemberService {
+	public boolean insertMember(MemberDto dto) throws Exception;
 }

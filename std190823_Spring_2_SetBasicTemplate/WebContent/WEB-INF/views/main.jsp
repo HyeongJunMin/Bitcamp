@@ -7,8 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="home">home</a>
-<a href="hello.do">hello</a>
-<a href="showlogin">login</a>
+<%
+	if( request.getAttribute("currId") != null ){
+		%>
+			${currId}님 어서오세요			
+		<%		
+	}else{
+		%>
+			guest			
+		<%
+	}
+%>
+
 </body>
 </html>

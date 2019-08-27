@@ -22,8 +22,8 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>dispatcherServlet</servlet-name>
-  	<!-- <url-pattern>/</url-pattern> -->
-  	<url-pattern>*.do</url-pattern>
+  	<url-pattern>/</url-pattern>
+  	<!-- <url-pattern>*.do</url-pattern> -->
   </servlet-mapping>
   
   <!-- DB설정파일 applicationContext.xml 인식을 위한 코드 -->
