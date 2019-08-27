@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Member">
+	<!-- DB 쿼리 작성 부분 -->
+
+	<!-- parameterType : 패키지명까지 동일하게 작성해야 함 -->
+	<insert id="addMember" parameterType="bit.com.a.member.model.MemberDto">
+		INSERT INTO MEMBER (ID, PW, NAME, EMAIL, AUTH)
+		VALUES(#{id}, #{pw}, #{name}, #{email}, #{auth})
+	</insert>
+	
+	<select id="findOne" parameterType="java.lang.String"
+		resultType="bit.com.a.member.model.MemberDto">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
+	
+	<select id="findAll" resultType="bit.com.a.member.model.MemberDto">
+		SELECT ID, PW, NAME, EMAIL, AUTH 
+		FROM MEMBER
+	</select>
+	
+	<!-- delete query -->
+	<delete id="remove" parameterType="java.lang.String">
+		DELETE FROM MEMBER
+		WHERE ID=#{id}
+	</delete>
+
+	<!-- 파라미터 타입을MEMBER로 받는 DELETE 쿼리 -->
+	<delete id="removeobj" parameterType="bit.com.a.member.model.MemberDto">
+		DELETE FROM MEMBER
+		WHERE ID=#{id}
+	</delete>
+	
+	<update id="updateMem" parameterType="bit.com.a.member.model.MemberDto">
+		UPDATE MEMBER SET PW=#{pw}, EMAIL=#{email}
+		WHERE ID=#{id}
+	</update>
+
+</mapper>

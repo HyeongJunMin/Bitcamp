@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Bbs190729">
+	<!-- DB 쿼리 작성 부분 -->
+
+	<!-- parameterType : 패키지명까지 동일하게 작성해야 함 -->
+	<insert id="writeNew" parameterType="bit.com.a.bbs.model.BbsDto">
+		INSERT INTO BBS190729 (SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT)
+		VALUES(SEQ_BBS190729.NEXTVAL, #{id}, 0, 0, 0, #{title}, #{content}, SYSDATE, 0, 0, 0)
+	</insert>
+		
+	<!-- 규칙 없이 모든 데이터를 가져오는 쿼리 -->
+	<select id="getAll" resultType="bit.com.a.bbs.model.BbsDto">
+		SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+		FROM BBS190729
+		WHERE DEL=0
+		ORDER BY REF DESC, STEP ASC, SEQ DESC
+	</select>	
+	
+	<!-- 페이징 규칙에 따라 데이터를 가져오는 쿼리 -->
+	<select id="getAllOrder" parameterType="bit.com.a.bbs.model.PagingVO" resultType="bit.com.a.bbs.model.BbsDto">
+		SELECT RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+		FROM ( 
+				SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+				FROM ( SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 WHERE DEL=0 ORDER BY SEQ DESC ) 
+				ORDER BY RNUM
+			)
+		WHERE RNUM BETWEEN #{startSeq} AND #{endSeq}
+	</select>
+	
+	<select id="getOneBySeq" parameterType="int"
+		resultType="bit.com.a.bbs.model.BbsDto">
+		SELECT * FROM BBS190729 WHERE SEQ=#{seq}
+	</select>
+	
+	<!-- delete query -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM BBS190729
+		WHERE SEQ=#{seq}
+	</delete>
+	
+	<!-- 삭제. DEL을 1로 수정 -->
+	<update id="deleteOneBySeq" parameterType="int">
+		UPDATE BBS190729 SET DEL=1
+		WHERE SEQ=#{seq}
+	</update>
+	
+	<!-- 조회 수 + 1-->
+	<update id="plusOneReadCntBySeq" parameterType="int">
+		UPDATE BBS190729 SET READCOUNT=READCOUNT+1
+		WHERE SEQ=#{seq}
+	</update>
+
+	<!-- 파라미터 타입을MEMBER로 받는 DELETE 쿼리 -->
+	<delete id="removeBySeq" parameterType="bit.com.a.bbs.model.BbsDto">
+		DELETE FROM MEMBER
+		WHERE SEQ=#{seq}
+	</delete>
+	
+	<update id="updateBbsBySeq" parameterType="bit.com.a.bbs.model.BbsDto">
+		UPDATE BBS190729 SET TITLE=#{title}, content=#{content}
+		WHERE SEQ=#{seq}
+	</update>
+
+</mapper>
