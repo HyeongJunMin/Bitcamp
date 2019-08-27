@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bit.com.a.bbs.model.BbsDto;
+import bit.com.a.bbs.model.BbsOrderDto;
 import bit.com.a.bbs.model.PagingVO;
+import bit.com.a.bbs.model.SearchDto;
 import bit.com.a.bbs.service.BbsService;
 
 @Controller
@@ -49,19 +51,48 @@ public class BbsController {
 		return "bbs/bbsmain";
 	}
 	
+	/** 페이징VO에 따라 bbsmain뷰로 리스트를 리턴하는 메소드
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="showbbsorder.do")
-	public String showBbsOrder(Model model) {
+	public String showBbs(Model model, @RequestParam(value="pageNum", defaultValue="1") int pageNum) {
 		logger.info("BbsController showBbs() " + new Date() );
-				
-		PagingVO paging = PagingVO.builder().startSeq(1).endSeq(10).build();
 		
-		List<BbsDto> list = bbsService.getAllBbsOrder(paging);
+		//페이징 VO 생성하여 service에 전달
+		int dbSize = bbsService.getDBCountSize();
+		PagingVO pagingVo = PagingVO.builder().pageNum(pageNum).totalSize(dbSize).build();
+		List<BbsDto> list = bbsService.getAllBbs(pagingVo);
 		
 		model.addAttribute("bbsList", list);
+		model.addAttribute("pagingVo", pagingVo);
 		
-//		for(BbsDto d : list) {
-//			logger.info(d.toString());
-//		}		
+		return "bbs/bbsmain";
+	}
+	
+
+	@RequestMapping(value="showbbsordersearch.do")
+	public String showBbs(Model model, @RequestParam(value="pageNum", defaultValue="1") int pageNum,
+											@RequestParam(value="cond", defaultValue = "4") int cond,
+											@RequestParam(value="keyword", defaultValue = "") String keyword) {
+		logger.info("BbsController showBbs() " + new Date() );
+		//logger.info("cond=" + cond + ",  keyword : " + keyword);
+		
+		int dbSize = bbsService.getDBCountSize();
+
+		BbsOrderDto dto = new BbsOrderDto(cond, keyword, pageNum, dbSize);
+		List<BbsDto> list = bbsService.getAllBbs(dto);
+		for(BbsDto d : list ) {
+			System.out.println(d.toString());
+		}
+		model.addAttribute("bbsList", list);
+		dto.setNav(list.size());
+		
+		logger.info(dto.toString());
+		
+		model.addAttribute("bbsOrderDto", dto);
+		model.addAttribute("pagingVo", PagingVO.builder().pageNum(pageNum).totalSize(list.size()).build());
+		
 		
 		return "bbs/bbsmain";
 	}

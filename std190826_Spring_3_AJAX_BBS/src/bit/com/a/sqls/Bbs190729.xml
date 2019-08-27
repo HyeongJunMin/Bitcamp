@@ -31,6 +31,46 @@
 		WHERE RNUM BETWEEN #{startSeq} AND #{endSeq}
 	</select>
 	
+	<!-- 페이징 규칙과 검색 규칙에 따라 데이터를 가져오는 쿼리 -->
+	<select id="getAllOrderAndSearch" parameterType="bit.com.a.bbs.model.SearchDto" resultType="bit.com.a.bbs.model.BbsDto">
+		SELECT RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+		FROM ( 
+				SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+				FROM ( SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 
+					WHERE DEL = 0					
+					<if test="cond != '4'">
+						AND #{condquery} LIKE '%'||#{keyword}||'%'
+					</if>				
+					ORDER BY SEQ DESC ) 
+				ORDER BY RNUM
+			)
+		WHERE RNUM BETWEEN #{startSeq} AND #{endSeq}
+		<!-- WHERE RNUM BETWEEN #{startSeq} AND 3 -->		
+	</select>
+	
+	
+	<!-- 페이징 규칙과 검색 규칙에 따라 데이터를 가져오는 쿼리 2탄 -->
+	<select id="getAllBbs" parameterType="bit.com.a.bbs.model.BbsOrderDto" resultType="bit.com.a.bbs.model.BbsDto">
+		SELECT RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+		FROM ( 
+				SELECT ROWNUM AS RNUM, SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+				FROM ( SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT FROM BBS190729 
+					<include refid="searchOption"></include>				
+					ORDER BY SEQ DESC ) 
+				ORDER BY RNUM
+			)
+		WHERE RNUM BETWEEN #{startSeq} AND #{endSeq}
+		<!-- WHERE RNUM BETWEEN #{startSeq} AND 3 -->		
+	</select>
+	
+	
+	<!-- 게시판 DB의 총 개수를 가져오는 쿼리 -->
+	<select id="getDBCountSize" resultType="int">
+		SELECT COUNT(*)
+		FROM BBS190729
+		WHERE DEL=0
+	</select>
+	
 	<select id="getOneBySeq" parameterType="int"
 		resultType="bit.com.a.bbs.model.BbsDto">
 		SELECT * FROM BBS190729 WHERE SEQ=#{seq}
@@ -65,4 +105,17 @@
 		WHERE SEQ=#{seq}
 	</update>
 
+
+	<sql id="searchOption">
+		<choose>
+			<when test="condquery == 'all'">
+				WHERE DEL = 0 AND ( TITLE LIKE '%'||#{keyword}||'%'
+				OR content LIKE '%'||#{keyword}||'%'
+				OR id LIKE '%'||#{keyword}||'%' )
+			</when>
+			<otherwise>
+				WHERE DEL = 0 AND ${condquery} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql>
 </mapper>

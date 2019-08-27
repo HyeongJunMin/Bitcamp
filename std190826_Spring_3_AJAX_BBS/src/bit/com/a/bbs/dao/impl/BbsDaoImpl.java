@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import bit.com.a.bbs.dao.BbsDao;
 import bit.com.a.bbs.model.BbsDto;
+import bit.com.a.bbs.model.BbsOrderDto;
 import bit.com.a.bbs.model.PagingVO;
+import bit.com.a.bbs.model.SearchDto;
 
 @Repository
 public class BbsDaoImpl implements BbsDao {
@@ -19,6 +21,12 @@ public class BbsDaoImpl implements BbsDao {
 	String namespace = "Bbs190729.";
 	
 	@Override
+	public int getDBCountSize() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace + "getDBCountSize");
+	}
+	
+	@Override
 	public List<BbsDto> getAllBbs() {
 		// TODO Auto-generated method stub
 		List<BbsDto> lst = sqlSession.selectList(namespace + "getAll");		
@@ -26,10 +34,23 @@ public class BbsDaoImpl implements BbsDao {
 	}
 	
 	@Override
-	public List<BbsDto> getAllBbsOrder(PagingVO pagingVO) {
+	public List<BbsDto> getAllBbs(PagingVO pagingVO) {
 		// TODO Auto-generated method stub
 		List<BbsDto> lst = sqlSession.selectList(namespace + "getAllOrder", pagingVO);		
 		return lst;
+	}
+
+	@Override
+	public List<BbsDto> getAllBbs(SearchDto searchDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "getAllOrderAndSearch", searchDto);
+	}	
+	
+
+	@Override
+	public List<BbsDto> getAllBbs(BbsOrderDto bbsOrderDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace + "getAllBbs", bbsOrderDto);
 	}
 
 	@Override
@@ -55,6 +76,5 @@ public class BbsDaoImpl implements BbsDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(namespace + "writeNew", dto);
 	}
-	
 	
 }

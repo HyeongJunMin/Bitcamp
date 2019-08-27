@@ -3,19 +3,24 @@ package bit.com.a.bbs.model;
 import java.io.Serializable;
 
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class PagingVO implements Serializable {
+@Data
+public class BbsOrderDto implements Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/** 검색조건. 0=제목, 1=내용 2=id*/
+	private int cond;	
+	
+	private String condquery = "";
+	
+	/** 검색어 */
+	private String keyword;
+	
 	/** 현재페이지 */
 	private int pageNum = 1;
 	
@@ -51,7 +56,7 @@ public class PagingVO implements Serializable {
 	 * @param totalSize
 	 */
 	@Builder
-	public PagingVO(int pageNum, int totalSize) {
+	public BbsOrderDto(int pageNum, int totalSize) {
 		super();
 		this.pageNum = pageNum;
 		this.setRecordCountPerPage(10);
@@ -62,6 +67,23 @@ public class PagingVO implements Serializable {
 		this.setNav(totalSize);
 	}
 	
+	@Builder
+	public BbsOrderDto(int cond, String keyword, int pageNum, int totalSize) {
+		this.pageNum = pageNum;
+		this.setRecordCountPerPage(10);
+		this.startSeq = ( ( pageNum - 1 ) * this.getRecordCountPerPage() ) + 1;
+		this.endSeq = startSeq + this.getRecordCountPerPage() - 1;		
+		this.setNav(totalSize);
+		this.cond = cond;
+		this.keyword = keyword;
+		switch( cond ) {
+			case 0: this.condquery="title"; break;
+			case 1: this.condquery="content"; break;
+			case 2: this.condquery="id"; break;
+			default: this.condquery= "all"; break;
+		}		
+		System.out.println("[BbsOrderDto] condquery:" + condquery + " , keyword:" + keyword);
+	}
 	
 	/** All Args Constructor
 	 * @param pageIndex
@@ -74,7 +96,7 @@ public class PagingVO implements Serializable {
 	 * @param lastNavIndex
 	 */
 	@Builder
-	public PagingVO(int pageNum, int recordCountPerPage, int startSeq, int endSeq, int totalPage, int pageSize,
+	public BbsOrderDto(int pageNum, int recordCountPerPage, int startSeq, int endSeq, int totalPage, int pageSize,
 			int firstNavIndex, int lastNavIndex) {
 		super();
 		this.pageNum = pageNum;
@@ -94,6 +116,8 @@ public class PagingVO implements Serializable {
 	 * (3/5)*5 +1
 	 */
 	public void setNav(int totalSize) {
+		//페이지 네비게이션의 최대 사이즈
+		this.maxNavSize = (totalSize % recordCountPerPage == 0) ? (totalSize / recordCountPerPage) : (totalSize / recordCountPerPage) + 1;
 		this.firstNavIndex = (this.pageNum / pageNavSize) * pageNavSize + 1;
 		//마지막 네비게이션 바 인덱스. 전체 글 수가 한 페이지 당 글 수로 나누어 떨어지면 -0 아니면 -1
 		int temp = this.firstNavIndex + pageNavSize - 1 ;
@@ -101,6 +125,5 @@ public class PagingVO implements Serializable {
 		//System.out.println("totalSize : " + totalSize + " , recordCountPerPage : " + recordCountPerPage + " , temp : " + temp + " , ddd " +  (( (totalSize % recordCountPerPage) == 0 )?3:2 ) );
 		//System.out.println("firstNavIndex : " + firstNavIndex + " , lastNavIndex : " + lastNavIndex + " , maxNavSize : " + maxNavSize);
 	}
-
 	
 }

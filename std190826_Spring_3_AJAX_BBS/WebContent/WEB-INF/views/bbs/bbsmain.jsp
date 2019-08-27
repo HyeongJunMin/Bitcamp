@@ -40,6 +40,13 @@
 					</tr>				
 				</c:forEach>
 			</table>
+			<ul class="pagingNav">
+				<c:if test="${not empty bbsOrderDto }"><!-- 검색조건이 비어있지 않은 경우 -->
+					<c:forEach var="i" begin="${bbsOrderDto.firstNavIndex }" end="${bbsOrderDto.lastNavIndex }" step="1">
+						<li class="pagingNavItem"><c:out value="${i}"/></li>
+					</c:forEach>
+				</c:if>
+			</ul>
 		</div>		
 	</div>
 </div>
@@ -61,6 +68,10 @@ $(function(){
 	$(".tblBbsTr").click(function(){
 		var seq = $(this).children().eq(0).text().trim();
 		location.href="showbbsdetail.do?seq=" + seq;
+	});
+	
+	$(".pagingNavItem").click(function(){
+		location.href='showbbsordersearch.do?pageNum=' + $(this).text();
 	});
 });
 
