@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- 선언 : aop object(객체) 생성, 클래스는 패키지명 맞춰줘야 함  -->
+	<bean id="logApp" class="com.aopexam_xml.LogAOP"/>
+	
+	<!-- aop설정(자동 호출 설정) -->	
+	<aop:config>
+		<aop:aspect id="logger" ref="logApp">
+			<!-- expression은 패키지명맞춰주고 id는 publicMethod를 의미 -->
+			<aop:pointcut expression="within(com.aopexam_xml.*)" id="publicM"/>
+			<!-- LogAOP의 메소드 이름을 맞춰주고 ref는 위 pointcut의 id를 맞춰줌 -->
+			<aop:around method="loggerAop" pointcut-ref="publicM"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 고양이 DTO를 선언(객체 생성)하는 부분 -->
+	<bean id="myCat" class="com.aopexam_xml.CatDto">
+		<property name="name" value="애옹"/>
+		<property name="age" value="3"/>
+		<property name="color" value="노랑"/>
+	</bean>
+
+</beans>
