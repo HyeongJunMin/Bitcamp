@@ -16,7 +16,10 @@
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  	
   	<init-param><!-- 디스패처서블릿 위치 명시(설정) -->
   		<param-name>contextConfigLocation</param-name>
-  		<param-value>/WEB-INF/spring/servlet-context.xml</param-value>
+  		<param-value>
+  			/WEB-INF/spring/servlet-context.xml
+  			/WEB-INF/spring/aop-context.xml
+  		</param-value>
   	</init-param>  	
   	<load-on-startup>1</load-on-startup><!-- 저장했을 때 1로 설정해주라는 내용 -->
   </servlet>
@@ -33,7 +36,7 @@
   <context-param>
   	<param-name>contextConfigLocation</param-name>
   	<param-value>
-  		/WEB-INF/spring/applicationContext.xml
+  		/WEB-INF/spring/applicationContext.xml  		
   	</param-value>
   </context-param>
   

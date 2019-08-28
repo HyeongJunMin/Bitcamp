@@ -58,7 +58,8 @@ $(function(){
 		//배열 초기화
 		var viewData = {};
 		//data[키] = 밸류
-		viewDate["seq"] = '${BbsDto.seq}';
+		viewData["seq"] = '${BbsDto.seq}';
+		viewData["step"] = '${BbsDto.step}';
 		viewData["id"] = $("#currId").text().trim();
 		viewData["title"] = $("#title").val();
 		viewData["content"] = $("#content").val();
@@ -66,13 +67,13 @@ $(function(){
 		$.ajax({
 			contentType:'application/json',
 			dataType:'json',
-			url:'writenewcomment.do',
+			url:'writenewreply.do',
 			type:'post',
 			data:JSON.stringify(viewData),
 			success:function(resp){
 				//alert(resp);
 				if( resp === 1){
-					alert('저장이 완료되었습니다.');
+					alert('답글 저장이 완료되었습니다.');
 					location.href="showbbsordersearch.do";
 				}else{
 					alert('저장에 실패했습니다. 다시 시도해 주세요.');

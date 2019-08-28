@@ -14,13 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bit.com.a.bbs.model.BbsCommentDto;
 import bit.com.a.bbs.model.BbsDto;
 import bit.com.a.bbs.model.BbsOrderDto;
 import bit.com.a.bbs.model.PagingVO;
-import bit.com.a.bbs.model.SearchDto;
 import bit.com.a.bbs.service.BbsService;
 
 @Controller
@@ -96,7 +97,7 @@ public class BbsController {
 		return "bbs/bbsmain";
 	}
 	
-	/**게시글 상세정보 조회 뷰로 이동
+	/**게시글 상세정보 조회 뷰로 이동, 댓글리스트 commenList 가져감
 	 * @param model
 	 * @param seq
 	 * @return
@@ -107,10 +108,12 @@ public class BbsController {
 		//logger.info("seq = " + seq);
 		
 		BbsDto dto = bbsService.getOneBySeq( seq );
+		List<BbsCommentDto> commentList = bbsService.getAllBbsComment(seq);
 		
 		model.addAttribute("BbsDto",dto);
+		model.addAttribute("commentList", commentList);
 		
-		//logger.info(dto.toString());
+		logger.info( "댓글 사이즈 : " + commentList.size() );
 		
 		return "bbs/bbsdetail";
 	}
@@ -172,7 +175,7 @@ public class BbsController {
 		int n = bbsService.writeNewBbs( BbsDto.builder().id( userMap.get("id") + "" )
 												.title( userMap.get("title") + "" )
 												.content( userMap.get("content") + "" ).build() );
-		
+		//성공 시 return 1, 실패 시 return 0
 		if( n > 0 ) {			
 			return "1";
 		}else {
@@ -194,14 +197,54 @@ public class BbsController {
 		return "bbs/bbsnewreply";
 	}
 	
-	/**새 댓글을 Ajax 통신으로 DB에 저장하는 기능
+
+	/**새 답글을 Ajax 통신으로 DB에 저장하는 기능
 	 * @param model
+	 * @param bbsMap
 	 * @return
 	 */
-	@RequestMapping(value = "writenewcomment.do")
-	public String writeNewComment(Model model) {
+	@ResponseBody
+	@RequestMapping(value = "writenewreply.do", method = RequestMethod.POST)
+	public String writeNewReply(Model model, @RequestBody Map<String, Object> bbsMap) {
 		logger.info("BbsController writeNewComment()" + new Date() );
 		
-		return "writenewcomment";
+//		Iterator<String> iter = bbsMap.keySet().iterator();
+//		while( iter.hasNext() ) {
+//			String key = iter.next() + "";
+//			logger.info( "key:" + key + " , value:" + bbsMap.get(key) );
+//		}
+		
+		//원본글(seq)이 갖고있는 ref와 동일한 ref를 갖는 글 중 seq보다 step이 큰 글의 step을 1씩 증가.
+		BbsDto originDto = bbsService.getOneBySeq( Integer.parseInt(bbsMap.get("seq") + "") );
+		bbsService.plusOneStepBiggerThanOriginInReply( originDto );
+		
+		//새로 추가되는 글의 step과 depth는 원본글  + 1, parent는 원본글의 seq
+		BbsDto replyDto = BbsDto.builder().step( originDto.getStep() + 1 )
+											.depth( originDto.getDepth() + 1 )
+											.parent( originDto.getSeq() )
+											.ref( originDto.getRef() )
+											.id( bbsMap.get("id") + "" )
+											.title( bbsMap.get("title") + "" )
+											.content( bbsMap.get("content") + "" )											
+											.build();
+		
+		int m = bbsService.writeNewReply(replyDto);
+		
+		//성공 시 return 1, 실패 시 return 0
+		if( m > 0 ) {
+			return "1";
+		}else{
+			return "0";
+		}
+		
 	}
+
+	
+	/* 댓글(comment) 관련 기능 */
+	@RequestMapping(value="writenewcomment.do")
+	public String writeNewComment(Model model) {
+		return "1";
+	}
+
+
 }

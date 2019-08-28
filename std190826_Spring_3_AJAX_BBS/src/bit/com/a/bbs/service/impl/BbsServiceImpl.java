@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bit.com.a.bbs.dao.BbsDao;
+import bit.com.a.bbs.model.BbsCommentDto;
 import bit.com.a.bbs.model.BbsDto;
 import bit.com.a.bbs.model.BbsOrderDto;
 import bit.com.a.bbs.model.PagingVO;
@@ -75,6 +76,45 @@ public class BbsServiceImpl implements BbsService {
 	public int writeNewBbs(BbsDto dto) {
 		// TODO Auto-generated method stub
 		return bbsDao.writeNewBbs(dto);
+	}
+
+	@Override
+	public int writeNewReply(BbsDto dto) {
+		// TODO Auto-generated method stub
+		return bbsDao.writeNewReply(dto);
+	}
+
+	@Override
+	public int plusOneStepBiggerThanOriginInReply(BbsDto dto) {
+		// TODO Auto-generated method stub
+		return bbsDao.plusOneStepBiggerThanOriginInReply(dto);
+	}
+	
+	
+	/* 댓글(comment) 영역 */
+
+	@Override
+	public List<BbsCommentDto> getAllBbsComment(int seq) {
+		// TODO Auto-generated method stub
+		return bbsDao.getAllBbsComment(seq);
+	}
+
+	@Override
+	public int writeNewComment(BbsCommentDto dto) {
+		// TODO Auto-generated method stub
+		return bbsDao.writeNewComment(dto);
+	}
+
+	@Override
+	public int deleteComment(int seq) {
+		// TODO Auto-generated method stub
+		return bbsDao.deleteComment(seq);
+	}
+
+	@Override
+	public int updateComment(BbsCommentDto dto) {
+		// TODO Auto-generated method stub
+		return bbsDao.updateComment(dto);
 	}
 	
 }

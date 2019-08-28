@@ -44,11 +44,11 @@
 							${bbs.title}							
 						</td>
 						<td>${bbs.id} </td>
-						<td>${bbs.wdate} </td>
+						<td>${fn:substring(bbs.wdate,0,10) } </td>
 						<td>${bbs.readcount} </td>
 						<td>${bbs.ref }</td>
 						<td>${bbs.step }</td>
-						<td>${bbs.depth }</td>	
+						<td>${bbs.depth }</td>
 					</tr>				
 				</c:forEach>
 			</table>

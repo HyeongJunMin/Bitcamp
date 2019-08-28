@@ -79,6 +79,7 @@ public class BitMemberController {
 				//PW일치하면?
 				jsMsg = dbDto.getId() + "님 환영합니다";
 				req.getSession().setAttribute("currUser", dbDto);
+				req.getSession().setMaxInactiveInterval(3);
 				model.addAttribute("msg", jsMsg);
 				return "forward:/showbbsordersearch.do";
 			}else {
