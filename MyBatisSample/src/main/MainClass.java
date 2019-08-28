@@ -16,7 +16,7 @@ import dto.MemberDto;
 class MainClass {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated metho
+		// TODO Auto-generated method
 		
 		//mybatis의 옛날 버전이 ibatis이다. 
 		
