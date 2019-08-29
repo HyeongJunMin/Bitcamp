@@ -7,7 +7,14 @@
 <% pageContext.setAttribute("crcn", "\r\n"); %>
 <!DOCTYPE html>
 <html>
-
+<input type="button" id="btnToggle" value="go">
+<script>
+$(function(){
+	$("#btnToggle").click(function(){
+		$(".mainContainer").toggle();
+	});
+});
+</script>
 <div class="mainContainer" align="center" style="margin:auto;">
 	<h3>게시판 메인</h3>
 	<div class="bbsContent">
