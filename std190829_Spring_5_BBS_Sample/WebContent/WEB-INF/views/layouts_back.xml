@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+
+<definition name="login.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+	<put-attribute name="menu" value="/WEB-INF/views/login/login.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/login/content.jsp"/>
+	<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>	
+</definition>
+
+<!-- 요거는 아예 레이아웃 자체가 바뀔 때 사용하도록 -->
+<!-- 
+<definition name="regi.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+	<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+	<put-attribute name="menu" value="/WEB-INF/views/login/login.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
+	<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>	
+</definition>
+ -->
+ <!-- 일부만 바뀌었을 때는 상속받아서 쓰세요 -->
+ <definition name="regi.tiles" extends="login.tiles">
+	<put-attribute name="content" value="/WEB-INF/views/login/regi.jsp"/>
+</definition>
+ 
+</tiles-definitions>
