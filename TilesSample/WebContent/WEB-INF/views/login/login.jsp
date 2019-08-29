@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:if test="${not empty login }">
-${login.id }님 안녕하세요
+<c:if test="${not empty currUser }">
+${currUser.id }님 안녕하세요
 <table border="1" bgcolor="Gray">
 	<col width="200">
 		<tr>
