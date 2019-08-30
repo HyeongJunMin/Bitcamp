@@ -4,15 +4,76 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Bbs">
-
+<!-- 
 <select id="getBbsList" resultType="bit.com.a.model.BbsDto">
-	SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT,
-		WDATE, PARENT, DEL, READCOUNT
+	SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
 	FROM BBS190729
 	ORDER BY REF DESC, STEP ASC
 </select>
+ -->
 
+<select id="getBbsList" parameterType="bit.com.a.model.BbsParam" resultType="bit.com.a.model.BbsDto">
+	SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+	FROM (
+			SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM,
+				SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+				FROM BBS190729
+				WHERE 1=1
+				<if test="s_category != null and s_category != ''
+					and s_keyword != null and s_keyword != ''">
+					
+					<if test="s_category == 'title'">
+						AND TITLE LIKE '%'||#{s_keyword}||'%'
+					</if>
+					<if test="s_category == 'contents'">
+						AND CONTENT LIKE '%'||#{s_keyword}||'%'
+					</if>
+					<if test="s_category == 'writer'">
+						AND ID LIKE '%'||#{s_keyword}||'%'
+					</if>						
+				</if>
+			) 
+	WHERE RNUM BETWEEN ${start} AND ${end} 
+	<!-- ORDER BY REF DESC, STEP ASC -->
+</select>
 
+<select id="getBbsCount" parameterType="bit.com.a.model.BbsParam" resultType="java.lang.Integer">
+	SELECT NVL( COUNT(*), 0 ) AS CNT
+	FROM BBS190729
+	WHERE 1=1
+	<if test="s_category != null and s_category != ''
+					and s_keyword != null and s_keyword != ''">
+					
+					<if test="s_category == 'title'">
+						AND TITLE LIKE '%'||#{s_keyword}||'%'
+					</if>
+					<if test="s_category == 'contents'">
+						AND CONTENT LIKE '%'||#{s_keyword}||'%'
+					</if>
+					<if test="s_category == 'writer'">
+						AND ID LIKE '%'||#{s_keyword}||'%'
+					</if>						
+	</if>
+</select>
+
+<!-- bbsdetail페이지에서 게시물 상세정보를 보여주기 위한 부분 -->
+<select id="getBbs" parameterType="java.lang.Integer" resultType="bit.com.a.model.BbsDto">
+	SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, PARENT, DEL, READCOUNT
+	FROM BBS190729
+	WHERE SEQ=#{seq}
+</select>
+
+<!-- 게시글 삭제 기능. -->
+<update id="deleteOneBbs" parameterType="java.lang.Integer">
+	UPDATE BBS190729 SET DEL=1
+	WHERE SEQ=#{seq}
+</update>
+
+<!-- 게시글 수정 기능 modifyOneBbs -->
+<update id="modifyOneBbs" parameterType="bit.com.a.model.BbsDto">
+	UPDATE BBS190729 SET TITLE=#{title}, CONTENT=#{content}
+	WHERE SEQ=#{seq}
+</update>
 
 </mapper>  
 

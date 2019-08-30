@@ -17,14 +17,14 @@
 				<td>검색:</td>
 				<td style="padding-left: 5px;">
 					<select id="_s_category" name="s_category">
-						<option value="" selected="selected">선택</option>
-						<option value="title">제목</option>
-						<option value="contents">내용</option>
-						<option value="writer">작성자</option>
+						<option value="" <c:out value="${param.s_category == ''?'selected':'' }"/> >선택</option>
+						<option value="title" <c:out value="${param.s_category == 'title'?'selected':'' }"/> >제목</option>
+						<option value="contents" <c:out value="${param.s_category == 'contents'?'selected':'' }"/> >내용</option>
+						<option value="writer" <c:out value="${param.s_category == 'writer'?'selected':'' }"/> >작성자</option>
 					</select>
 				</td>
 				<td style="padding-left: 5px;">
-					<input type="text" id="_s_keyword" name="s_keyword">
+					<input type="text" id="_s_keyword" name="s_keyword" value="${param.s_keyword != ''?param.s_keyword:'' }">
 				</td>
 				<td style="padding-left: 5px;">
 					<span class="button blue">
@@ -33,6 +33,8 @@
 				</td>
 			</tr>
 		</table>
+		<input type="hidden" name="pageNumber" id="_pageNumber" value="${(empty pageNumber)?0:pageNumber }">
+		<input type="hidden" name="recordCountPerPage" id="_recordCountPerPage" value="${(empty recordCountPerPage)?0:recordCountPerPage }">
 	</form>
 </div>
 
@@ -52,7 +54,7 @@
 	<tbody>
 		<c:if test="${empty bbslist }">
 			<tr>
-				<td colspan="3">작성된 글이 없습니다.</td>
+				<td colspan="3">작성된 글이 없습니다.<br><br><br><a href="bbslist.do">돌아가기</a></td>
 			</tr>
 		</c:if>
 		<c:forEach items="${bbslist }" var="bbs" varStatus="vs"><!-- vs가 카운트값을 가짐 -->
@@ -74,9 +76,31 @@
 	</tbody>
 </table>
 
-<!-- 페이징 -->
+<!-- 페이징 : paging.jsp 인용 -->
+<div id="paging_wrap">
+	<!-- include로 가져올 jsp에 parameter를 보내는 방법 -->
+	<jsp:include page="/WEB-INF/views/bbs/paging.jsp" flush="false">
+		<jsp:param name="totalRecordCount" value="${totalRecordCount }"/>
+		<jsp:param name="pageNumber" value="${pageNumber }"/>
+		<jsp:param name="pageCountPerScreen" value="${pageCountPerScreen }"/>
+		<jsp:param name="recordCountPerPage" value="${recordCountPerPage }"/>
+	</jsp:include>
+</div>
 
 <script type="text/javascript">
+//페이징 링크 onclick에서 사용할 함수
+function goPage( pageNumber ){
+	//_pageNumber는 폼 안에 있는 히든태그 
+	$("#_pageNumber").val( pageNumber );
+	//폼 제출
+	$("#_frmFormSearch").attr("action", "bbslist.do").submit();
+}
+
+//검색 버튼 클릭 이벤트
+$("#_btnSearch").click(function(){
+	//폼 제출
+	$("#_frmFormSearch").attr("action", "bbslist.do").submit();
+});
 </script>
 
 </body>

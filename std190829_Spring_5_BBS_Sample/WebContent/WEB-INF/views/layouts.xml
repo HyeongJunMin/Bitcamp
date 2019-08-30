@@ -23,4 +23,19 @@
 	<put-attribute name="bottom_inc" value="/WEB-INF/views/common/bottom_inc.jsp"/>
 </definition>
 
+<!-- 게시글 상세정보 페이지 -->
+<definition name="bbsdetail.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/bbs/bbsdetail.jsp"/>
+</definition>
+
+<!-- 게시글 수정 페이지 -->
+<definition name="bbsmod.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/bbs/bbsmod.jsp"/>
+</definition>
+
+<!-- 일정관리 메인 페이지 -->
+<definition name="calmain.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/calendar/calmain.jsp"/>
+</definition>
+
 </tiles-definitions>

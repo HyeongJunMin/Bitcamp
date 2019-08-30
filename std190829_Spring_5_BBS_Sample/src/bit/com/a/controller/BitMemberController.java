@@ -48,18 +48,18 @@ public class BitMemberController {
 		
 	@RequestMapping(value = "account.do", method = RequestMethod.GET)
 	public String account() {
-		logger.info("BitMemberController account " + new Date());		
+//		logger.info("BitMemberController account " + new Date());		
 		return "regi";
 	}
 	
 	@RequestMapping(value = "accountAf.do", method = RequestMethod.POST)
 	public String accountAf(MemberDto dto, Model model, HttpServletRequest req)throws Exception {		
-		logger.info("BitMemberController accountAf " + new Date());
-		logger.info(dto.toString());
+//		logger.info("BitMemberController accountAf " + new Date());
+//		logger.info(dto.toString());
 		
 		boolean b = bitMemberService.addmember(dto);
 		if(b) {
-			logger.info("회원가입되었습니다 " + new Date());
+//			logger.info("회원가입되었습니다 " + new Date());
 			return "ok";
 		}
 		
@@ -102,18 +102,20 @@ public class BitMemberController {
 	
 	@RequestMapping(value = "loginAf.do", method = RequestMethod.POST)
 	public String loginAf(MemberDto dto, HttpServletRequest req) {	
-		logger.info("KhMemberController loginAf " + new Date());
+		//logger.info("KhMemberController loginAf " + new Date());
 		
 		MemberDto login = bitMemberService.login(dto);
 		
 		if(login != null && !login.getId().equals("")) {
-			logger.info("KhMemberController loginAf SUC " + new Date());
+			//logger.info("KhMemberController loginAf SUC " + new Date());
 			// session 저장
-			req.getSession().setAttribute("login", login);			
+			req.getSession().setAttribute("login", login);
+			req.getSession().setMaxInactiveInterval(30000);
+			
 
 			return "redirect:/bbslist.do";			
 		}else {	
-			logger.info("KhMemberController loginAf Fail " + new Date());			
+			//logger.info("KhMemberController loginAf Fail " + new Date());			
 			return "login.do";
 		}		
 	}

@@ -17,8 +17,32 @@ public class BitBbsServiceImpl implements BitBbsService {
 	BitBbsDao bbsDao;
 
 	@Override
-	public List<BbsDto> getBbsList() {		
-		return bbsDao.getBbsList();
+	public List<BbsDto> getBbsList(BbsParam param) {		
+		return bbsDao.getBbsList(param);
+	}
+
+	@Override
+	public int getBbsCount(BbsParam param) {
+		// TODO Auto-generated method stub
+		return bbsDao.getBbsCount(param);
+	}
+
+	@Override
+	public BbsDto getBbs(int seq) {
+		// TODO Auto-generated method stub
+		return bbsDao.getBbs(seq);
+	}
+
+	@Override
+	public int deleteOneBbs(int seq) {
+		// TODO Auto-generated method stub
+		return bbsDao.deleteOneBbs(seq);
+	}
+
+	@Override
+	public int modifyOneBbs(BbsDto dto) {
+		// TODO Auto-generated method stub
+		return bbsDao.modifyOneBbs(dto);
 	}
 
 }

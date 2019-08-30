@@ -19,9 +19,32 @@ public class BitBbsDaoImpl implements BitBbsDao {
 	String ns = "Bbs.";
 	
 	@Override
-	public List<BbsDto> getBbsList() {		
-		return sqlSession.selectList(ns + "getBbsList");
+	public List<BbsDto> getBbsList(BbsParam param) {		
+		return sqlSession.selectList(ns + "getBbsList", param);
 	}
 
+	@Override
+	public int getBbsCount(BbsParam param) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ns + "getBbsCount", param);
+	}
+
+	@Override
+	public BbsDto getBbs(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(ns + "getBbs", seq);
+	}
+
+	@Override
+	public int deleteOneBbs(int seq) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(ns + "deleteOneBbs", seq);
+	}
+
+	@Override
+	public int modifyOneBbs(BbsDto dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(ns + "modifyOneBbs", dto);
+	}
 	
 }
