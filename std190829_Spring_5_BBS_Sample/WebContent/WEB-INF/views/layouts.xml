@@ -62,4 +62,22 @@
 	<put-attribute name="left_menu" value="/WEB-INF/views/pds/left_pdslist.jsp"/>
 </definition>
 
+<!-- calendar -->
+<definition name="calendar.tiles" extends="bbslist.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/calendar/left_calendar.jsp"/>
+	<put-attribute name="main" value="/WEB-INF/views/calendar/calendar.jsp"/>
+</definition>
+
+<definition name="calwrite.tiles" extends="calendar.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/calendar/calwrite.jsp"/>
+</definition>
+
+<definition name="caldetail.tiles" extends="calendar.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/calendar/caldetail.jsp"/>
+</definition>
+
+<definition name="calendarMonth.tiles" extends="calendar.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/calendar/calendarMonth.jsp"/>
+</definition>
+
 </tiles-definitions>
