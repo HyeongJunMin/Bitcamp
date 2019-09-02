@@ -38,4 +38,28 @@
 	<put-attribute name="main" value="/WEB-INF/views/calendar/calmain.jsp"/>
 </definition>
 
+<!-- 자료실 메인 페이지 -->
+<definition name="pdslist.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/pds/pdslist.jsp"/>
+	<put-attribute name="left_menu" value="/WEB-INF/views/pds/left_pdslist.jsp"/>
+</definition>
+
+<!-- 자료실 자료추가 페이지 -->
+<definition name="pdswrite.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/pds/pdswrite.jsp"/>
+	<put-attribute name="left_menu" value="/WEB-INF/views/pds/left_pdslist.jsp"/>
+</definition>
+
+<!-- 자료실 자료 상세보기 페이지 -->
+<definition name="pdsdetail.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/pds/pdsdetail.jsp"/>
+	<put-attribute name="left_menu" value="/WEB-INF/views/pds/left_pdslist.jsp"/>
+</definition>
+
+<!-- 자료실 자료 수정 페이지 -->
+<definition name="pdsmod.tiles" extends="bbslist.tiles">
+	<put-attribute name="main" value="/WEB-INF/views/pds/pdsmod.jsp"/>
+	<put-attribute name="left_menu" value="/WEB-INF/views/pds/left_pdslist.jsp"/>
+</definition>
+
 </tiles-definitions>

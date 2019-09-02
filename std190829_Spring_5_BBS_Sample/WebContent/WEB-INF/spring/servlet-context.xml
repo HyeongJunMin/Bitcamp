@@ -40,5 +40,22 @@
 	
 	<!-- spring에서 처리할 수 없는 요청은 tomcat에 위임하겠다 설정 -->
 	<mvc:default-servlet-handler/>
+	
+	<!-- upload 관련 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600"/>	<!-- 1MB -->
+		<property name="maxInMemorySize" value="102400"/>	<!-- 1KB -->
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="uploadTempDir" value="upload"/>	<!-- upload directory(WebContent/upload) -->
+	</bean>
+	
+	<!-- Download view -->
+	<bean id="downloadView" class="bit.com.a.util.DownloadView"/>
+	
+	<bean id="downloadViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order">
+			<value>0</value>
+		</property>
+	</bean>
 
 </beans>

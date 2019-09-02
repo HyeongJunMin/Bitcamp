@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Pds">
+
+<select id="getPdsList" resultType="bit.com.a.model.PdsDto">
+	SELECT SEQ, ID, TITLE, CONTENT, FILENAME, ORIGIN_FILENAME, READCOUNT, DOWNCOUNT, REGDATE
+	FROM PDS
+	ORDER BY SEQ DESC
+</select>
+
+<!-- 자료실 게시글 1개의 정보를 DB에서 꺼내주는 쿼리 -->
+<select id="getOnePds" resultType="bit.com.a.model.PdsDto" parameterType="java.lang.Integer">
+	SELECT SEQ, ID, TITLE, CONTENT, FILENAME, ORIGIN_FILENAME,READCOUNT, DOWNCOUNT, REGDATE
+	FROM PDS
+	WHERE SEQ=#{seq}
+</select>
+
+<!-- 새 자료 업로드 -->
+<insert id="uploadPds" parameterType="bit.com.a.model.PdsDto">
+	INSERT INTO PDS (SEQ, ID, TITLE, CONTENT, FILENAME, ORIGIN_FILENAME, READCOUNT, DOWNCOUNT, REGDATE)
+	VALUES (SEQ_PDS.NEXTVAL, #{id}, #{title}, #{content}, #{filename}, #{origin_filename}, 0, 0, SYSDATE)
+</insert>
+
+<!-- downcount + 1 -->
+<update id="plusDownCount" parameterType="java.lang.Integer">
+	UPDATE PDS SET DOWNCOUNT=DOWNCOUNT+1
+	WHERE SEQ=#{seq}
+</update>
+
+
+</mapper>  
+
+
+
+
+
+

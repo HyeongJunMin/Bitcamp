@@ -23,26 +23,29 @@ public class PdsDto implements Serializable {
 	private String content;	
 	
 	private String filename;//업로드된 파일 이름(저장하기위해 바뀐) 사실 오리지널 이름이 있어야함
+	private String origin_filename;
 	private int readcount;
 	private int downcount;//다운 수
 	private String regdate;//등록일
 	
 	//유저 입력값만 받는 생성자
 	@Builder
-	public PdsDto(String id, String title, String content, String filename) {
+	public PdsDto(String id, String title, String content, String filename, String origin_filename) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.filename = filename;
+		this.origin_filename = origin_filename;
 	}	
 	
 	//수정용 생성자
 	@Builder
-	public PdsDto(int seq, String id, String title, String content, String filename) {
+	public PdsDto(int seq, String id, String title, String content, String filename, String origin_filename) {
 			this.seq = seq;
 			this.id = id;
 			this.title = title;
 			this.content = content;
 			this.filename = filename;
+			this.origin_filename = origin_filename;
 	}	
 }
