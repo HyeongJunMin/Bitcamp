@@ -25,6 +25,8 @@ public class DownloadView extends AbstractView{
 			HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		File file = (File)model.get("downloadFile");
+		int currSeq = Integer.parseInt( model.get("seq") + "" );
+		String currOriginFileName = pdsService.getOnePds(currSeq).getOrigin_filename();
 		
 		// 파일의 타입과 길이값 설정
 		response.setContentType(this.getContentType());
@@ -42,7 +44,8 @@ public class DownloadView extends AbstractView{
 		}
 		
 		//클라이언트에서 다운로드를 받을 수 있도록 window download 인터페이스 설정
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\";");
+//		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\";");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + currOriginFileName + "\";");
 		response.setHeader("Content-Transfer-Encoding", "binary;");
 		response.setHeader("Content-Length", "" + file.length());
 		response.setHeader("Pragma", "no-cache;"); 
@@ -54,7 +57,7 @@ public class DownloadView extends AbstractView{
 		fi = new FileInputStream(file);
 		FileCopyUtils.copy(fi, out);//실질적으로 파일 다운로드를 수행하는 코드
 		//download count 증가
-		pdsService.plusDownCount( Integer.parseInt( model.get("seq") + "" ) );
+		pdsService.plusDownCount( currSeq );
 		
 		if( fi != null ) {
 			fi.close();

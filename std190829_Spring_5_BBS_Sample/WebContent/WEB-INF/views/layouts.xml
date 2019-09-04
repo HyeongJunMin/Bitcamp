@@ -80,4 +80,15 @@
 	<put-attribute name="main" value="/WEB-INF/views/calendar/calendarMonth.jsp"/>
 </definition>
 
+<!-- 투표 관련(poll) -->
+<definition name="polllist.tiles" extends="bbslist.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/poll/left_poll.jsp"/>
+	<put-attribute name="main" value="/WEB-INF/views/poll/polllist.jsp"/>
+</definition>
+
+<definition name="pollmake.tiles" extends="bbslist.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/poll/left_poll.jsp"/>
+	<put-attribute name="main" value="/WEB-INF/views/poll/pollmake.jsp"/>
+</definition>
+
 </tiles-definitions>
