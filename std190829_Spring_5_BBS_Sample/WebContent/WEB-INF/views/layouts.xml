@@ -109,4 +109,11 @@
 	<put-attribute name="main" value="/WEB-INF/views/webchat/chatting.jsp"/>
 </definition>
 
+
+<!-- 유튜브 관련 -->
+<definition name="yutube.tiles" extends="bbslist.tiles">
+	<put-attribute name="left_menu" value="/WEB-INF/views/you/left_youlist.jsp"/>
+	<put-attribute name="main" value="/WEB-INF/views/you/youlist.jsp"/>
+</definition>
+
 </tiles-definitions>
