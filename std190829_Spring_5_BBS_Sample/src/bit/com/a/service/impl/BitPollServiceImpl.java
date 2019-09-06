@@ -24,8 +24,12 @@ public class BitPollServiceImpl implements BitPollService{
 		// 모든 투표 목록
 		List<PollDto> list = pollDao.getAllPollList();
 		
+		//System.out.println("BitPollServiceImpl , getAllPollList start");
+		
 		// 투표를 할 수 있는지 정리해서 넘겨줄 리스트
 		List<PollDto> plist = new ArrayList<>();
+		
+		//System.out.println("BitPollServiceImpl , getAllPollList plist new ok");
 		
 		for(PollDto poll : list ) {
 			int pollid = poll.getPollid();
@@ -40,6 +44,7 @@ public class BitPollServiceImpl implements BitPollService{
 			plist.add(poll);
 		}
 		
+		//System.out.println("BitPollServiceImpl , getAllPollList plist set ok");
 		
 		return plist;
 	}
@@ -53,7 +58,7 @@ public class BitPollServiceImpl implements BitPollService{
 	@Override
 	public void makePoll(PollBean pbean) {
 		// 투표항목 PollDto DB에 저장
-		System.out.println("start make poll, param pbean:" + pbean.toString());
+		//System.out.println("start make poll, param pbean:" + pbean.toString());
 		
 		PollDto poll = new PollDto(pbean.getId(), pbean.getQuestion(), pbean.getSdate(), pbean.getEdate(), pbean.getItemcount(), 0);
 //		PollDto poll = PollDto.builder().id( pbean.getId() )
@@ -63,11 +68,11 @@ public class BitPollServiceImpl implements BitPollService{
 //										.itemcount( pbean.getItemcount() )
 //										.polltotal( 0 ).build();
 		
-		System.out.println("polldto build done, " + poll.toString() );
+		//System.out.println("polldto build done, " + poll.toString() );
 		
 		pollDao.makePoll(poll);
 		
-		System.out.println("make poll done");
+		//System.out.println("make poll done");
 		
 		// 선택지 DB에 저장
 		String answer[] = pbean.getPollnum();
@@ -75,11 +80,10 @@ public class BitPollServiceImpl implements BitPollService{
 			PollSubDto pollsub = new PollSubDto();
 			//pollsub.setPollid( poll.getPollid() );
 			pollsub.setAnswer( answer[i] );
-			
 			pollDao.makePollSub(pollsub);
 		}
 		
-		System.out.println("make poll sub done");
+		//System.out.println("make poll sub done");
 		
 	}
 
@@ -87,6 +91,27 @@ public class BitPollServiceImpl implements BitPollService{
 	public void makePollSub(PollSubDto pollsub) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+
 	
+	//투표 수행하기
+	@Override
+	public PollDto getPoll(PollDto poll) {
+		// TODO Auto-generated method stub
+		return pollDao.getPoll(poll);
+	}
+
+	@Override
+	public List<PollSubDto> getPollSubList(PollDto poll) {
+		// TODO Auto-generated method stub
+		return pollDao.getPollSubList(poll);
+	}
+
+	//투표를 완료했을 때, 변경내용 DB에 저장
+	@Override
+	public void polling(VoterDto voter) {
+		pollDao.pollingPoll(voter);
+		pollDao.pollingSub(voter);
+		pollDao.pollingVoter(voter);
+	}	
 }

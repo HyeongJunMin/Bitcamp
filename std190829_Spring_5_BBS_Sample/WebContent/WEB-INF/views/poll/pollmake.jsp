@@ -135,8 +135,8 @@ $(document).ready(function(){
 
 //선택지 개수 갱신
 function pollchange( me ){
-	var num = me.options[me.selectedIndex].value;
-	alert(num);
+	var num = parseInt( me.options[me.selectedIndex].value ) ;
+	
 	//보기의 개수에 맞춰 다시 보여준다	
 	for( i = 1 ; i < 11 ; i++ ){
 		$("#_poll" + i).val('');
@@ -145,6 +145,7 @@ function pollchange( me ){
 	
 	for( i = 1 ; i < num + 1 ; i++ ){
 		$("#_poll" + i).show();
+		console.log('i' + i );
 	}
 }
 </script>

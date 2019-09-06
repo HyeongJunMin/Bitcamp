@@ -13,7 +13,14 @@ public interface BitPollService {
 	
 	public int isVote(VoterDto voter);
 		
-	public void makePoll(PollBean pbean);
-	
+	//투표 만들기
+	public void makePoll(PollBean pbean);	
 	public void makePollSub(PollSubDto pollsub);
+	
+	//투표하기
+	public PollDto getPoll(PollDto poll);
+	public List<PollSubDto> getPollSubList(PollDto poll);
+	
+	//투표를 완료했을 때, 변경내용 DB에 저장
+	public void polling(VoterDto voter);
 }
